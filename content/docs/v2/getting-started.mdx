@@ -3,6 +3,77 @@ title: Getting Started
 description: Install vx and scaffold the current project structure.
 ---
 
-# Getting Started
-
 Use the latest Vandor-maintained `vx` workflow to scaffold a Go backend with hexagonal DDD structure from the beginning.
+
+## Install vx
+
+Start by installing the CLI and confirming the active version.
+
+```bash
+brew install vandor/tap/vx
+vx version
+```
+
+For `latest`, assume the command resolves to the current stable line of `v2`.
+
+## Create a new service
+
+Initialize a backend that already expects domain boundaries, use cases, and adapters to evolve independently.
+
+```bash
+vx init payments-service --module github.com/acme/payments-service
+cd payments-service
+```
+
+The generated layout should favor explicit structure over a flat starter template.
+
+## Generate the first workflow
+
+Use the CLI to add the first business capability and expose it through an adapter.
+
+```bash
+vx generate context billing
+vx generate usecase billing create-invoice
+vx generate adapter http
+```
+
+This gives you a first vertical slice that is easier to reason about than manually creating folders from scratch.
+
+## Expected structure
+
+After the first generation pass, the service may look like this:
+
+```text
+cmd/
+internal/
+  domain/
+    billing/
+  app/
+    billing/
+      commands/
+      queries/
+  adapter/
+    http/
+    repository/
+pkg/
+```
+
+The exact output is not important in this dummy page. What matters is that `vx` keeps domain, application, and delivery concerns separated by default.
+
+## Implement your first use case
+
+From here, a typical next step is:
+
+1. Define domain rules in `internal/domain/billing`
+2. Add orchestration in `internal/app/billing`
+3. Bind transport handlers in `internal/adapter/http`
+4. Add persistence through a generated repository adapter
+
+This is where the CLI stops being just scaffolding and starts acting as a consistency layer for the service.
+
+## Next steps
+
+- Read the versioned docs index for more commands
+- Add another bounded context such as `ledger` or `settlement`
+- Generate a gRPC or event-based adapter next
+- Replace all dummy placeholders here with real install and generation flows later

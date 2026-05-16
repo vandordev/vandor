@@ -38,9 +38,11 @@ export function VxDocPage({ data }: VxDocPageProps) {
   return (
     <VxDocsLayout requestedVersion={hydrated.requestedVersion} tree={hydrated.pageTree}>
       <DocsPage toc={toc}>
-        <DocsTitle>{hydrated.title}</DocsTitle>
-        <DocsDescription>{hydrated.description}</DocsDescription>
-        <DocsBody>{body}</DocsBody>
+        <div className="w-full max-w-[65ch]">
+          <DocsTitle>{hydrated.title}</DocsTitle>
+          <DocsDescription>{hydrated.description}</DocsDescription>
+          <DocsBody className="max-w-none">{body}</DocsBody>
+        </div>
       </DocsPage>
     </VxDocsLayout>
   )
