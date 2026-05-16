@@ -20,7 +20,7 @@ function getBaseOptions(requestedVersion: RequestedVxVersion): BaseLayoutProps {
       {
         type: 'button',
         text: 'Install vx',
-        url: '#link',
+        url: `/vx/${requestedVersion}/docs/getting-started`,
       },
     ],
     searchToggle: {
@@ -44,7 +44,11 @@ export function VxDocsLayout({
   tree,
 }: VxDocsLayoutProps) {
   return (
-    <DocsLayout tree={tree} {...getBaseOptions(requestedVersion)}>
+    <DocsLayout
+      tree={tree}
+      containerProps={{ className: 'vandor-docs' }}
+      {...getBaseOptions(requestedVersion)}
+    >
       {children}
     </DocsLayout>
   )
