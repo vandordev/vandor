@@ -30,6 +30,11 @@ const loaderCache = new Map<string, ReturnType<typeof dynamicLoader>>()
 
 let runtimeDocsRootPromise: Promise<string> | undefined
 
+function resolveBundledDocKeyToFilePath(key: string) {
+  const withoutBaseName = key.startsWith('vx-docs:') ? key.slice('vx-docs:'.length) : key
+  return withoutBaseName.replaceAll(':', path.sep)
+}
+
 async function getDocsRootDir() {
   if (process.env.NODE_ENV === 'development') {
     return path.resolve('content/docs')
@@ -53,7 +58,7 @@ async function materializeBundledDocs() {
         return
       }
 
-      const targetFile = path.join(targetRoot, key)
+      const targetFile = path.join(targetRoot, resolveBundledDocKeyToFilePath(key))
       await fs.mkdir(path.dirname(targetFile), { recursive: true })
       await fs.writeFile(targetFile, raw)
     }),
