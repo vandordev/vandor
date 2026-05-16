@@ -39,28 +39,28 @@ export default function HeroSection4() {
                   <div className="bg-card ring-border shadow-foreground/10 bottom-15 absolute left-4 min-w-56 rounded-2xl p-1 shadow-xl ring-1 dark:shadow-black/25">
                     <div className="hover:bg-muted flex cursor-pointer items-center gap-3 rounded-xl px-3 py-2 text-sm [&>svg]:size-4 [&>svg]:opacity-65">
                       <Paperclip />
-                      <span>Add photos and files</span>
+                      <span>Scaffold bounded contexts</span>
                     </div>
                     <span className="bg-size-[6px_1px] mx-3 my-0.5 block h-px bg-[linear-gradient(90deg,var(--color-foreground)_1px,transparent_1px)] bg-bottom bg-repeat-x opacity-30 dark:opacity-15" />
                     <div className="hover:bg-muted flex cursor-pointer items-center gap-3 rounded-xl px-3 py-2 text-sm [&>svg]:size-4 [&>svg]:opacity-65">
                       <ImageIcon />
-                      <span>Create image</span>
+                      <span>Generate adapters</span>
                     </div>
                     <div className="hover:bg-muted flex cursor-pointer items-center gap-3 rounded-xl px-3 py-2 text-sm [&>svg]:size-4 [&>svg]:opacity-65">
                       <Lightbulb />
-                      <span>Thinking</span>
+                      <span>Map use cases</span>
                     </div>
                     <div className="hover:bg-muted flex cursor-pointer items-center gap-3 rounded-xl px-3 py-2 text-sm [&>svg]:size-4 [&>svg]:opacity-65">
                       <Telescope />
-                      <span>Deep research</span>
+                      <span>Inspect architecture</span>
                     </div>
                     <div className="hover:bg-muted flex cursor-pointer items-center gap-3 rounded-xl px-3 py-2 text-sm [&>svg]:size-4 [&>svg]:opacity-65">
                       <ShoppingBag />
-                      <span>Shopping research</span>
+                      <span>Add VPKG packages</span>
                     </div>
                     <div className="hover:bg-muted flex cursor-pointer items-center gap-3 rounded-xl px-3 py-2 text-sm [&>svg]:size-4 [&>svg]:opacity-65">
                       <Github />
-                      <span>Open source access</span>
+                      <span>Ship open source faster</span>
                     </div>
                   </div>
 
@@ -69,7 +69,7 @@ export default function HeroSection4() {
                       <div className="bg-muted flex size-9 cursor-pointer rounded-full *:m-auto *:size-4">
                         <Plus />
                       </div>
-                      <div className="text-muted-foreground text-sm">Ask anything...</div>
+                      <div className="text-muted-foreground text-sm">Run vx new...</div>
                     </div>
                     <div className="flex items-center gap-0.5">
                       <div className="hover:bg-muted flex size-9 cursor-pointer rounded-full *:m-auto *:size-4">
@@ -84,16 +84,17 @@ export default function HeroSection4() {
               </div>
               <div className="mx-auto max-w-md text-center">
                 <h1 className="text-balance text-4xl font-medium sm:text-5xl">
-                  Ship faster. Integrate smarter.
+                  Open-source tools for structured Go backends.
                 </h1>
                 <p className="text-muted-foreground mt-4 text-balance">
-                  Vandor is your all-in-one engine for operating vendor workflows with
-                  speed, clarity, and control.
+                  Vandor builds vx, a CLI that scaffolds bounded contexts, use cases,
+                  and infrastructure wiring so you can ship clean Go services with
+                  hexagonal DDD from the first command.
                 </p>
 
                 <VeilButton asChild className="mt-6 pr-1.5">
                   <a href="#link">
-                    <span className="text-nowrap">Start Building</span>
+                    <span className="text-nowrap">Install vx</span>
                     <ChevronRight className="opacity-50" />
                   </a>
                 </VeilButton>

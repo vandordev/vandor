@@ -17,8 +17,8 @@ export default function RotatingGradientRight() {
           <Card className="z-10 w-[340px] rounded-2xl border-border bg-card/85 text-card-foreground shadow-2xl backdrop-blur-xl">
             <CardContent className="p-5">
               <div className="mb-3 flex items-center justify-between">
-                <span className="text-sm font-medium">Vandor</span>
-                <span className="text-muted-foreground text-xs">99 / 99</span>
+                <span className="text-sm font-medium">vx</span>
+                <span className="text-muted-foreground text-xs">hexagonal-ddd</span>
               </div>
 
               <div className="bg-muted/60 mb-3 h-1.5 w-full overflow-hidden rounded-full">
@@ -26,12 +26,12 @@ export default function RotatingGradientRight() {
               </div>
 
               <p className="text-muted-foreground text-xs">
-                Building components... please keep the project open until the process is
-                complete.
+                Generating domain core, application layer, and adapter wiring for your
+                next Go service.
               </p>
 
               <Button variant="secondary" className="mt-4 w-full rounded-lg">
-                Cancel
+                Scaffold project
               </Button>
             </CardContent>
           </Card>
@@ -39,14 +39,14 @@ export default function RotatingGradientRight() {
 
         <div className="space-y-4">
           <h2 className="text-foreground text-lg leading-relaxed font-normal sm:text-xl lg:text-3xl">
-            Vandor{' '}
+            Vandor builds vx,{' '}
             <span className="text-muted-foreground text-sm sm:text-base lg:text-3xl">
-              Coordinate vendor onboarding, approvals, and compliance workflows from a
-              single operating layer built for speed and clarity.
+              the Go backend CLI for teams that want hexagonal architecture, bounded
+              contexts, and DDD structure from the first command.
             </span>
           </h2>
           <Button variant="link" className="px-0">
-            Explore Vandor <ArrowRight />
+            Read the vx docs <ArrowRight />
           </Button>
         </div>
       </div>

@@ -2,11 +2,11 @@ import { LogoIcon } from '#/components/logo'
 // import { ThemeSwitcher } from '#/components/theme-switcher'
 
 const links = [
-  { label: 'Features', href: '#' },
-  { label: 'Pricing', href: '#' },
-  { label: 'About', href: '#' },
-  { label: 'Blog', href: '#' },
-  { label: 'Contact', href: '#' },
+  { label: 'Documentation', href: '#' },
+  { label: 'Getting Started', href: '#' },
+  { label: 'Core Concepts', href: '#' },
+  { label: 'CLI Reference', href: '#' },
+  { label: 'GitHub', href: '#' },
 ]
 
 export default function Footer5() {
