@@ -10,6 +10,7 @@ import { RootProvider } from 'fumadocs-ui/provider/tanstack'
 import TanStackQueryDevtools from '../integrations/tanstack-query/devtools'
 import { ThemeProvider } from '../components/theme-provider'
 
+import { env } from '#/env'
 import { getLocale } from '#/paraglide/runtime'
 
 import appCss from '../styles.css?url'
@@ -56,6 +57,15 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
         href: '/app-logo.png',
       },
     ],
+    scripts: env.VITE_UMAMI_WEBSITE_ID
+      ? [
+          {
+            src: 'https://cloud.umami.is/script.js',
+            defer: true,
+            'data-website-id': env.VITE_UMAMI_WEBSITE_ID,
+          },
+        ]
+      : [],
   }),
   shellComponent: RootDocument,
 })
