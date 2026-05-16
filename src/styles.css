@@ -384,8 +384,8 @@ a {
 .vandor-docs [role='navigation'],
 .vandor-docs aside,
 .vandor-docs [data-search-full] {
-  background-color: color-mix(in oklab, var(--card) 88%, black 12%);
-  backdrop-filter: blur(14px);
+  background-color: color-mix(in oklab, var(--card) 94%, black 6%);
+  backdrop-filter: none;
 }
 
 .vandor-docs nav,
@@ -397,13 +397,14 @@ a {
 
 .vandor-docs#nd-docs-layout {
   width: 100%;
-  background: transparent;
+  background: #000;
 }
 
 .vandor-docs #nd-page {
   width: 100%;
   max-width: 960px;
   margin-inline: auto;
+  background: transparent;
 }
 
 .vandor-docs button,
