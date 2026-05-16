@@ -22,6 +22,7 @@ import {
 } from 'fumadocs-ui/layouts/docs/page'
 
 import { useMDXComponents } from '#/components/mdx'
+import { WaterRippleEffect } from '#/components/ui/water-ripple-effect'
 import { VxDocsLayout } from '#/features/vx/docs/docs-layout'
 import type { RequestedVxVersion } from '#/features/vx/versioning/version-types'
 import { cn } from '#/lib/utils'
@@ -64,12 +65,19 @@ export function VxDocPage({ data }: VxDocPageProps) {
         {hydrated.banner ? (
           <div className="mb-8 overflow-hidden rounded-[1.5rem] border border-border bg-card">
             <div className="relative h-44 w-full sm:h-52">
-              <img
-                src={hydrated.banner}
-                alt=""
-                className="size-full object-cover"
+              <WaterRippleEffect
+                imageSrc={hydrated.banner}
+                aria-hidden="true"
+                distortionAmount={0.01}
+                hoverRippleMultiplier={4.8}
+                rippleFrequency={24}
+                rippleIntensity={0.015}
+                transitionSpeed={0.09}
+                waveIntensity={0.007}
+                waveFrequency={12}
+                className="bg-card"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-black/15 to-transparent" />
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/45 via-black/15 to-transparent" />
             </div>
           </div>
         ) : null}
