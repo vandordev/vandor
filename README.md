@@ -63,6 +63,21 @@ The build output is a self-contained Node server. To deploy, push the `dist/` di
 
 For host-specific presets (Vercel, Netlify, Cloudflare, AWS Lambda, etc.) and tuning, see https://v3.nitro.build/deploy.
 
+## Deploy to Vercel
+
+This repo is configured to build with the Nitro `vercel` preset for Git-based Vercel deployments.
+
+Use these project settings in Vercel:
+
+- Install Command: `pnpm install`
+- Build Command: `pnpm build`
+
+Required environment variables in Vercel Project Settings:
+
+- `VITE_UMAMI_WEBSITE_ID`
+
+The local `.env` file is ignored by git, so Vercel must receive the same value through its dashboard environment settings.
+
 
 # Paraglide i18n
 
