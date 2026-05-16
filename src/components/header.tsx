@@ -10,15 +10,14 @@ import { ChevronRight, Menu, X } from 'lucide-react'
 import { useMedia } from '#/hooks/use-media'
 import { cn } from '#/lib/utils'
 import { Logo } from '#/components/logo'
+import type { SiteShellBrand, SiteShellContent } from '#/components/site-shell-content'
 import { VeilButton } from '#/components/ui/veil-button'
 
-const menuItems = [
-  { name: 'vx', href: '/vx/latest' },
-  { name: 'Documentation', href: '/vx/latest/docs' },
-  { name: 'GitHub', href: '#' },
-]
+type HeroHeaderProps = {
+  content: SiteShellContent
+}
 
-export const HeroHeader = () => {
+export const HeroHeader = ({ content }: HeroHeaderProps) => {
   const [menuState, setMenuState] = React.useState(false)
   const [isScrolled, setIsScrolled] = React.useState(false)
   const { scrollY } = useScroll()
@@ -40,15 +39,14 @@ export const HeroHeader = () => {
               )}
             >
               <div className="hidden size-fit lg:block">
-                <NavItems />
+                <NavItems items={content.navItems} />
               </div>
               <a
                 href="/"
                 aria-label="home"
                 className="flex items-center gap-2 lg:hidden"
               >
-                <Logo className="w-fit" />{' '}
-                <span className="font-bold">Vandor</span>
+                <HeaderBrand brand={content.brand} />
               </a>
 
               <button
@@ -62,11 +60,13 @@ export const HeroHeader = () => {
               </button>
             </div>
 
-            {isLarge && <FloatingNavPill isScrolled={isScrolled} />}
+            {isLarge && (
+              <FloatingNavPill content={content} isScrolled={isScrolled} />
+            )}
 
             <div className="bg-card ring-border in-data-[state=active]:block lg:in-data-[state=active]:flex mb-6 hidden w-full flex-wrap items-center justify-end space-y-8 rounded-3xl p-6 shadow-2xl shadow-zinc-300/20 ring-1 md:flex-nowrap lg:m-0 lg:flex lg:w-fit lg:gap-6 lg:space-y-0 lg:bg-transparent lg:p-0 lg:shadow-none lg:ring-transparent dark:shadow-none dark:lg:bg-transparent">
               <div className="lg:hidden">
-                <NavItems />
+                <NavItems items={content.navItems} />
               </div>
               <div
                 className={cn(
@@ -74,16 +74,20 @@ export const HeroHeader = () => {
                   isScrolled && 'lg:opacity-0 lg:blur-[4px]',
                 )}
               >
-                <VeilButton asChild variant="ghost" size="sm">
-                  <a href="/vx/latest/docs">
-                    <span>Read Docs</span>
-                  </a>
-                </VeilButton>
-                <VeilButton asChild size="sm">
-                  <a href="/vx/latest">
-                    <span>Install vx</span>
-                  </a>
-                </VeilButton>
+                {content.headerCtas.secondary && (
+                  <VeilButton asChild variant="ghost" size="sm">
+                    <a href={content.headerCtas.secondary.href}>
+                      <span>{content.headerCtas.secondary.label}</span>
+                    </a>
+                  </VeilButton>
+                )}
+                {content.headerCtas.primary && (
+                  <VeilButton asChild size="sm">
+                    <a href={content.headerCtas.primary.href}>
+                      <span>{content.headerCtas.primary.label}</span>
+                    </a>
+                  </VeilButton>
+                )}
               </div>
             </div>
           </div>
@@ -93,11 +97,27 @@ export const HeroHeader = () => {
   )
 }
 
-const NavItems = () => {
+function HeaderBrand({ brand }: { brand: SiteShellBrand }) {
+  return (
+    <div className="flex items-center gap-2">
+      <Logo className="w-fit" />
+      {brand.kind === 'vandor' ? (
+        <span className="font-semibold text-lg">Vandor</span>
+      ) : (
+        <>
+          <span className="text-muted-foreground">/</span>
+          <span className="font-semibold text-lg">vx</span>
+        </>
+      )}
+    </div>
+  )
+}
+
+const NavItems = ({ items }: { items: SiteShellContent['navItems'] }) => {
   return (
     <ul className="flex gap-1 max-lg:flex-col">
-      {menuItems.map((item) => (
-        <li key={item.name}>
+      {items.map((item) => (
+        <li key={item.label}>
           <VeilButton
             asChild
             variant="ghost"
@@ -105,7 +125,7 @@ const NavItems = () => {
             className="w-full max-lg:h-12 max-lg:justify-start max-lg:text-lg"
           >
             <a href={item.href} className="text-base">
-              <span>{item.name}</span>
+              <span>{item.label}</span>
             </a>
           </VeilButton>
         </li>
@@ -114,7 +134,13 @@ const NavItems = () => {
   )
 }
 
-const FloatingNavPill = ({ isScrolled }: { isScrolled: boolean }) => {
+const FloatingNavPill = ({
+  content,
+  isScrolled,
+}: {
+  content: SiteShellContent
+  isScrolled: boolean
+}) => {
   return (
     <motion.div
       animate={{
@@ -129,14 +155,7 @@ const FloatingNavPill = ({ isScrolled }: { isScrolled: boolean }) => {
       )}
     >
       <a href="/" aria-label="home" className="px-3.5">
-        {isScrolled ? (
-          <Logo className="w-fit" />
-        ) : (
-          <div className="flex items-center gap-2">
-            <Logo className="w-fit" />
-            <span className="font-semibold text-lg">Vandor</span>
-          </div>
-        )}
+        <HeaderBrand brand={content.brand} />
       </a>
       <AnimatePresence initial={false}>
         {isScrolled && (
@@ -165,13 +184,15 @@ const FloatingNavPill = ({ isScrolled }: { isScrolled: boolean }) => {
             transition={{ duration: 0.5, type: 'spring', bounce: 0.1 }}
             className="flex origin-left items-center overflow-hidden rounded-full"
           >
-            <NavItems />
-            <VeilButton asChild size="sm" className="mx-2 gap-1 pr-1">
-              <a href="/vx/latest">
-                <span>Install vx</span>
-                <ChevronRight className="opacity-50" />
-              </a>
-            </VeilButton>
+            <NavItems items={content.navItems} />
+            {content.headerCtas.primary && (
+              <VeilButton asChild size="sm" className="mx-2 gap-1 pr-1">
+                <a href={content.headerCtas.primary.href}>
+                  <span>{content.headerCtas.primary.label}</span>
+                  <ChevronRight className="opacity-50" />
+                </a>
+              </VeilButton>
+            )}
           </motion.div>
         )}
       </AnimatePresence>

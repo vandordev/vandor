@@ -12,6 +12,7 @@ import {
 } from 'lucide-react'
 
 import { HeroHeader } from '#/components/header'
+import { getSiteShellContent } from '#/components/site-shell-content'
 import { VeilButton } from '#/components/ui/veil-button'
 
 type HeroSection4Props = {
@@ -21,11 +22,13 @@ type HeroSection4Props = {
 export default function HeroSection4({
   installHref = '/vx/latest',
 }: HeroSection4Props) {
+  const shellContent = getSiteShellContent({ variant: 'vandor' })
+
   return (
     <>
-      <HeroHeader />
+      <HeroHeader content={shellContent} />
       <main className="overflow-hidden">
-        <section className="bg-background">
+        <section id="about" className="bg-background">
           <div className="relative py-32">
             <div className="mask-radial-from-45% mask-radial-to-75% mask-radial-at-top mask-radial-[75%_100%] mask-t-from-50% aspect-2/3 lg:aspect-9/4 absolute inset-0 md:aspect-square dark:opacity-5">
               <img

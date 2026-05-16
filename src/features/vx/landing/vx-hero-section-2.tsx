@@ -13,7 +13,7 @@ export function VxHeroSection2({ requestedVersion }: VxHeroSection2Props) {
   const gettingStartedHref = vxLandingContent.installHref(requestedVersion)
 
   return (
-    <section className="bg-background">
+    <section id="overview" className="bg-background">
       <div className="relative overflow-hidden px-6 pb-32 pt-44 sm:px-8 lg:px-10">
         <div className="mask-radial-from-45% mask-radial-to-75% mask-radial-at-top mask-radial-[75%_100%] pointer-events-none absolute inset-0 aspect-square opacity-65 md:aspect-[9/4] dark:opacity-5">
           <img

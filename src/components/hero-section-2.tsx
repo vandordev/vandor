@@ -1,5 +1,6 @@
 import { Button } from '#/components/ui/button.tsx'
 import { Card } from '#/components/ui/card.tsx'
+import { getSiteShellContent } from '#/components/site-shell-content'
 import { HeroHeader } from './header'
 import { ChevronRight } from 'lucide-react'
 import { Supabase } from '#/components/ui/svgs/supabase.tsx'
@@ -13,9 +14,11 @@ import { ClerkIconLight as Clerk } from '#/components/ui/svgs/clerk.tsx'
 import { Claude } from '#/components/ui/svgs/claude.tsx'
 
 export default function HeroSection() {
+    const shellContent = getSiteShellContent({ variant: 'vandor' })
+
     return (
         <>
-            <HeroHeader />
+            <HeroHeader content={shellContent} />
             <main className="overflow-hidden">
                 <section className="bg-background">
                     <div className="relative pb-32 pt-44">

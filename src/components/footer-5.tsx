@@ -1,15 +1,12 @@
 import { LogoIcon } from '#/components/logo'
+import type { SiteShellContent } from '#/components/site-shell-content'
 // import { ThemeSwitcher } from '#/components/theme-switcher'
 
-const links = [
-  { label: 'vx Landing', href: '/vx/latest' },
-  { label: 'Documentation', href: '/vx/latest/docs' },
-  { label: 'Getting Started', href: '/vx/latest/docs/getting-started' },
-  { label: 'CLI Reference', href: '/vx/latest/docs' },
-  { label: 'GitHub', href: '#' },
-]
+type Footer5Props = {
+  content: Pick<SiteShellContent, 'footerLinks'>
+}
 
-export default function Footer5() {
+export default function Footer5({ content }: Footer5Props) {
   return (
     <footer className="w-full py-12">
       <div className="flex flex-col">
@@ -22,7 +19,7 @@ export default function Footer5() {
           <LogoIcon className="size-20" />
         </a>
         <nav className="my-8 flex flex-wrap gap-x-8 gap-y-2">
-          {links.map((link) => (
+          {content.footerLinks.map((link) => (
             <a
               key={link.label}
               href={link.href}
