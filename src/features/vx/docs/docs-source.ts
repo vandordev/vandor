@@ -1,5 +1,7 @@
 import { localMd } from '@fumadocs/local-md'
+import { pageSchema } from 'fumadocs-core/source/schema'
 import { dynamicLoader } from 'fumadocs-core/source/dynamic'
+import { z } from 'zod'
 
 import { resolveDocVersion } from '#/features/vx/versioning/resolve-version'
 import type {
@@ -13,10 +15,14 @@ const docsDirectories: Record<ConcreteDocVersion, string> = {
   v2: 'content/docs/v2',
 }
 
+const vxPageSchema = pageSchema.extend({
+  banner: z.string().optional(),
+})
+
 const docsSources: Record<ConcreteDocVersion, ReturnType<typeof localMd>> = {
-  v0: localMd({ dir: docsDirectories.v0 }),
-  v1: localMd({ dir: docsDirectories.v1 }),
-  v2: localMd({ dir: docsDirectories.v2 }),
+  v0: localMd({ dir: docsDirectories.v0, frontmatterSchema: vxPageSchema }),
+  v1: localMd({ dir: docsDirectories.v1, frontmatterSchema: vxPageSchema }),
+  v2: localMd({ dir: docsDirectories.v2, frontmatterSchema: vxPageSchema }),
 }
 
 if (process.env.NODE_ENV === 'development') {

@@ -34,6 +34,7 @@ export const loadVxDocPage = createServerFn({
     const renderer = await page.data.load()
 
     return {
+      banner: page.data.frontmatter.banner,
       description: page.data.description,
       pageTree: source.getPageTree(),
       render: renderer.serialize(),
