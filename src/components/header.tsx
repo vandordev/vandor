@@ -13,9 +13,9 @@ import { Logo } from '#/components/logo'
 import { VeilButton } from '#/components/ui/veil-button'
 
 const menuItems = [
-  { name: 'Documentation', href: '#link' },
-  { name: 'VPKG', href: '#link' },
-  { name: 'GitHub', href: '#link' },
+  { name: 'vx', href: '/vx/latest' },
+  { name: 'Documentation', href: '/vx/latest/docs' },
+  { name: 'GitHub', href: '#' },
 ]
 
 export const HeroHeader = () => {
@@ -75,12 +75,12 @@ export const HeroHeader = () => {
                 )}
               >
                 <VeilButton asChild variant="ghost" size="sm">
-                  <a href="#">
+                  <a href="/vx/latest/docs">
                     <span>Read Docs</span>
                   </a>
                 </VeilButton>
                 <VeilButton asChild size="sm">
-                  <a href="#">
+                  <a href="/vx/latest">
                     <span>Install vx</span>
                   </a>
                 </VeilButton>
@@ -167,7 +167,7 @@ const FloatingNavPill = ({ isScrolled }: { isScrolled: boolean }) => {
           >
             <NavItems />
             <VeilButton asChild size="sm" className="mx-2 gap-1 pr-1">
-              <a href="#">
+              <a href="/vx/latest">
                 <span>Install vx</span>
                 <ChevronRight className="opacity-50" />
               </a>

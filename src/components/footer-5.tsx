@@ -2,10 +2,10 @@ import { LogoIcon } from '#/components/logo'
 // import { ThemeSwitcher } from '#/components/theme-switcher'
 
 const links = [
-  { label: 'Documentation', href: '#' },
-  { label: 'Getting Started', href: '#' },
-  { label: 'Core Concepts', href: '#' },
-  { label: 'CLI Reference', href: '#' },
+  { label: 'vx Landing', href: '/vx/latest' },
+  { label: 'Documentation', href: '/vx/latest/docs' },
+  { label: 'Getting Started', href: '/vx/latest/docs/getting-started' },
+  { label: 'CLI Reference', href: '/vx/latest/docs' },
   { label: 'GitHub', href: '#' },
 ]
 

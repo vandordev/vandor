@@ -19,7 +19,7 @@ type HeroSection4Props = {
 }
 
 export default function HeroSection4({
-  installHref = '#link',
+  installHref = '/vx/latest',
 }: HeroSection4Props) {
   return (
     <>
