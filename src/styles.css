@@ -414,6 +414,14 @@ a {
     transform 180ms ease;
 }
 
+.vandor-docs .prose :is(h1, h2, h3, h4, h5, h6) a {
+  text-decoration: none;
+}
+
+.vandor-docs .prose :is(h1, h2, h3, h4, h5, h6) {
+  font-weight: 600;
+}
+
 .vandor-docs .prose {
   --tw-prose-body: var(--foreground);
   --tw-prose-headings: var(--foreground);
