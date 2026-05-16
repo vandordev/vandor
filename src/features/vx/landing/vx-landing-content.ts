@@ -1,4 +1,27 @@
 export const vxLandingContent = {
-  installHref: '#link',
+  installHref: (version: string) => `/vx/${version}/docs/getting-started`,
   getDocsHref: (version: string) => `/vx/${version}/docs`,
+  showcaseItems: [
+    'Bounded Contexts',
+    'Application Layer',
+    'Domain Core',
+    'HTTP Adapter',
+    'Event Bus',
+    'Postgres Repo',
+    'CLI Workflows',
+    'Code Generation',
+    'Versioned Docs',
+  ],
+  prompts: [
+    'vx init payments --template service',
+    'vx generate context billing',
+    'vx generate usecase billing create-invoice',
+    'vx generate adapter http',
+    'vx generate adapter grpc',
+    'vx generate repository postgres',
+    'vx generate event order-created',
+    'vx doctor',
+  ],
+  commandHint: 'Try: vx generate context billing',
+  commandSubhint: 'Start from a bounded context, not a blank folder tree.',
 } as const
