@@ -5,7 +5,13 @@ import { ArrowRight } from 'lucide-react'
 import { Button } from '#/components/ui/button'
 import { Card, CardContent } from '#/components/ui/card'
 
-export default function RotatingGradientRight() {
+type RotatingGradientRightProps = {
+  docsHref?: string
+}
+
+export default function RotatingGradientRight({
+  docsHref = '/vx/latest/docs',
+}: RotatingGradientRightProps) {
   return (
     <div className="min-h-screen w-full font-sans text-foreground">
       <div className="grid items-center gap-12 md:grid-cols-2">
@@ -45,8 +51,10 @@ export default function RotatingGradientRight() {
               contexts, and DDD structure from the first command.
             </span>
           </h2>
-          <Button variant="link" className="px-0">
-            Read the vx docs <ArrowRight />
+          <Button asChild variant="link" className="px-0">
+            <a href={docsHref}>
+              Read the vx docs <ArrowRight />
+            </a>
           </Button>
         </div>
       </div>

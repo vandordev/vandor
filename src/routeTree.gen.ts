@@ -10,33 +10,72 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as VxVersionIndexRouteImport } from './routes/vx/$version/index'
+import { Route as VxVersionDocsIndexRouteImport } from './routes/vx/$version/docs/index'
+import { Route as VxVersionDocsSplatRouteImport } from './routes/vx/$version/docs/$'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const VxVersionIndexRoute = VxVersionIndexRouteImport.update({
+  id: '/vx/$version/',
+  path: '/vx/$version/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const VxVersionDocsIndexRoute = VxVersionDocsIndexRouteImport.update({
+  id: '/vx/$version/docs/',
+  path: '/vx/$version/docs/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const VxVersionDocsSplatRoute = VxVersionDocsSplatRouteImport.update({
+  id: '/vx/$version/docs/$',
+  path: '/vx/$version/docs/$',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/vx/$version/': typeof VxVersionIndexRoute
+  '/vx/$version/docs/$': typeof VxVersionDocsSplatRoute
+  '/vx/$version/docs/': typeof VxVersionDocsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/vx/$version': typeof VxVersionIndexRoute
+  '/vx/$version/docs/$': typeof VxVersionDocsSplatRoute
+  '/vx/$version/docs': typeof VxVersionDocsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/vx/$version/': typeof VxVersionIndexRoute
+  '/vx/$version/docs/$': typeof VxVersionDocsSplatRoute
+  '/vx/$version/docs/': typeof VxVersionDocsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/vx/$version/'
+    | '/vx/$version/docs/$'
+    | '/vx/$version/docs/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/vx/$version' | '/vx/$version/docs/$' | '/vx/$version/docs'
+  id:
+    | '__root__'
+    | '/'
+    | '/vx/$version/'
+    | '/vx/$version/docs/$'
+    | '/vx/$version/docs/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  VxVersionIndexRoute: typeof VxVersionIndexRoute
+  VxVersionDocsSplatRoute: typeof VxVersionDocsSplatRoute
+  VxVersionDocsIndexRoute: typeof VxVersionDocsIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +87,35 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/vx/$version/': {
+      id: '/vx/$version/'
+      path: '/vx/$version'
+      fullPath: '/vx/$version/'
+      preLoaderRoute: typeof VxVersionIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/vx/$version/docs/': {
+      id: '/vx/$version/docs/'
+      path: '/vx/$version/docs'
+      fullPath: '/vx/$version/docs/'
+      preLoaderRoute: typeof VxVersionDocsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/vx/$version/docs/$': {
+      id: '/vx/$version/docs/$'
+      path: '/vx/$version/docs/$'
+      fullPath: '/vx/$version/docs/$'
+      preLoaderRoute: typeof VxVersionDocsSplatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  VxVersionIndexRoute: VxVersionIndexRoute,
+  VxVersionDocsSplatRoute: VxVersionDocsSplatRoute,
+  VxVersionDocsIndexRoute: VxVersionDocsIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

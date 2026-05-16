@@ -14,7 +14,13 @@ import {
 import { HeroHeader } from '#/components/header'
 import { VeilButton } from '#/components/ui/veil-button'
 
-export default function HeroSection4() {
+type HeroSection4Props = {
+  installHref?: string
+}
+
+export default function HeroSection4({
+  installHref = '#link',
+}: HeroSection4Props) {
   return (
     <>
       <HeroHeader />
@@ -93,7 +99,7 @@ export default function HeroSection4() {
                 </p>
 
                 <VeilButton asChild className="mt-6 pr-1.5">
-                  <a href="#link">
+                  <a href={installHref}>
                     <span className="text-nowrap">Install vx</span>
                     <ChevronRight className="opacity-50" />
                   </a>
