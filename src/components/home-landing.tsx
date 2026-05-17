@@ -6,6 +6,7 @@ import { VandorHomeHero } from '#/features/home/vandor-home-hero'
 import { VandorOpenWork } from '#/features/home/vandor-open-work'
 import { VandorHomeHighlights } from '#/features/news/vandor-home-highlights'
 import type { NewsIndexData } from '#/features/news/news-types'
+import { VandorHomePartners } from '#/features/partners/vandor-home-partners'
 
 type HomeLandingProps = {
   newsData?: NewsIndexData
@@ -25,6 +26,9 @@ export function HomeLanding({
         <VandorHomeHero requestedVersion={requestedVersion} />
         <LandingSection className="pt-18 sm:pt-24 lg:pt-32">
           <VandorOpenWork />
+        </LandingSection>
+        <LandingSection className="pt-20 sm:pt-28 lg:pt-36">
+          <VandorHomePartners />
         </LandingSection>
         {newsData ? (
           <LandingSection className="pt-20 sm:pt-26 lg:pt-36">

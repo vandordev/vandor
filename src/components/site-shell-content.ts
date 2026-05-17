@@ -32,6 +32,7 @@ const vandorShellContent: SiteShellContent = {
   brand: { kind: 'vandor' },
   navItems: [
     { label: 'Work', href: '/#about' },
+    { label: 'Partners', href: '/partners' },
     { label: 'Products', href: '/#products' },
     { label: 'News', href: '/news' },
   ],
@@ -51,6 +52,7 @@ const vandorShellContent: SiteShellContent = {
   footerLinks: [
     { label: 'Home', href: '/' },
     { label: 'Work', href: '/#about' },
+    { label: 'Partners', href: '/partners' },
     { label: 'Products', href: '/#products' },
     { label: 'News', href: '/news' },
     { label: 'vx', href: '/vx/latest' },
