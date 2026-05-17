@@ -21,6 +21,10 @@ type HeroHeaderProps = {
   content: SiteShellContent
 }
 
+function getBrandHref(brand: SiteShellBrand) {
+  return brand.kind === 'vx' ? '/vx' : '/'
+}
+
 export const HeroHeader = ({ content }: HeroHeaderProps) => {
   const [menuState, setMenuState] = React.useState(false)
   const [isScrolled, setIsScrolled] = React.useState(false)
@@ -46,7 +50,7 @@ export const HeroHeader = ({ content }: HeroHeaderProps) => {
                 <NavItems items={content.navItems} />
               </div>
               <a
-                href="/"
+                href={getBrandHref(content.brand)}
                 aria-label="home"
                 className="flex items-center gap-2 lg:hidden"
               >
@@ -101,12 +105,20 @@ export const HeroHeader = ({ content }: HeroHeaderProps) => {
   )
 }
 
-function HeaderBrand({ brand }: { brand: SiteShellBrand }) {
+function HeaderBrand({
+  brand,
+  hideVandorLabel = false,
+}: {
+  brand: SiteShellBrand
+  hideVandorLabel?: boolean
+}) {
   return (
     <div className="flex items-center gap-2">
       <Logo className="w-fit" />
       {brand.kind === 'vandor' ? (
+        hideVandorLabel ? null : (
         <span className="font-semibold text-lg">Vandor</span>
+        )
       ) : (
         <>
           <span className="text-muted-foreground">/</span>
@@ -228,8 +240,15 @@ const FloatingNavPill = ({
           'ring-border shadow-foreground/6.5 shadow-lg ring-1 backdrop-blur',
       )}
     >
-      <a href="/" aria-label="home" className="px-3.5">
-        <HeaderBrand brand={content.brand} />
+      <a
+        href={getBrandHref(content.brand)}
+        aria-label="home"
+        className="px-3.5"
+      >
+        <HeaderBrand
+          brand={content.brand}
+          hideVandorLabel={content.brand.kind === 'vandor' && isScrolled}
+        />
       </a>
       <AnimatePresence initial={false}>
         {isScrolled && (
@@ -256,7 +275,7 @@ const FloatingNavPill = ({
               width: 0,
             }}
             transition={{ duration: 0.5, type: 'spring', bounce: 0.1 }}
-            className="flex origin-left items-center overflow-hidden rounded-full"
+            className="flex origin-left items-center overflow-visible rounded-full"
           >
             <NavItems items={content.navItems} />
             {content.headerCtas.primary && (
