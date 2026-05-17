@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as VxIndexRouteImport } from './routes/vx/index'
 import { Route as NewsIndexRouteImport } from './routes/news/index'
 import { Route as NewsSlugRouteImport } from './routes/news/$slug'
 import { Route as VxVersionIndexRouteImport } from './routes/vx/$version/index'
@@ -19,6 +20,11 @@ import { Route as VxVersionDocsSplatRouteImport } from './routes/vx/$version/doc
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const VxIndexRoute = VxIndexRouteImport.update({
+  id: '/vx/',
+  path: '/vx/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const NewsIndexRoute = NewsIndexRouteImport.update({
@@ -51,6 +57,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/news/$slug': typeof NewsSlugRoute
   '/news/': typeof NewsIndexRoute
+  '/vx/': typeof VxIndexRoute
   '/vx/$version/': typeof VxVersionIndexRoute
   '/vx/$version/docs/$': typeof VxVersionDocsSplatRoute
   '/vx/$version/docs/': typeof VxVersionDocsIndexRoute
@@ -59,6 +66,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/news/$slug': typeof NewsSlugRoute
   '/news': typeof NewsIndexRoute
+  '/vx': typeof VxIndexRoute
   '/vx/$version': typeof VxVersionIndexRoute
   '/vx/$version/docs/$': typeof VxVersionDocsSplatRoute
   '/vx/$version/docs': typeof VxVersionDocsIndexRoute
@@ -68,6 +76,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/news/$slug': typeof NewsSlugRoute
   '/news/': typeof NewsIndexRoute
+  '/vx/': typeof VxIndexRoute
   '/vx/$version/': typeof VxVersionIndexRoute
   '/vx/$version/docs/$': typeof VxVersionDocsSplatRoute
   '/vx/$version/docs/': typeof VxVersionDocsIndexRoute
@@ -78,6 +87,7 @@ export interface FileRouteTypes {
     | '/'
     | '/news/$slug'
     | '/news/'
+    | '/vx/'
     | '/vx/$version/'
     | '/vx/$version/docs/$'
     | '/vx/$version/docs/'
@@ -86,6 +96,7 @@ export interface FileRouteTypes {
     | '/'
     | '/news/$slug'
     | '/news'
+    | '/vx'
     | '/vx/$version'
     | '/vx/$version/docs/$'
     | '/vx/$version/docs'
@@ -94,6 +105,7 @@ export interface FileRouteTypes {
     | '/'
     | '/news/$slug'
     | '/news/'
+    | '/vx/'
     | '/vx/$version/'
     | '/vx/$version/docs/$'
     | '/vx/$version/docs/'
@@ -103,6 +115,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   NewsSlugRoute: typeof NewsSlugRoute
   NewsIndexRoute: typeof NewsIndexRoute
+  VxIndexRoute: typeof VxIndexRoute
   VxVersionIndexRoute: typeof VxVersionIndexRoute
   VxVersionDocsSplatRoute: typeof VxVersionDocsSplatRoute
   VxVersionDocsIndexRoute: typeof VxVersionDocsIndexRoute
@@ -115,6 +128,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/vx/': {
+      id: '/vx/'
+      path: '/vx'
+      fullPath: '/vx/'
+      preLoaderRoute: typeof VxIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/news/': {
@@ -159,6 +179,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   NewsSlugRoute: NewsSlugRoute,
   NewsIndexRoute: NewsIndexRoute,
+  VxIndexRoute: VxIndexRoute,
   VxVersionIndexRoute: VxVersionIndexRoute,
   VxVersionDocsSplatRoute: VxVersionDocsSplatRoute,
   VxVersionDocsIndexRoute: VxVersionDocsIndexRoute,
