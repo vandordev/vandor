@@ -12,6 +12,28 @@ function formatKind(value: string) {
   return value.replace('-', ' ')
 }
 
+function StoryMeta({
+  entry,
+  showKind = true,
+}: {
+  entry: NewsEntryListItem
+  showKind?: boolean
+}) {
+  return (
+    <div className="flex flex-wrap items-center gap-2 text-[0.78rem] text-muted-foreground">
+      <p>{entry.authors.join(', ')}</p>
+      <div className="size-1 rounded-full bg-muted-foreground" />
+      <p className="tabular-nums">{formatDate(entry.publishedAt)}</p>
+      {showKind ? (
+        <>
+          <div className="size-1 rounded-full bg-muted-foreground" />
+          <p>{formatKind(entry.kind)}</p>
+        </>
+      ) : null}
+    </div>
+  )
+}
+
 type VandorHomeHighlightsProps = {
   data: NewsIndexData
 }
@@ -27,18 +49,25 @@ export function VandorHomeHighlights({ data }: VandorHomeHighlightsProps) {
   }
 
   return (
-    <div className="space-y-8">
-      <div className="grid gap-4 lg:grid-cols-[minmax(0,0.75fr)_minmax(0,1fr)] lg:items-end">
-        <div className="space-y-2">
+    <div className="relative space-y-8 border-t border-border/70 pt-8 sm:pt-10">
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-40 opacity-60"
+      >
+        <div className="absolute left-0 top-0 h-32 w-32 -translate-x-6 -translate-y-6 rounded-full bg-[radial-gradient(60%_60%_at_50%_50%,color-mix(in_oklab,var(--color-foreground)_8%,transparent)_0,color-mix(in_oklab,var(--color-foreground)_1.5%,transparent)_72%,transparent_100%)]" />
+      </div>
+
+      <div className="grid gap-5 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1fr)] lg:items-end">
+        <div className="space-y-3">
           <p className="text-sm text-muted-foreground">From Vandor</p>
-          <h2 className="max-w-3xl text-balance text-[clamp(2.4rem,5vw,4.2rem)] leading-[0.98] font-medium tracking-[-0.05em]">
-            Stories, release notes, and product thinking.
+          <h2 className="max-w-3xl text-balance text-[clamp(2.2rem,5vw,3.85rem)] leading-[0.98] font-medium tracking-[-0.052em]">
+            Selected writing from the quieter side of Vandor.
           </h2>
         </div>
         <div className="space-y-4 lg:justify-self-end">
           <p className="max-w-xl text-[1rem] leading-7 text-muted-foreground">
-            A quieter layer of Vandor, where announcements and ideas sit beside the
-            tools we build.
+            Announcements, release notes, and product writing that sit adjacent
+            to the tools, not inside the docs.
           </p>
           <a
             href="/news"
@@ -49,13 +78,19 @@ export function VandorHomeHighlights({ data }: VandorHomeHighlightsProps) {
         </div>
       </div>
 
-      <div className="grid gap-4 lg:grid-cols-[minmax(0,1.1fr)_minmax(320px,0.9fr)]">
+      <div className="grid gap-8 lg:grid-cols-[minmax(0,1.08fr)_minmax(18rem,0.72fr)] xl:gap-12">
         <LeadHighlight entry={leadStory} />
 
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-1">
-          {supportingStories.map((entry) => (
-            <SupportingHighlight key={entry.slug} entry={entry} />
-          ))}
+        <div className="border-t border-border/70 pt-5 lg:border-t-0 lg:border-l lg:pl-8 xl:pl-10">
+          <div className="mb-5">
+            <p className="text-sm text-muted-foreground">Latest notes</p>
+          </div>
+
+          <div className="divide-y divide-border/70">
+            {supportingStories.map((entry) => (
+              <SupportingHighlight key={entry.slug} entry={entry} />
+            ))}
+          </div>
         </div>
       </div>
     </div>
@@ -64,41 +99,30 @@ export function VandorHomeHighlights({ data }: VandorHomeHighlightsProps) {
 
 function LeadHighlight({ entry }: { entry: NewsEntryListItem }) {
   return (
-    <a
-      href={`/news/${entry.slug}`}
-      className="group grid overflow-hidden rounded-[1.8rem] border border-border/70 bg-card/35 lg:grid-cols-[minmax(0,0.92fr)_minmax(300px,1.08fr)]"
-    >
-      <div className="flex flex-col justify-between gap-8 p-7 sm:p-8">
-        <div className="space-y-4">
-          <div className="flex flex-wrap items-center gap-2 text-[0.78rem] text-muted-foreground">
-            <p>{entry.authors.join(', ')}</p>
-            <div className="size-1 rounded-full bg-muted-foreground" />
-            <p className="tabular-nums">{formatDate(entry.publishedAt)}</p>
-            <div className="size-1 rounded-full bg-muted-foreground" />
-            <p>{formatKind(entry.kind)}</p>
-          </div>
+    <a href={`/news/${entry.slug}`} className="group block space-y-5">
+      <div className="overflow-hidden rounded-[1.7rem] border border-border/75 bg-card/20">
+        <img
+          src={entry.coverImage}
+          alt={entry.title}
+          className="aspect-[16/10] w-full object-cover transition-transform duration-500 group-hover:scale-[1.025]"
+        />
+      </div>
 
-          <div className="space-y-3">
-            <h3 className="max-w-[14ch] text-balance text-[clamp(2rem,4vw,3.35rem)] leading-[0.98] font-medium tracking-[-0.05em]">
-              {entry.title}
-            </h3>
-            <p className="max-w-lg text-[0.98rem] leading-7 text-muted-foreground">
-              {entry.summary}
-            </p>
-          </div>
+      <div className="space-y-4">
+        <StoryMeta entry={entry} />
+
+        <div className="space-y-3">
+          <h3 className="max-w-[16ch] text-balance text-[clamp(2rem,4vw,3.2rem)] leading-[0.98] font-medium tracking-[-0.05em]">
+            {entry.title}
+          </h3>
+          <p className="max-w-xl text-[0.98rem] leading-7 text-muted-foreground">
+            {entry.summary}
+          </p>
         </div>
 
         <div className="text-sm text-foreground transition-colors group-hover:text-muted-foreground">
           Read story
         </div>
-      </div>
-
-      <div className="overflow-hidden border-t border-border/70 lg:border-t-0 lg:border-l">
-        <img
-          src={entry.coverImage}
-          alt={entry.title}
-          className="aspect-[16/10] h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
-        />
       </div>
     </a>
   )
@@ -108,28 +132,24 @@ function SupportingHighlight({ entry }: { entry: NewsEntryListItem }) {
   return (
     <a
       href={`/news/${entry.slug}`}
-      className="group grid gap-4 rounded-[1.4rem] border border-border/70 bg-card/22 p-4 transition-colors duration-150 hover:bg-accent/35 sm:grid-cols-[160px_minmax(0,1fr)] sm:items-center sm:p-5"
+      className="group grid gap-4 py-5 first:pt-0 sm:grid-cols-[7.25rem_minmax(0,1fr)]"
     >
-      <div className="overflow-hidden rounded-[1rem] border border-border/60">
+      <div className="overflow-hidden rounded-[1rem] border border-border/70 bg-card/30">
         <img
           src={entry.coverImage}
           alt={entry.title}
-          className="aspect-[16/10] w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+          className="aspect-[5/4] w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
         />
       </div>
 
       <div className="space-y-3">
-        <div className="flex flex-wrap items-center gap-2 text-[0.76rem] text-muted-foreground">
-          <p>{entry.authors.join(', ')}</p>
-          <div className="size-1 rounded-full bg-muted-foreground" />
-          <p className="tabular-nums">{formatDate(entry.publishedAt)}</p>
-        </div>
+        <StoryMeta entry={entry} showKind={false} />
 
         <div className="space-y-2">
-          <h3 className="text-balance text-[1.2rem] leading-6 font-medium tracking-[-0.03em]">
+          <h3 className="max-w-[18ch] text-balance text-[1.25rem] leading-[1.12] font-medium tracking-[-0.034em]">
             {entry.title}
           </h3>
-          <p className="line-clamp-3 text-[0.92rem] leading-6 text-muted-foreground">
+          <p className="max-w-[34ch] text-[0.92rem] leading-6 text-muted-foreground">
             {entry.summary}
           </p>
         </div>
