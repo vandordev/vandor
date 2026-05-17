@@ -41,10 +41,10 @@ export function VandorNewsSection({ data }: VandorNewsSectionProps) {
             </div>
 
             <div className="flex flex-col gap-2 px-4 py-8">
-              <h1 className="font-mono text-4xl font-bold tracking-wide sm:text-5xl">
+              <h1 className="text-4xl font-medium tracking-[-0.04em] sm:text-5xl">
                 Vandor News
               </h1>
-              <p className="max-w-2xl text-base text-muted-foreground">
+              <p className="max-w-2xl text-[1.02rem] leading-7 text-muted-foreground">
                 Announcements, essays, release notes, and product writing from
                 the Vandor ecosystem.
               </p>
@@ -68,19 +68,19 @@ export function VandorNewsSection({ data }: VandorNewsSectionProps) {
                   </div>
 
                   <div className="flex flex-col gap-2 px-2 pb-2">
-                    <div className="flex flex-wrap items-center gap-2 text-[11px] text-muted-foreground sm:text-xs">
-                      <p>by {entry.authors.join(', ')}</p>
+                    <div className="flex flex-wrap items-center gap-2 text-[0.78rem] text-muted-foreground">
+                      <p>{entry.authors.join(', ')}</p>
                       <div className="size-1 rounded-full bg-muted-foreground" />
-                      <p>{formatDate(entry.publishedAt)}</p>
+                      <p className="tabular-nums">{formatDate(entry.publishedAt)}</p>
                       <div className="size-1 rounded-full bg-muted-foreground" />
-                      <p className="capitalize">{formatKind(entry.kind)}</p>
+                      <p>{formatKind(entry.kind)}</p>
                     </div>
 
-                    <h2 className="line-clamp-2 text-lg font-semibold tracking-tight sm:text-xl">
+                    <h2 className="line-clamp-2 text-[1.15rem] leading-6 font-medium tracking-[-0.03em] sm:text-[1.28rem] sm:leading-7">
                       {entry.title}
                     </h2>
 
-                    <p className="line-clamp-3 text-sm text-muted-foreground">
+                    <p className="line-clamp-3 text-[0.94rem] leading-6 text-muted-foreground">
                       {entry.summary}
                     </p>
                   </div>

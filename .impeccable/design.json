@@ -1,0 +1,207 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-05-17T00:00:00.000Z",
+  "title": "Design System: Vandor",
+  "extensions": {
+    "colorMeta": {
+      "background": {
+        "role": "neutral",
+        "displayName": "Black Field",
+        "canonical": "oklch(0 0 0)",
+        "tonalRamp": [
+          "oklch(0.15 0 0)",
+          "oklch(0.24 0 0)",
+          "oklch(0.32 0 0)",
+          "oklch(0.44 0 0)",
+          "oklch(0.56 0 0)",
+          "oklch(0.68 0 0)",
+          "oklch(0.82 0 0)",
+          "oklch(0.96 0 0)"
+        ]
+      },
+      "foreground": {
+        "role": "primary",
+        "displayName": "White Ink",
+        "canonical": "oklch(0.985 0 0)",
+        "tonalRamp": [
+          "oklch(0.18 0 0)",
+          "oklch(0.28 0 0)",
+          "oklch(0.4 0 0)",
+          "oklch(0.52 0 0)",
+          "oklch(0.64 0 0)",
+          "oklch(0.76 0 0)",
+          "oklch(0.88 0 0)",
+          "oklch(0.985 0 0)"
+        ]
+      },
+      "card": {
+        "role": "neutral",
+        "displayName": "Quiet Surface",
+        "canonical": "oklch(0.14 0 0)",
+        "tonalRamp": [
+          "oklch(0.14 0 0)",
+          "oklch(0.2 0 0)",
+          "oklch(0.28 0 0)",
+          "oklch(0.38 0 0)",
+          "oklch(0.5 0 0)",
+          "oklch(0.64 0 0)",
+          "oklch(0.78 0 0)",
+          "oklch(0.92 0 0)"
+        ]
+      },
+      "muted-foreground": {
+        "role": "neutral",
+        "displayName": "Dim Reading Line",
+        "canonical": "oklch(0.72 0 0)",
+        "tonalRamp": [
+          "oklch(0.22 0 0)",
+          "oklch(0.3 0 0)",
+          "oklch(0.4 0 0)",
+          "oklch(0.52 0 0)",
+          "oklch(0.62 0 0)",
+          "oklch(0.72 0 0)",
+          "oklch(0.82 0 0)",
+          "oklch(0.92 0 0)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Article titles and rare publication-level headings."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Major section breaks inside long-form content."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Story cards and compact content headings."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Long-form reading with disciplined measure."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Metadata and supporting context in quiet surfaces."
+      }
+    },
+    "shadows": [
+      {
+        "name": "ambient-low",
+        "value": "0 1px 2px rgba(0, 0, 0, 0.22)",
+        "purpose": "Quiet contained-surface separation."
+      },
+      {
+        "name": "ambient-soft",
+        "value": "0 10px 30px rgba(0, 0, 0, 0.18)",
+        "purpose": "Occasional atmospheric section lift."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-standard",
+        "value": "cubic-bezier(0.4, 0, 0.2, 1)",
+        "purpose": "Default state transitions."
+      },
+      {
+        "name": "duration-fast",
+        "value": "150ms",
+        "purpose": "Quiet link and card state changes."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "sm",
+        "value": "640px"
+      },
+      {
+        "name": "lg",
+        "value": "1024px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Ghost Link Button",
+      "kind": "button",
+      "refersTo": "button-ghost",
+      "description": "Quiet navigation action used for back links and lightweight movement.",
+      "html": "<a class=\"ds-ghost-link\" href=\"#\"><svg viewBox=\"0 0 24 24\" fill=\"none\" aria-hidden=\"true\"><path d=\"M15 18l-6-6 6-6\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg><span>Back to News</span></a>",
+      "css": ".ds-ghost-link{display:inline-flex;align-items:center;gap:0.5rem;color:var(--color-fd-muted-foreground);text-decoration:none;font:400 0.94rem/1.5 Geist,ui-sans-serif,system-ui,sans-serif;transition:color 150ms cubic-bezier(0.4,0,0.2,1);} .ds-ghost-link svg{width:1rem;height:1rem;flex:none;} .ds-ghost-link:hover,.ds-ghost-link:focus-visible{color:var(--color-fd-foreground);} .ds-ghost-link:focus-visible{outline:none;}"
+    },
+    {
+      "name": "News Card",
+      "kind": "card",
+      "refersTo": "news-card",
+      "description": "Image-led publication card with quiet metadata and medium-weight title.",
+      "html": "<article class=\"ds-news-card\"><div class=\"ds-news-image\"></div><div class=\"ds-news-meta\">Vandor · 17 May 2026 · Article</div><h3 class=\"ds-news-title\">Why Vandor Builds vx</h3><p class=\"ds-news-summary\">A restrained publication card for stories, essays, and release notes.</p></article>",
+      "css": ".ds-news-card{display:flex;flex-direction:column;gap:0.75rem;padding:0.5rem;border-radius:1rem;color:var(--color-fd-foreground);background:transparent;transition:background-color 150ms cubic-bezier(0.4,0,0.2,1);} .ds-news-card:hover{background:color-mix(in oklab,var(--color-fd-accent) 60%,transparent);} .ds-news-image{aspect-ratio:16/9;border:1px solid color-mix(in oklab,var(--color-fd-border) 70%,transparent);border-radius:1rem;background:var(--color-fd-card);} .ds-news-meta{font:400 0.78rem/1.4 Geist,ui-sans-serif,system-ui,sans-serif;color:var(--color-fd-muted-foreground);} .ds-news-title{margin:0;font:500 1.28rem/1.45 Geist,ui-sans-serif,system-ui,sans-serif;letter-spacing:-0.03em;} .ds-news-summary{margin:0;font:400 0.94rem/1.6 Geist,ui-sans-serif,system-ui,sans-serif;color:var(--color-fd-muted-foreground);}"
+    },
+    {
+      "name": "Article Metadata Rail",
+      "kind": "custom",
+      "refersTo": "article-frame",
+      "description": "Quiet supporting rail for publication, date, author, and product context.",
+      "html": "<aside class=\"ds-meta-rail\"><p class=\"ds-meta-label\">Vandor News</p><p class=\"ds-meta-value\">Article</p><p class=\"ds-meta-date\">17 May 2026</p><p class=\"ds-meta-author\">Vandor</p></aside>",
+      "css": ".ds-meta-rail{display:flex;flex-direction:column;gap:1.25rem;padding-right:1.5rem;border-right:1px solid color-mix(in oklab,var(--color-fd-border) 80%,transparent);color:var(--color-fd-muted-foreground);} .ds-meta-label{margin:0;font:400 0.94rem/1.5 Geist,ui-sans-serif,system-ui,sans-serif;} .ds-meta-value,.ds-meta-date,.ds-meta-author{margin:0;font:400 0.94rem/1.6 Geist,ui-sans-serif,system-ui,sans-serif;} .ds-meta-value{color:color-mix(in oklab,var(--color-fd-foreground) 78%,transparent);}"
+    },
+    {
+      "name": "Article Title Block",
+      "kind": "custom",
+      "refersTo": "article-frame",
+      "description": "Primary reading introduction with large display title and softened summary.",
+      "html": "<header class=\"ds-article-head\"><h1 class=\"ds-article-title\">Why Vandor Builds vx</h1><p class=\"ds-article-summary\">A precise, quiet opening block that lets typography carry the article.</p></header>",
+      "css": ".ds-article-head{display:flex;flex-direction:column;gap:1.25rem;} .ds-article-title{margin:0;max-width:16ch;font:500 clamp(2.65rem,6vw,4.65rem)/1 Geist,ui-sans-serif,system-ui,sans-serif;letter-spacing:-0.052em;color:var(--color-fd-foreground);} .ds-article-summary{margin:0;max-width:44rem;font:400 clamp(1.08rem,2vw,1.28rem)/1.9 Geist,ui-sans-serif,system-ui,sans-serif;color:var(--color-fd-muted-foreground);}"
+    },
+    {
+      "name": "Reading Prose",
+      "kind": "custom",
+      "refersTo": "article-frame",
+      "description": "Long-form body treatment with disciplined measure and quiet emphasis.",
+      "html": "<div class=\"ds-prose\"><p>Body text uses a controlled measure and generous line-height.</p><h2>Section heading</h2><p>Hierarchy comes from scale, cadence, and lightness shifts rather than ornament.</p></div>",
+      "css": ".ds-prose{max-width:68ch;color:color-mix(in oklab,var(--color-fd-foreground) 88%,transparent);font:400 1.03rem/1.92 Geist,ui-sans-serif,system-ui,sans-serif;} .ds-prose h2{margin:4.5rem 0 1.25rem;font:500 2rem/1.08 Geist,ui-sans-serif,system-ui,sans-serif;letter-spacing:-0.04em;color:var(--color-fd-foreground);} .ds-prose p{margin:1.5rem 0;} .ds-prose a{color:var(--color-fd-foreground);text-underline-offset:4px;text-decoration-color:var(--color-fd-border);} .ds-prose strong{font-weight:500;color:var(--color-fd-foreground);}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Quiet Terminal Journal",
+    "overview": "Vandor is a dark, restrained publication and product surface where typography and spacing do more work than decorative color or texture. Publication pages should feel serious and quiet, not glossy, magazine-like, or startup-polished.",
+    "keyCharacteristics": [
+      "Dark restrained palette",
+      "Typography-led hierarchy",
+      "Minimal chrome",
+      "Ambient rather than glossy depth",
+      "Quiet product context"
+    ],
+    "rules": [
+      {
+        "name": "The One-Voice Rule",
+        "body": "The interface should feel monochrome at first glance. Hierarchy comes from lightness shifts before accent color.",
+        "section": "colors"
+      },
+      {
+        "name": "The No-False-Editorial Rule",
+        "body": "Do not simulate elegance with uppercase micro-labels, serif theatrics, or magazine tropes.",
+        "section": "typography"
+      },
+      {
+        "name": "The Flat-by-Default Rule",
+        "body": "Surfaces rest flat. Depth appears only when state or hierarchy needs it.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do keep labels in normal case where possible.",
+      "Do use measure and cadence to carry long-form reading.",
+      "Do let cards and metadata stay visually quiet."
+    ],
+    "donts": [
+      "Don't build Substack clones.",
+      "Don't drift into generic SaaS blog styling.",
+      "Don't use serif-heavy editorial magazine aesthetics.",
+      "Don't use glassmorphism.",
+      "Don't default to uppercase micro-labels."
+    ]
+  }
+}
