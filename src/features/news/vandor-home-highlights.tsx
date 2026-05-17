@@ -72,13 +72,13 @@ export function VandorHomeHighlights({ data }: VandorHomeHighlightsProps) {
         <div className="space-y-3">
           <p className="text-sm text-muted-foreground">From Vandor</p>
           <h2 className="max-w-3xl text-balance text-[clamp(2.2rem,5vw,3.85rem)] leading-[0.98] font-medium tracking-[-0.052em]">
-            Selected writing from the quieter side of Vandor.
+            Writing from across the work.
           </h2>
         </div>
         <div className="space-y-4 lg:justify-self-end">
           <p className="max-w-xl text-[1rem] leading-7 text-muted-foreground">
-            Announcements, release notes, and product writing that sit adjacent
-            to the tools, not inside the docs.
+            Announcements, release notes, and essays that stay close to the
+            tools, but are written to be read.
           </p>
           <a
             href="/news"

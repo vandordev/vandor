@@ -1,8 +1,9 @@
 import Footer5 from '#/components/footer-5'
-import HeroSection4 from '#/components/hero-section-4'
+import { HeroHeader } from '#/components/header'
 import { LandingSection } from '#/components/landing-section'
 import { getSiteShellContent } from '#/components/site-shell-content'
-import RotatingGradientRight from '#/components/ui/rotating-gradient-right'
+import { VandorHomeHero } from '#/features/home/vandor-home-hero'
+import { VandorOpenWork } from '#/features/home/vandor-open-work'
 import { VandorHomeHighlights } from '#/features/news/vandor-home-highlights'
 import type { NewsIndexData } from '#/features/news/news-types'
 
@@ -18,19 +19,22 @@ export function HomeLanding({
   const shellContent = getSiteShellContent({ variant: 'vandor' })
 
   return (
-    <main>
-      <HeroSection4 />
-      <LandingSection id="products">
-        <RotatingGradientRight docsHref={`/vx/${requestedVersion}/docs`} />
-      </LandingSection>
-      {newsData ? (
-        <LandingSection className="pt-12 sm:pt-16 lg:pt-20">
-          <VandorHomeHighlights data={newsData} />
+    <>
+      <HeroHeader content={shellContent} />
+      <main>
+        <VandorHomeHero requestedVersion={requestedVersion} />
+        <LandingSection className="pt-18 sm:pt-24 lg:pt-32">
+          <VandorOpenWork />
         </LandingSection>
-      ) : null}
-      <LandingSection contentClassName="">
-        <Footer5 content={shellContent} />
-      </LandingSection>
-    </main>
+        {newsData ? (
+          <LandingSection className="pt-20 sm:pt-26 lg:pt-36">
+            <VandorHomeHighlights data={newsData} />
+          </LandingSection>
+        ) : null}
+        <LandingSection className="pt-18 sm:pt-24 lg:pt-30" contentClassName="">
+          <Footer5 content={shellContent} />
+        </LandingSection>
+      </main>
+    </>
   )
 }
