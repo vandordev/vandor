@@ -71,19 +71,20 @@ components:
 
 ## Overview
 
-**Creative North Star: "The Quiet Terminal Journal"**
+**Creative North Star: "The Quiet Picture Desk"**
 
-Vandor is a dark, restrained brand surface for people who read carefully. The interface is not meant to perform sophistication through ornamental editorial tropes. It should feel calm, exact, and technically literate, with typography, spacing, and contrast doing the heavy lifting.
+Vandor is a dark, restrained brand surface for people who read carefully. The interface is not meant to perform sophistication through ornamental editorial tropes. It should feel calm, exact, and technically literate, with typography, spacing, contrast, and image rhythm carrying the experience together.
 
-This system treats long-form content and product context as part of the same world, but not the same surface. The publication should feel quieter than the landing page and more atmospheric than the docs, while still remaining visibly part of Vandor. The effect is deliberate understatement, not neutrality.
+This system treats long-form content and product context as part of the same world, but not the same surface. The publication should feel quieter than the landing page and more atmospheric than the docs, while still remaining visibly part of Vandor. The effect is deliberate understatement, not neutrality. Variety should come from imagery, crop, and grouping before it comes from added UI chrome.
 
 The system explicitly rejects Substack clones, generic SaaS blog styling, serif-heavy magazine drama, glassmorphism, and over-polished startup aesthetics.
 
 **Key Characteristics:**
 
 - Dark, high-contrast, and restrained
-- Typography-led hierarchy with minimal chrome
+- Image-led hierarchy with typography kept precise and quiet
 - Rounded geometry used sparingly, never as softness for its own sake
+- Calm editorial grouping instead of one endless blog grid
 - Ambient depth through tonal layering, not glossy effects
 - Product seriousness expressed through rhythm and spacing
 
@@ -105,7 +106,7 @@ The palette is nearly monochrome, with softly tinted neutrals carrying hierarchy
 
 ### Named Rules
 
-**The One-Voice Rule.** The interface should feel monochrome at first glance. Color contrast comes from lightness shifts, not from introducing decorative accents.
+**The One-Voice Rule.** The interface should feel monochrome at first glance. Variation comes from lightness shifts and imagery, not decorative accent colors.
 
 ## Typography
 
@@ -159,9 +160,16 @@ Vandor uses tonal layering more than shadow. Depth comes from separating black f
 
 ### Publication Cards
 
-- **Style:** Image-led, then metadata, then title and summary.
-- **Hierarchy:** Title should carry the card. Metadata stays quiet and always subordinate.
+- **Style:** Image first, then metadata, then title and summary. The image is not decoration, it is the page's main source of variation.
+- **Hierarchy:** Title should carry the card, but art direction should carry the page. Metadata stays quiet and always subordinate.
 - **Interaction:** Hover may slightly scale imagery or warm the background, but must not turn the grid into a flashy feed.
+
+### Publication Index Surfaces
+
+- **Layout:** Structure publication fronts as editorial groups, not one repeated component loop. A lead story, a compact supporting cluster, and a quieter archive layer is the preferred rhythm.
+- **Image System:** Use a mixed system. Some stories may be abstract and atmospheric, others more concrete or documentary. The page should still read as one world because the shell remains monochrome.
+- **Density:** Calm and curated. Show enough content to imply an active publication, but never so much that the page turns into a feed product.
+- **Variation:** Let crop, scale, and ordering create energy. Do not compensate for weak image rhythm with extra badges, pills, or accent color.
 
 ### Article Surfaces
 
@@ -185,6 +193,8 @@ Vandor uses tonal layering more than shadow. Depth comes from separating black f
 - **Do** keep article body measure disciplined, around `65–70ch`, with generous line-height.
 - **Do** use quiet borders and tonal surfaces to separate content instead of louder cards or banners.
 - **Do** let product references stay contextual and secondary inside publication pages.
+- **Do** use imagery as the main source of page-level variation on publication surfaces.
+- **Do** build `/news` as a curated front page, not a uniform archive grid.
 
 ### Don't:
 
@@ -194,3 +204,5 @@ Vandor uses tonal layering more than shadow. Depth comes from separating black f
 - **Don't** use glassmorphism.
 - **Don't** lean on over-polished startup patterns such as loud pills, badge clutter, or decorative chrome around metadata.
 - **Don't** use uppercase micro-labels as a default publication voice.
+- **Don't** treat imagery as an optional afterthought on publication listings.
+- **Don't** solve hierarchy problems by adding more cards, more chips, or more accent color.

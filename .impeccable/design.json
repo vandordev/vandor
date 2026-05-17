@@ -135,9 +135,9 @@
       "name": "News Card",
       "kind": "card",
       "refersTo": "news-card",
-      "description": "Image-led publication card with quiet metadata and medium-weight title.",
-      "html": "<article class=\"ds-news-card\"><div class=\"ds-news-image\"></div><div class=\"ds-news-meta\">Vandor · 17 May 2026 · Article</div><h3 class=\"ds-news-title\">Why Vandor Builds vx</h3><p class=\"ds-news-summary\">A restrained publication card for stories, essays, and release notes.</p></article>",
-      "css": ".ds-news-card{display:flex;flex-direction:column;gap:0.75rem;padding:0.5rem;border-radius:1rem;color:var(--color-fd-foreground);background:transparent;transition:background-color 150ms cubic-bezier(0.4,0,0.2,1);} .ds-news-card:hover{background:color-mix(in oklab,var(--color-fd-accent) 60%,transparent);} .ds-news-image{aspect-ratio:16/9;border:1px solid color-mix(in oklab,var(--color-fd-border) 70%,transparent);border-radius:1rem;background:var(--color-fd-card);} .ds-news-meta{font:400 0.78rem/1.4 Geist,ui-sans-serif,system-ui,sans-serif;color:var(--color-fd-muted-foreground);} .ds-news-title{margin:0;font:500 1.28rem/1.45 Geist,ui-sans-serif,system-ui,sans-serif;letter-spacing:-0.03em;} .ds-news-summary{margin:0;font:400 0.94rem/1.6 Geist,ui-sans-serif,system-ui,sans-serif;color:var(--color-fd-muted-foreground);}"
+      "description": "Image-led story block with quiet metadata, soft crop variation, and restrained hover behavior.",
+      "html": "<article class=\"ds-news-card\"><div class=\"ds-news-image\"></div><div class=\"ds-news-meta\">Vandor · 17 May 2026 · Article</div><h3 class=\"ds-news-title\">Why Vandor Builds vx</h3><p class=\"ds-news-summary\">A monochrome publication block where imagery carries most of the page-level variation.</p></article>",
+      "css": ".ds-news-card{display:flex;flex-direction:column;gap:0.9rem;color:var(--color-fd-foreground);background:transparent;transition:color 150ms cubic-bezier(0.4,0,0.2,1);} .ds-news-image{aspect-ratio:16/10;border:1px solid color-mix(in oklab,var(--color-fd-border) 70%,transparent);border-radius:1rem;background:var(--color-fd-card);overflow:hidden;} .ds-news-meta{font:400 0.78rem/1.4 Geist,ui-sans-serif,system-ui,sans-serif;color:var(--color-fd-muted-foreground);} .ds-news-title{margin:0;font:500 1.28rem/1.12 Geist,ui-sans-serif,system-ui,sans-serif;letter-spacing:-0.03em;} .ds-news-summary{margin:0;font:400 0.94rem/1.6 Geist,ui-sans-serif,system-ui,sans-serif;color:var(--color-fd-muted-foreground);}"
     },
     {
       "name": "Article Metadata Rail",
@@ -165,11 +165,12 @@
     }
   ],
   "narrative": {
-    "northStar": "The Quiet Terminal Journal",
-    "overview": "Vandor is a dark, restrained publication and product surface where typography and spacing do more work than decorative color or texture. Publication pages should feel serious and quiet, not glossy, magazine-like, or startup-polished.",
+    "northStar": "The Quiet Picture Desk",
+    "overview": "Vandor is a dark, restrained publication and product surface where typography, spacing, and image rhythm do more work than decorative color or texture. Publication pages should feel serious and quiet, not glossy, magazine-like, or startup-polished.",
     "keyCharacteristics": [
       "Dark restrained palette",
-      "Typography-led hierarchy",
+      "Image-led hierarchy",
+      "Calm editorial grouping",
       "Minimal chrome",
       "Ambient rather than glossy depth",
       "Quiet product context"
@@ -177,7 +178,7 @@
     "rules": [
       {
         "name": "The One-Voice Rule",
-        "body": "The interface should feel monochrome at first glance. Hierarchy comes from lightness shifts before accent color.",
+        "body": "The interface should feel monochrome at first glance. Hierarchy comes from lightness shifts and imagery before accent color.",
         "section": "colors"
       },
       {
@@ -194,14 +195,16 @@
     "dos": [
       "Do keep labels in normal case where possible.",
       "Do use measure and cadence to carry long-form reading.",
-      "Do let cards and metadata stay visually quiet."
+      "Do let cards and metadata stay visually quiet.",
+      "Do use imagery as the main source of variation on publication fronts."
     ],
     "donts": [
       "Don't build Substack clones.",
       "Don't drift into generic SaaS blog styling.",
       "Don't use serif-heavy editorial magazine aesthetics.",
       "Don't use glassmorphism.",
-      "Don't default to uppercase micro-labels."
+      "Don't default to uppercase micro-labels.",
+      "Don't treat imagery as optional on publication listings."
     ]
   }
 }
