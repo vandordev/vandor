@@ -7,11 +7,20 @@ export type SiteShellLink = {
   href: string
 }
 
+export type SiteShellProduct = {
+  label: string
+  href: string
+  description: string
+  secondaryHref?: string
+  secondaryLabel?: string
+}
+
 export type SiteShellBrand = { kind: 'vandor' } | { kind: 'vx' }
 
 export type SiteShellContent = {
   brand: SiteShellBrand
   navItems: SiteShellLink[]
+  productItems?: SiteShellProduct[]
   headerCtas: {
     secondary?: SiteShellLink
     primary?: SiteShellLink
@@ -22,23 +31,31 @@ export type SiteShellContent = {
 const vandorShellContent: SiteShellContent = {
   brand: { kind: 'vandor' },
   navItems: [
-    { label: 'About', href: '/#about' },
+    { label: 'Work', href: '/#about' },
     { label: 'Products', href: '/#products' },
     { label: 'News', href: '/news' },
-    { label: 'Open Source', href: '/vx/latest/docs' },
-    { label: 'vx', href: '/vx/latest' },
+  ],
+  productItems: [
+    {
+      label: 'vx',
+      href: '/vx/latest',
+      description: 'CLI for structured Go backends.',
+      secondaryHref: '/vx/latest/docs',
+      secondaryLabel: 'Docs',
+    },
   ],
   headerCtas: {
-    secondary: { label: 'Read vx Docs', href: '/vx/latest/docs' },
+    secondary: { label: 'Read News', href: '/news' },
     primary: { label: 'Explore vx', href: '/vx/latest' },
   },
   footerLinks: [
-    { label: 'Vandor', href: '/' },
+    { label: 'Home', href: '/' },
+    { label: 'Work', href: '/#about' },
+    { label: 'Products', href: '/#products' },
     { label: 'News', href: '/news' },
     { label: 'vx', href: '/vx/latest' },
     { label: 'vx Docs', href: '/vx/latest/docs' },
     { label: 'Getting Started', href: '/vx/latest/docs/getting-started' },
-    { label: 'GitHub', href: '#' },
   ],
 }
 
@@ -51,7 +68,6 @@ function buildVxShellContent(
       { label: 'Overview', href: `/vx/${requestedVersion}#overview` },
       { label: 'Why vx', href: `/vx/${requestedVersion}#why-vx` },
       { label: 'Docs', href: `/vx/${requestedVersion}/docs` },
-      { label: 'GitHub', href: '#' },
     ],
     headerCtas: {
       secondary: { label: 'Read Docs', href: `/vx/${requestedVersion}/docs` },

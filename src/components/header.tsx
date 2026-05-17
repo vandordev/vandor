@@ -5,12 +5,16 @@ import {
   useMotionValueEvent,
   useScroll,
 } from 'motion/react'
-import { ChevronRight, Menu, X } from 'lucide-react'
+import { ChevronDown, ChevronRight, Menu, X } from 'lucide-react'
 
 import { useMedia } from '#/hooks/use-media'
 import { cn } from '#/lib/utils'
 import { Logo } from '#/components/logo'
-import type { SiteShellBrand, SiteShellContent } from '#/components/site-shell-content'
+import type {
+  SiteShellBrand,
+  SiteShellContent,
+  SiteShellProduct,
+} from '#/components/site-shell-content'
 import { VeilButton } from '#/components/ui/veil-button'
 
 type HeroHeaderProps = {
@@ -118,19 +122,89 @@ const NavItems = ({ items }: { items: SiteShellContent['navItems'] }) => {
     <ul className="flex gap-1 max-lg:flex-col">
       {items.map((item) => (
         <li key={item.label}>
-          <VeilButton
-            asChild
-            variant="ghost"
-            size="sm"
-            className="w-full max-lg:h-12 max-lg:justify-start max-lg:text-lg"
-          >
-            <a href={item.href} className="text-base">
-              <span>{item.label}</span>
-            </a>
-          </VeilButton>
+          {item.label === 'Products' ? (
+            <ProductsNavItem />
+          ) : (
+            <VeilButton
+              asChild
+              variant="ghost"
+              size="sm"
+              className="w-full max-lg:h-12 max-lg:justify-start max-lg:text-lg"
+            >
+              <a href={item.href} className="text-base">
+                <span>{item.label}</span>
+              </a>
+            </VeilButton>
+          )}
         </li>
       ))}
     </ul>
+  )
+}
+
+function ProductsNavItem() {
+  return (
+    <div className="group/products relative">
+      <VeilButton
+        variant="ghost"
+        size="sm"
+        className="w-full gap-1.5 max-lg:h-12 max-lg:justify-start max-lg:text-lg"
+        type="button"
+      >
+        <span className="text-base">Products</span>
+        <ChevronDown className="size-3.5 opacity-55 transition-transform duration-200 lg:group-hover/products:rotate-180" />
+      </VeilButton>
+
+      <div className="lg:pointer-events-none lg:absolute lg:left-0 lg:top-full lg:z-30 lg:w-[19rem] lg:pt-2 lg:opacity-0 lg:transition-all lg:duration-200 lg:group-hover/products:pointer-events-auto lg:group-hover/products:opacity-100">
+        <ProductsPanel />
+      </div>
+      <div className="lg:hidden">
+        <ProductsPanel compact />
+      </div>
+    </div>
+  )
+}
+
+function ProductsPanel({ compact = false }: { compact?: boolean }) {
+  const product: SiteShellProduct = {
+    label: 'vx',
+    href: '/vx/latest',
+    description: 'CLI for structured Go backends.',
+    secondaryHref: '/vx/latest/docs',
+    secondaryLabel: 'Docs',
+  }
+
+  return (
+    <div
+      className={cn(
+        'mt-2 rounded-[1.35rem] border border-border/70 bg-card/95 p-3 shadow-2xl shadow-black/18 backdrop-blur',
+        compact
+          ? 'block lg:hidden'
+          : 'hidden lg:block',
+      )}
+    >
+      <div className="group rounded-[1rem] p-3 transition-colors hover:bg-background/55">
+        <div className="space-y-2">
+          <div className="flex items-center justify-between gap-3">
+            <a
+              href={product.href}
+              className="text-[1.05rem] leading-none font-medium tracking-[-0.03em]"
+            >
+              {product.label}
+            </a>
+            {product.secondaryHref && product.secondaryLabel && (
+              <a
+                href={product.secondaryHref}
+                className="text-xs text-muted-foreground transition-colors hover:text-foreground"
+              >
+                {product.secondaryLabel}
+              </a>
+            )}
+          </div>
+          <p className="max-w-[24ch] text-sm leading-6 text-muted-foreground">{product.description}</p>
+        </div>
+      </div>
+    </div>
   )
 }
 
