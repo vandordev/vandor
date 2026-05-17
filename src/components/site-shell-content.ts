@@ -24,6 +24,7 @@ const vandorShellContent: SiteShellContent = {
   navItems: [
     { label: 'About', href: '/#about' },
     { label: 'Products', href: '/#products' },
+    { label: 'News', href: '/news' },
     { label: 'Open Source', href: '/vx/latest/docs' },
     { label: 'vx', href: '/vx/latest' },
   ],
@@ -33,6 +34,7 @@ const vandorShellContent: SiteShellContent = {
   },
   footerLinks: [
     { label: 'Vandor', href: '/' },
+    { label: 'News', href: '/news' },
     { label: 'vx', href: '/vx/latest' },
     { label: 'vx Docs', href: '/vx/latest/docs' },
     { label: 'Getting Started', href: '/vx/latest/docs/getting-started' },

@@ -1,0 +1,43 @@
+---
+title: "Why Vandor Builds vx"
+summary: "Why we care about opinionated scaffolding, bounded contexts, and shipping cleaner Go services from day one."
+publishedAt: "2026-05-12"
+kind: "article"
+published: true
+featured: false
+authors:
+  - "Vandor"
+products:
+  - "vx"
+tags:
+  - "product"
+  - "architecture"
+coverImage: "/images/news/why-vandor-builds-vx.svg"
+seoTitle: "Why Vandor Builds vx"
+seoDescription: "The product rationale behind vx, Vandor's CLI for structured Go backends."
+---
+
+We built `vx` because a lot of backend codebases start drifting long before the first release.
+
+The first few commands are usually fast. The fifth feature is where the shape of the code starts to matter. By then, most scaffolding tools have already stopped helping.
+
+## The problem we care about
+
+We do not want a generator that only creates folders. We want a tool that helps teams start with stronger boundaries:
+
+- bounded contexts
+- use cases
+- infrastructure adapters
+- a codebase shape that stays readable under pressure
+
+## Why a CLI
+
+A CLI is a good fit for this problem because it can encode structure without forcing a hosted platform or a proprietary workflow.
+
+That matters to us. We want `vx` to stay useful inside normal repositories and normal delivery pipelines.
+
+## Why this post is here
+
+This article belongs in `Vandor News` because it explains product intent, not product usage.
+
+If you want installation steps or versioned docs, go to `/vx/latest/docs`.

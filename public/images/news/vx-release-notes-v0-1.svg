@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">vx v0.1 Release Notes</title>
+  <desc id="desc">Abstract release note cover art for vx version 0.1.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0%" x2="100%" y1="0%" y2="100%">
+      <stop offset="0%" stop-color="#070707" />
+      <stop offset="100%" stop-color="#171717" />
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)" />
+  <rect x="120" y="120" width="1360" height="660" rx="48" fill="#ffffff" fill-opacity="0.04" stroke="#ffffff" stroke-opacity="0.12" />
+  <path d="M210 280h1180" stroke="#ffffff" stroke-opacity="0.15" stroke-width="2" />
+  <path d="M210 430h1180" stroke="#ffffff" stroke-opacity="0.15" stroke-width="2" />
+  <path d="M210 580h1180" stroke="#ffffff" stroke-opacity="0.15" stroke-width="2" />
+  <circle cx="340" cy="280" r="48" fill="#ffffff" fill-opacity="0.1" />
+  <circle cx="340" cy="430" r="48" fill="#ffffff" fill-opacity="0.1" />
+  <circle cx="340" cy="580" r="48" fill="#ffffff" fill-opacity="0.1" />
+  <text x="520" y="300" fill="#fafafa" font-family="Geist, Arial, sans-serif" font-size="88" font-weight="600">
+    vx v0.1
+  </text>
+  <text x="520" y="390" fill="#d0d0d0" font-family="Geist, Arial, sans-serif" font-size="34" letter-spacing="8">
+    RELEASE NOTES
+  </text>
+  <text x="520" y="542" fill="#fafafa" font-family="Geist, Arial, sans-serif" font-size="56" font-weight="500">
+    Versioned docs, cleaner routing,
+  </text>
+  <text x="520" y="610" fill="#fafafa" font-family="Geist, Arial, sans-serif" font-size="56" font-weight="500">
+    stronger foundations for vx.
+  </text>
+</svg>
