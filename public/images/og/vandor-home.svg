@@ -1,0 +1,22 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" fill="#050608"/>
+  <ellipse cx="950" cy="140" rx="230" ry="180" fill="url(#homeGlow)" fill-opacity="0.46"/>
+  <ellipse cx="170" cy="560" rx="300" ry="180" fill="url(#homeField)" fill-opacity="0.36"/>
+  <path d="M126 108L170 84L213 108V160L170 184L126 160V108Z" fill="#F5F5F4"/>
+  <path d="M229 108L272 84L316 108V160L272 184L229 160V108Z" fill="#F5F5F4"/>
+  <text x="356" y="158" fill="#F5F5F4" font-family="Arial, Helvetica, sans-serif" font-size="64" font-weight="600" letter-spacing="-1.92">Vandor</text>
+  <text x="126" y="314" fill="#F5F5F4" font-family="Arial, Helvetica, sans-serif" font-size="86" font-weight="600" letter-spacing="-3.44">Tools, writing, and open work.</text>
+  <text x="126" y="392" fill="#A1A1AA" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="400">A public-interest technical organization building software, documentation,</text>
+  <text x="126" y="434" fill="#A1A1AA" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="400">and shared systems that stay legible over time.</text>
+  <defs>
+    <radialGradient id="homeGlow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(950 140) rotate(90) scale(180 230)">
+      <stop stop-color="#73F016"/>
+      <stop offset="1" stop-color="#73F016" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="homeField" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(170 560) rotate(90) scale(180 300)">
+      <stop stop-color="#0B2340"/>
+      <stop offset="1" stop-color="#0B2340" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+</svg>
+

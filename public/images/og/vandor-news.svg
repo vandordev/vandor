@@ -1,0 +1,22 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" fill="#050608"/>
+  <ellipse cx="1012" cy="130" rx="260" ry="180" fill="url(#newsGlow)" fill-opacity="0.48"/>
+  <ellipse cx="920" cy="496" rx="240" ry="160" fill="url(#newsGlowTwo)" fill-opacity="0.4"/>
+  <text x="118" y="158" fill="#A1A1AA" font-family="Arial, Helvetica, sans-serif" font-size="32" font-weight="500">Vandor News</text>
+  <text x="118" y="306" fill="#F5F5F4" font-family="Arial, Helvetica, sans-serif" font-size="92" font-weight="600" letter-spacing="-3.68">Writing that stays close</text>
+  <text x="118" y="394" fill="#F5F5F4" font-family="Arial, Helvetica, sans-serif" font-size="92" font-weight="600" letter-spacing="-3.68">to the work.</text>
+  <text x="118" y="474" fill="#A1A1AA" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="400">Announcements, essays, release lines, and product notes from across</text>
+  <text x="118" y="516" fill="#A1A1AA" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="400">the Vandor ecosystem.</text>
+  <defs>
+    <radialGradient id="newsGlow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1012 130) rotate(90) scale(180 260)">
+      <stop stop-color="#7CF31D"/>
+      <stop offset="0.42" stop-color="#2BC55B"/>
+      <stop offset="1" stop-color="#2BC55B" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="newsGlowTwo" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(920 496) rotate(90) scale(160 240)">
+      <stop stop-color="#1D4ED8"/>
+      <stop offset="1" stop-color="#1D4ED8" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+</svg>
+

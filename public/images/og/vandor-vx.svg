@@ -1,0 +1,19 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" fill="#050608"/>
+  <ellipse cx="988" cy="150" rx="220" ry="160" fill="url(#vxGlow)" fill-opacity="0.44"/>
+  <text x="118" y="158" fill="#A1A1AA" font-family="Arial, Helvetica, sans-serif" font-size="32" font-weight="500">vx by Vandor</text>
+  <text x="118" y="302" fill="#F5F5F4" font-family="Arial, Helvetica, sans-serif" font-size="92" font-weight="600" letter-spacing="-3.68">A CLI for structured</text>
+  <text x="118" y="390" fill="#F5F5F4" font-family="Arial, Helvetica, sans-serif" font-size="92" font-weight="600" letter-spacing="-3.68">Go backends.</text>
+  <text x="118" y="474" fill="#A1A1AA" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="400">Versioned docs, practical scaffolding, and a cleaner path into</text>
+  <text x="118" y="516" fill="#A1A1AA" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="400">reusable service architecture.</text>
+  <path d="M847 442H1014" stroke="#F5F5F4" stroke-width="18" stroke-linecap="round"/>
+  <path d="M1014 442L957 385" stroke="#F5F5F4" stroke-width="18" stroke-linecap="round"/>
+  <path d="M1014 442L957 499" stroke="#F5F5F4" stroke-width="18" stroke-linecap="round"/>
+  <defs>
+    <radialGradient id="vxGlow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(988 150) rotate(90) scale(160 220)">
+      <stop stop-color="#0B2340"/>
+      <stop offset="0.62" stop-color="#0B2340" stop-opacity="0.7"/>
+      <stop offset="1" stop-color="#0B2340" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+</svg>

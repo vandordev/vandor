@@ -1,9 +1,16 @@
 import { createFileRoute, notFound } from '@tanstack/react-router'
 
-import { getVxDocsTitle } from '#/features/vx/docs/docs-metadata'
+import {
+  getVxDocsDescription,
+  getVxDocsTitle,
+} from '#/features/vx/docs/docs-metadata'
 import { loadVxDocPage } from '#/features/vx/docs/load-doc-page'
 import { VxDocPage } from '#/features/vx/docs/vx-doc-page'
 import { isRequestedVxVersion } from '#/features/vx/versioning/resolve-version'
+import {
+  buildSeoHead,
+  getCollectionPageStructuredData,
+} from '#/lib/seo'
 
 export const Route = createFileRoute('/vx/$version/docs/')({
   loader: async ({ params }) => {
@@ -18,15 +25,26 @@ export const Route = createFileRoute('/vx/$version/docs/')({
       },
     })
   },
-  head: ({ loaderData }) => ({
-    meta: [
-      {
-        title: loaderData
-          ? getVxDocsTitle(loaderData.requestedVersion, loaderData.title)
-          : 'vx docs | Vandor',
-      },
-    ],
-  }),
+  head: ({ loaderData }) =>
+    loaderData
+      ? buildSeoHead({
+          title: getVxDocsTitle(loaderData.requestedVersion, loaderData.title),
+          description: getVxDocsDescription(
+            loaderData.requestedVersion,
+            loaderData.description,
+          ),
+          path: `/vx/${loaderData.requestedVersion}/docs/`,
+          imagePath: '/images/og/vandor-vx.svg',
+          structuredData: getCollectionPageStructuredData({
+            title: getVxDocsTitle(loaderData.requestedVersion, loaderData.title),
+            description: getVxDocsDescription(
+              loaderData.requestedVersion,
+              loaderData.description,
+            ),
+            path: `/vx/${loaderData.requestedVersion}/docs/`,
+          }),
+        })
+      : { meta: [], links: [], scripts: [] },
   component: VxDocsIndexRoute,
 })
 

@@ -3,6 +3,5 @@ export function getPartnersTitle() {
 }
 
 export function getPartnersDescription() {
-  return 'The collaboration lanes Vandor is built to hold across documentation, infrastructure, communities, and shared technical work.'
+  return 'The collaboration lanes and partner organizations Vandor is built to hold across documentation, infrastructure, communities, and shared technical work.'
 }
-

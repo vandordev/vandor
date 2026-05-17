@@ -11,6 +11,10 @@ import TanStackQueryDevtools from '../integrations/tanstack-query/devtools'
 import { ThemeProvider } from '../components/theme-provider'
 
 import { env } from '#/env'
+import {
+  defaultTitle,
+  getOrganizationStructuredData,
+} from '#/lib/seo'
 import { getLocale } from '#/paraglide/runtime'
 
 import appCss from '../styles.css?url'
@@ -40,7 +44,23 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
         content: 'width=device-width, initial-scale=1',
       },
       {
-        title: 'Vandor',
+        title: defaultTitle,
+      },
+      {
+        name: 'application-name',
+        content: 'Vandor',
+      },
+      {
+        name: 'apple-mobile-web-app-title',
+        content: 'Vandor',
+      },
+      {
+        name: 'theme-color',
+        content: '#000000',
+      },
+      {
+        name: 'color-scheme',
+        content: 'dark',
       },
     ],
     links: [
@@ -56,6 +76,10 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
         rel: 'apple-touch-icon',
         href: '/app-logo.png',
       },
+      {
+        rel: 'manifest',
+        href: '/manifest.json',
+      },
     ],
     scripts: env.VITE_UMAMI_WEBSITE_ID
       ? [
@@ -64,8 +88,17 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
             defer: true,
             'data-website-id': env.VITE_UMAMI_WEBSITE_ID,
           },
+          {
+            type: 'application/ld+json',
+            children: JSON.stringify(getOrganizationStructuredData()),
+          },
         ]
-      : [],
+      : [
+          {
+            type: 'application/ld+json',
+            children: JSON.stringify(getOrganizationStructuredData()),
+          },
+        ],
   }),
   shellComponent: RootDocument,
 })

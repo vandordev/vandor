@@ -13,6 +13,8 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as VxIndexRouteImport } from './routes/vx/index'
 import { Route as PartnersIndexRouteImport } from './routes/partners/index'
 import { Route as NewsIndexRouteImport } from './routes/news/index'
+import { Route as SitemapXmlRouteImport } from './routes/sitemap.xml'
+import { Route as RobotsTxtRouteImport } from './routes/robots.txt'
 import { Route as NewsSlugRouteImport } from './routes/news/$slug'
 import { Route as VxVersionIndexRouteImport } from './routes/vx/$version/index'
 import { Route as VxVersionDocsIndexRouteImport } from './routes/vx/$version/docs/index'
@@ -36,6 +38,16 @@ const PartnersIndexRoute = PartnersIndexRouteImport.update({
 const NewsIndexRoute = NewsIndexRouteImport.update({
   id: '/news/',
   path: '/news/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SitemapXmlRoute = SitemapXmlRouteImport.update({
+  id: '/sitemap/xml',
+  path: '/sitemap/xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RobotsTxtRoute = RobotsTxtRouteImport.update({
+  id: '/robots/txt',
+  path: '/robots/txt',
   getParentRoute: () => rootRouteImport,
 } as any)
 const NewsSlugRoute = NewsSlugRouteImport.update({
@@ -62,6 +74,8 @@ const VxVersionDocsSplatRoute = VxVersionDocsSplatRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/news/$slug': typeof NewsSlugRoute
+  '/robots/txt': typeof RobotsTxtRoute
+  '/sitemap/xml': typeof SitemapXmlRoute
   '/news/': typeof NewsIndexRoute
   '/partners/': typeof PartnersIndexRoute
   '/vx/': typeof VxIndexRoute
@@ -72,6 +86,8 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/news/$slug': typeof NewsSlugRoute
+  '/robots/txt': typeof RobotsTxtRoute
+  '/sitemap/xml': typeof SitemapXmlRoute
   '/news': typeof NewsIndexRoute
   '/partners': typeof PartnersIndexRoute
   '/vx': typeof VxIndexRoute
@@ -83,6 +99,8 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/news/$slug': typeof NewsSlugRoute
+  '/robots/txt': typeof RobotsTxtRoute
+  '/sitemap/xml': typeof SitemapXmlRoute
   '/news/': typeof NewsIndexRoute
   '/partners/': typeof PartnersIndexRoute
   '/vx/': typeof VxIndexRoute
@@ -95,6 +113,8 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/news/$slug'
+    | '/robots/txt'
+    | '/sitemap/xml'
     | '/news/'
     | '/partners/'
     | '/vx/'
@@ -105,6 +125,8 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/news/$slug'
+    | '/robots/txt'
+    | '/sitemap/xml'
     | '/news'
     | '/partners'
     | '/vx'
@@ -115,6 +137,8 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/news/$slug'
+    | '/robots/txt'
+    | '/sitemap/xml'
     | '/news/'
     | '/partners/'
     | '/vx/'
@@ -126,6 +150,8 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   NewsSlugRoute: typeof NewsSlugRoute
+  RobotsTxtRoute: typeof RobotsTxtRoute
+  SitemapXmlRoute: typeof SitemapXmlRoute
   NewsIndexRoute: typeof NewsIndexRoute
   PartnersIndexRoute: typeof PartnersIndexRoute
   VxIndexRoute: typeof VxIndexRoute
@@ -164,6 +190,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof NewsIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/sitemap/xml': {
+      id: '/sitemap/xml'
+      path: '/sitemap/xml'
+      fullPath: '/sitemap/xml'
+      preLoaderRoute: typeof SitemapXmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/robots/txt': {
+      id: '/robots/txt'
+      path: '/robots/txt'
+      fullPath: '/robots/txt'
+      preLoaderRoute: typeof RobotsTxtRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/news/$slug': {
       id: '/news/$slug'
       path: '/news/$slug'
@@ -198,6 +238,8 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   NewsSlugRoute: NewsSlugRoute,
+  RobotsTxtRoute: RobotsTxtRoute,
+  SitemapXmlRoute: SitemapXmlRoute,
   NewsIndexRoute: NewsIndexRoute,
   PartnersIndexRoute: PartnersIndexRoute,
   VxIndexRoute: VxIndexRoute,
