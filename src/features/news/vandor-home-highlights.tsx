@@ -12,6 +12,17 @@ function formatKind(value: string) {
   return value.replace('-', ' ')
 }
 
+function getHomeHighlightImageClass(slug: string) {
+  switch (slug) {
+    case 'why-vandor-builds-vx':
+      return 'object-[22%_50%]'
+    case 'vx-release-notes-v0-1':
+      return 'object-[24%_44%]'
+    default:
+      return 'object-center'
+  }
+}
+
 function StoryMeta({
   entry,
   showKind = true,
@@ -104,7 +115,7 @@ function LeadHighlight({ entry }: { entry: NewsEntryListItem }) {
         <img
           src={entry.coverImage}
           alt={entry.title}
-          className="aspect-[16/10] w-full object-cover transition-transform duration-500 group-hover:scale-[1.025]"
+          className={`aspect-[16/10] w-full object-cover transition-transform duration-500 group-hover:scale-[1.025] ${getHomeHighlightImageClass(entry.slug)}`}
         />
       </div>
 
@@ -132,13 +143,13 @@ function SupportingHighlight({ entry }: { entry: NewsEntryListItem }) {
   return (
     <a
       href={`/news/${entry.slug}`}
-      className="group grid gap-4 py-5 first:pt-0 sm:grid-cols-[7.25rem_minmax(0,1fr)]"
+      className="group grid gap-4 py-5 first:pt-0 sm:grid-cols-[7.25rem_minmax(0,1fr)] sm:items-start"
     >
-      <div className="overflow-hidden rounded-[1rem] border border-border/70 bg-card/30">
+      <div className="self-start overflow-hidden rounded-[1rem] border border-border/70 bg-card/30">
         <img
           src={entry.coverImage}
           alt={entry.title}
-          className="aspect-[5/4] w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+          className={`aspect-[5/4] w-full object-cover transition-transform duration-500 group-hover:scale-[1.04] ${getHomeHighlightImageClass(entry.slug)}`}
         />
       </div>
 
