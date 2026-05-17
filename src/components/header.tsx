@@ -38,8 +38,66 @@ export const HeroHeader = ({ content }: HeroHeaderProps) => {
   return (
     <header>
       <nav data-state={menuState && 'active'} className="fixed z-20 w-full">
-        <div className="mx-auto max-w-7xl px-6">
-          <div className="relative flex flex-wrap items-center justify-between gap-6 py-6 lg:gap-0">
+        <div className="mx-auto max-w-7xl px-4 pt-4 sm:px-6 lg:px-6">
+          <div className="lg:hidden">
+            <div className="rounded-[1.85rem] border border-white/10 bg-black/72 shadow-2xl shadow-black/30 backdrop-blur-xl">
+              <div className="flex items-center justify-between px-4 py-3">
+                <a
+                  href={getBrandHref(content.brand)}
+                  aria-label="home"
+                  className="flex min-w-0 items-center gap-2"
+                >
+                  <HeaderBrand brand={content.brand} />
+                </a>
+
+                <button
+                  onClick={() => setMenuState(!menuState)}
+                  aria-label={menuState ? 'Close Menu' : 'Open Menu'}
+                  className="relative flex size-11 shrink-0 cursor-pointer items-center justify-center rounded-full border border-white/12 bg-white/5 text-foreground/90 transition-colors duration-200 hover:bg-white/8"
+                  type="button"
+                >
+                  <Menu className="in-data-[state=active]:rotate-180 in-data-[state=active]:scale-0 in-data-[state=active]:opacity-0 m-auto size-5 duration-200" />
+                  <X className="in-data-[state=active]:rotate-0 in-data-[state=active]:scale-100 in-data-[state=active]:opacity-100 absolute inset-0 m-auto size-5 -rotate-180 scale-0 opacity-0 duration-200" />
+                </button>
+              </div>
+
+              <AnimatePresence initial={false}>
+                {menuState && (
+                  <motion.div
+                    initial={{ opacity: 0, height: 0, y: -8 }}
+                    animate={{ opacity: 1, height: 'auto', y: 0 }}
+                    exit={{ opacity: 0, height: 0, y: -8 }}
+                    transition={{ duration: 0.24, ease: 'easeOut' }}
+                    className="overflow-hidden border-t border-white/8"
+                  >
+                    <div className="space-y-5 px-3 pb-3 pt-2">
+                      <NavItems items={content.navItems} mobile />
+                      <div className="flex flex-col gap-2">
+                        {content.headerCtas.secondary && (
+                          <VeilButton asChild variant="ghost" size="sm" className="h-11 justify-between rounded-full px-4">
+                            <a href={content.headerCtas.secondary.href}>
+                              <span>{content.headerCtas.secondary.label}</span>
+                              <ChevronRight className="opacity-45" />
+                            </a>
+                          </VeilButton>
+                        )}
+                        {content.headerCtas.primary && (
+                          <VeilButton asChild size="sm" className="h-11 justify-between rounded-full px-4">
+                            <a href={content.headerCtas.primary.href}>
+                              <span>{content.headerCtas.primary.label}</span>
+                              <ChevronRight className="opacity-45" />
+                            </a>
+                          </VeilButton>
+                        )}
+                      </div>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+          </div>
+
+          <div className="relative hidden flex-wrap items-center justify-between gap-6 py-6 lg:flex lg:gap-0">
             <div
               className={cn(
                 'flex justify-between gap-6 duration-200 max-lg:w-full',
@@ -49,23 +107,6 @@ export const HeroHeader = ({ content }: HeroHeaderProps) => {
               <div className="hidden size-fit lg:block">
                 <NavItems items={content.navItems} />
               </div>
-              <a
-                href={getBrandHref(content.brand)}
-                aria-label="home"
-                className="flex items-center gap-2 lg:hidden"
-              >
-                <HeaderBrand brand={content.brand} />
-              </a>
-
-              <button
-                onClick={() => setMenuState(!menuState)}
-                aria-label={menuState ? 'Close Menu' : 'Open Menu'}
-                className="relative z-20 -m-2.5 -mr-4 block cursor-pointer p-2.5 lg:hidden"
-                type="button"
-              >
-                <Menu className="in-data-[state=active]:rotate-180 in-data-[state=active]:scale-0 in-data-[state=active]:opacity-0 m-auto size-6 duration-200" />
-                <X className="in-data-[state=active]:rotate-0 in-data-[state=active]:scale-100 in-data-[state=active]:opacity-100 absolute inset-0 m-auto size-6 -rotate-180 scale-0 opacity-0 duration-200" />
-              </button>
             </div>
 
             {isLarge && (
@@ -73,9 +114,6 @@ export const HeroHeader = ({ content }: HeroHeaderProps) => {
             )}
 
             <div className="bg-card ring-border in-data-[state=active]:block lg:in-data-[state=active]:flex mb-6 hidden w-full flex-wrap items-center justify-end space-y-8 rounded-3xl p-6 shadow-2xl shadow-zinc-300/20 ring-1 md:flex-nowrap lg:m-0 lg:flex lg:w-fit lg:gap-6 lg:space-y-0 lg:bg-transparent lg:p-0 lg:shadow-none lg:ring-transparent dark:shadow-none dark:lg:bg-transparent">
-              <div className="lg:hidden">
-                <NavItems items={content.navItems} />
-              </div>
               <div
                 className={cn(
                   'flex w-full flex-col space-y-3 duration-200 sm:flex-row sm:gap-3 sm:space-y-0 md:w-fit',
@@ -129,19 +167,28 @@ function HeaderBrand({
   )
 }
 
-const NavItems = ({ items }: { items: SiteShellContent['navItems'] }) => {
+const NavItems = ({
+  items,
+  mobile = false,
+}: {
+  items: SiteShellContent['navItems']
+  mobile?: boolean
+}) => {
   return (
-    <ul className="flex gap-1 max-lg:flex-col">
+    <ul className={cn('flex gap-1', mobile && 'flex-col')}>
       {items.map((item) => (
         <li key={item.label}>
           {item.label === 'Products' ? (
-            <ProductsNavItem />
+            <ProductsNavItem mobile={mobile} />
           ) : (
             <VeilButton
               asChild
               variant="ghost"
               size="sm"
-              className="w-full max-lg:h-12 max-lg:justify-start max-lg:text-lg"
+              className={cn(
+                'w-full',
+                mobile && 'h-12 justify-start rounded-2xl px-4 text-lg',
+              )}
             >
               <a href={item.href} className="text-base">
                 <span>{item.label}</span>
@@ -154,13 +201,50 @@ const NavItems = ({ items }: { items: SiteShellContent['navItems'] }) => {
   )
 }
 
-function ProductsNavItem() {
+function ProductsNavItem({ mobile = false }: { mobile?: boolean }) {
+  const [isOpen, setIsOpen] = React.useState(false)
+
+  if (mobile) {
+    return (
+      <div className="rounded-[1.4rem] border border-white/8 bg-white/[0.03] p-1">
+        <button
+          type="button"
+          onClick={() => setIsOpen((value) => !value)}
+          className="flex h-12 w-full items-center justify-between rounded-[1rem] px-4 text-left"
+        >
+          <span className="text-base">Products</span>
+          <ChevronDown
+            className={cn(
+              'size-4 opacity-55 transition-transform duration-200',
+              isOpen && 'rotate-180',
+            )}
+          />
+        </button>
+        <AnimatePresence initial={false}>
+          {isOpen && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: 'auto' }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.2, ease: 'easeOut' }}
+              className="overflow-hidden"
+            >
+              <div className="px-2 pb-2">
+                <ProductsPanel mobile />
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
+    )
+  }
+
   return (
     <div className="group/products relative">
       <VeilButton
         variant="ghost"
         size="sm"
-        className="w-full gap-1.5 max-lg:h-12 max-lg:justify-start max-lg:text-lg"
+        className="w-full gap-1.5"
         type="button"
       >
         <span className="text-base">Products</span>
@@ -170,14 +254,17 @@ function ProductsNavItem() {
       <div className="lg:pointer-events-none lg:absolute lg:left-0 lg:top-full lg:z-30 lg:w-[19rem] lg:pt-2 lg:opacity-0 lg:transition-all lg:duration-200 lg:group-hover/products:pointer-events-auto lg:group-hover/products:opacity-100">
         <ProductsPanel />
       </div>
-      <div className="lg:hidden">
-        <ProductsPanel compact />
-      </div>
     </div>
   )
 }
 
-function ProductsPanel({ compact = false }: { compact?: boolean }) {
+function ProductsPanel({
+  compact = false,
+  mobile = false,
+}: {
+  compact?: boolean
+  mobile?: boolean
+}) {
   const product: SiteShellProduct = {
     label: 'vx',
     href: '/vx/latest',
@@ -190,9 +277,12 @@ function ProductsPanel({ compact = false }: { compact?: boolean }) {
     <div
       className={cn(
         'mt-2 rounded-[1.35rem] border border-border/70 bg-card/95 p-3 shadow-2xl shadow-black/18 backdrop-blur',
-        compact
-          ? 'block lg:hidden'
-          : 'hidden lg:block',
+        compact && 'block lg:hidden',
+        mobile
+          ? 'mt-0 rounded-[1rem] border-white/8 bg-white/[0.03] p-2 shadow-none'
+          : compact
+            ? 'block lg:hidden'
+            : 'hidden lg:block',
       )}
     >
       <div className="group rounded-[1rem] p-3 transition-colors hover:bg-background/55">
