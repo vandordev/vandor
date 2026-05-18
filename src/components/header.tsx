@@ -38,35 +38,35 @@ export const HeroHeader = ({ content }: HeroHeaderProps) => {
   return (
     <header>
       <nav data-state={menuState && 'active'} className="fixed z-20 w-full">
-        <div className="mx-auto max-w-7xl px-4 pt-4 sm:px-6 lg:px-6">
+        <div className="mx-auto max-w-7xl px-3 pt-3 sm:px-6 lg:px-6">
           <div className="lg:hidden">
-            <div className="relative overflow-hidden rounded-[1.85rem] border border-white/12 bg-[linear-gradient(180deg,rgba(255,255,255,0.08),rgba(255,255,255,0.03))] shadow-[0_24px_60px_rgba(0,0,0,0.3)]">
+            <div className="relative overflow-hidden rounded-[1.55rem] border border-white/12 bg-[linear-gradient(180deg,rgba(255,255,255,0.08),rgba(255,255,255,0.03))] shadow-[0_20px_52px_rgba(0,0,0,0.28)]">
               <div
                 aria-hidden="true"
                 className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_10%_0%,rgba(96,128,255,0.18),transparent_34%),linear-gradient(180deg,rgba(255,255,255,0.08),rgba(255,255,255,0.02)_28%,rgba(0,0,0,0.16)_100%)]"
               />
               <div
                 aria-hidden="true"
-                className="pointer-events-none absolute inset-[1px] rounded-[calc(1.85rem-1px)] border border-white/7"
+                className="pointer-events-none absolute inset-[1px] rounded-[calc(1.55rem-1px)] border border-white/7"
               />
               <div className="relative bg-black/58 backdrop-blur-2xl">
-              <div className="flex items-center justify-between px-4 py-3">
+              <div className="flex items-center justify-between px-3.5 py-2.5">
                 <a
                   href={getBrandHref(content.brand)}
                   aria-label="home"
                   className="flex min-w-0 items-center gap-2"
                 >
-                  <HeaderBrand brand={content.brand} />
+                  <HeaderBrand brand={content.brand} compact />
                 </a>
 
                 <button
                   onClick={() => setMenuState(!menuState)}
                   aria-label={menuState ? 'Close Menu' : 'Open Menu'}
-                  className="relative flex size-11 shrink-0 cursor-pointer items-center justify-center rounded-full border border-white/12 bg-white/5 text-foreground/90 transition-colors duration-200 hover:bg-white/8"
+                  className="relative flex size-10 shrink-0 cursor-pointer items-center justify-center rounded-full border border-white/12 bg-white/5 text-foreground/90 transition-colors duration-200 hover:bg-white/8"
                   type="button"
                 >
-                  <Menu className="in-data-[state=active]:rotate-180 in-data-[state=active]:scale-0 in-data-[state=active]:opacity-0 m-auto size-5 duration-200" />
-                  <X className="in-data-[state=active]:rotate-0 in-data-[state=active]:scale-100 in-data-[state=active]:opacity-100 absolute inset-0 m-auto size-5 -rotate-180 scale-0 opacity-0 duration-200" />
+                  <Menu className="in-data-[state=active]:rotate-180 in-data-[state=active]:scale-0 in-data-[state=active]:opacity-0 m-auto size-[1.05rem] duration-200" />
+                  <X className="in-data-[state=active]:rotate-0 in-data-[state=active]:scale-100 in-data-[state=active]:opacity-100 absolute inset-0 m-auto size-[1.05rem] -rotate-180 scale-0 opacity-0 duration-200" />
                 </button>
               </div>
 
@@ -79,7 +79,7 @@ export const HeroHeader = ({ content }: HeroHeaderProps) => {
                   transition={{ duration: 0.24, ease: 'easeOut' }}
                     className="overflow-hidden border-t border-white/10"
                   >
-                    <div className="space-y-5 px-3 pb-3 pt-2">
+                    <div className="space-y-4 px-2.5 pb-2.5 pt-1.5">
                       <NavItems
                         items={content.navItems}
                         productItems={content.productItems}
@@ -87,7 +87,7 @@ export const HeroHeader = ({ content }: HeroHeaderProps) => {
                       />
                       <div className="flex flex-col gap-2">
                         {content.headerCtas.secondary && (
-                          <VeilButton asChild variant="ghost" size="sm" className="h-11 justify-between rounded-full px-4">
+                          <VeilButton asChild variant="ghost" size="sm" className="h-10 justify-between rounded-full px-4">
                             <a href={content.headerCtas.secondary.href}>
                               <span>{content.headerCtas.secondary.label}</span>
                               <ChevronRight className="opacity-45" />
@@ -95,7 +95,7 @@ export const HeroHeader = ({ content }: HeroHeaderProps) => {
                           </VeilButton>
                         )}
                         {content.headerCtas.primary && (
-                          <VeilButton asChild size="sm" className="h-11 justify-between rounded-full px-4">
+                          <VeilButton asChild size="sm" className="h-10 justify-between rounded-full px-4">
                             <a href={content.headerCtas.primary.href}>
                               <span>{content.headerCtas.primary.label}</span>
                               <ChevronRight className="opacity-45" />
@@ -163,21 +163,27 @@ export const HeroHeader = ({ content }: HeroHeaderProps) => {
 function HeaderBrand({
   brand,
   hideVandorLabel = false,
+  compact = false,
 }: {
   brand: SiteShellBrand
   hideVandorLabel?: boolean
+  compact?: boolean
 }) {
   return (
     <div className="flex items-center gap-2">
-      <Logo className="w-fit" />
+      <Logo className={cn('w-fit', compact && 'h-8')} />
       {brand.kind === 'vandor' ? (
         hideVandorLabel ? null : (
-        <span className="font-semibold text-lg">Vandor</span>
+        <span className={cn('font-semibold text-lg', compact && 'text-base')}>
+          Vandor
+        </span>
         )
       ) : (
         <>
           <span className="text-muted-foreground">/</span>
-          <span className="font-semibold text-lg">vx</span>
+          <span className={cn('font-semibold text-lg', compact && 'text-base')}>
+            vx
+          </span>
         </>
       )}
     </div>
