@@ -14,6 +14,7 @@ import { Route as WritingIndexRouteImport } from './routes/writing/index'
 import { Route as VxIndexRouteImport } from './routes/vx/index'
 import { Route as PartnersIndexRouteImport } from './routes/partners/index'
 import { Route as NewsIndexRouteImport } from './routes/news/index'
+import { Route as WritingSlugRouteImport } from './routes/writing/$slug'
 import { Route as SitemapXmlRouteImport } from './routes/sitemap.xml'
 import { Route as RobotsTxtRouteImport } from './routes/robots.txt'
 import { Route as NewsSlugRouteImport } from './routes/news/$slug'
@@ -44,6 +45,11 @@ const PartnersIndexRoute = PartnersIndexRouteImport.update({
 const NewsIndexRoute = NewsIndexRouteImport.update({
   id: '/news/',
   path: '/news/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WritingSlugRoute = WritingSlugRouteImport.update({
+  id: '/writing/$slug',
+  path: '/writing/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SitemapXmlRoute = SitemapXmlRouteImport.update({
@@ -82,6 +88,7 @@ export interface FileRoutesByFullPath {
   '/news/$slug': typeof NewsSlugRoute
   '/robots/txt': typeof RobotsTxtRoute
   '/sitemap/xml': typeof SitemapXmlRoute
+  '/writing/$slug': typeof WritingSlugRoute
   '/news/': typeof NewsIndexRoute
   '/partners/': typeof PartnersIndexRoute
   '/vx/': typeof VxIndexRoute
@@ -95,6 +102,7 @@ export interface FileRoutesByTo {
   '/news/$slug': typeof NewsSlugRoute
   '/robots/txt': typeof RobotsTxtRoute
   '/sitemap/xml': typeof SitemapXmlRoute
+  '/writing/$slug': typeof WritingSlugRoute
   '/news': typeof NewsIndexRoute
   '/partners': typeof PartnersIndexRoute
   '/vx': typeof VxIndexRoute
@@ -109,6 +117,7 @@ export interface FileRoutesById {
   '/news/$slug': typeof NewsSlugRoute
   '/robots/txt': typeof RobotsTxtRoute
   '/sitemap/xml': typeof SitemapXmlRoute
+  '/writing/$slug': typeof WritingSlugRoute
   '/news/': typeof NewsIndexRoute
   '/partners/': typeof PartnersIndexRoute
   '/vx/': typeof VxIndexRoute
@@ -124,6 +133,7 @@ export interface FileRouteTypes {
     | '/news/$slug'
     | '/robots/txt'
     | '/sitemap/xml'
+    | '/writing/$slug'
     | '/news/'
     | '/partners/'
     | '/vx/'
@@ -137,6 +147,7 @@ export interface FileRouteTypes {
     | '/news/$slug'
     | '/robots/txt'
     | '/sitemap/xml'
+    | '/writing/$slug'
     | '/news'
     | '/partners'
     | '/vx'
@@ -150,6 +161,7 @@ export interface FileRouteTypes {
     | '/news/$slug'
     | '/robots/txt'
     | '/sitemap/xml'
+    | '/writing/$slug'
     | '/news/'
     | '/partners/'
     | '/vx/'
@@ -164,6 +176,7 @@ export interface RootRouteChildren {
   NewsSlugRoute: typeof NewsSlugRoute
   RobotsTxtRoute: typeof RobotsTxtRoute
   SitemapXmlRoute: typeof SitemapXmlRoute
+  WritingSlugRoute: typeof WritingSlugRoute
   NewsIndexRoute: typeof NewsIndexRoute
   PartnersIndexRoute: typeof PartnersIndexRoute
   VxIndexRoute: typeof VxIndexRoute
@@ -208,6 +221,13 @@ declare module '@tanstack/react-router' {
       path: '/news'
       fullPath: '/news/'
       preLoaderRoute: typeof NewsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/writing/$slug': {
+      id: '/writing/$slug'
+      path: '/writing/$slug'
+      fullPath: '/writing/$slug'
+      preLoaderRoute: typeof WritingSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/sitemap/xml': {
@@ -260,6 +280,7 @@ const rootRouteChildren: RootRouteChildren = {
   NewsSlugRoute: NewsSlugRoute,
   RobotsTxtRoute: RobotsTxtRoute,
   SitemapXmlRoute: SitemapXmlRoute,
+  WritingSlugRoute: WritingSlugRoute,
   NewsIndexRoute: NewsIndexRoute,
   PartnersIndexRoute: PartnersIndexRoute,
   VxIndexRoute: VxIndexRoute,

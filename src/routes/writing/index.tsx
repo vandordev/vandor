@@ -4,6 +4,7 @@ import {
   getWritingDescription,
   getWritingTitle,
 } from '#/features/writing/writing-metadata'
+import { loadWritingIndex } from '#/features/writing/load-writing-index'
 import { VandorWritingPage } from '#/features/writing/vandor-writing-page'
 import {
   buildSeoHead,
@@ -11,6 +12,7 @@ import {
 } from '#/lib/seo'
 
 export const Route = createFileRoute('/writing/')({
+  loader: () => loadWritingIndex(),
   head: () =>
     buildSeoHead({
       title: getWritingTitle(),
@@ -27,5 +29,5 @@ export const Route = createFileRoute('/writing/')({
 })
 
 function WritingRoute() {
-  return <VandorWritingPage />
+  return <VandorWritingPage data={Route.useLoaderData()} />
 }

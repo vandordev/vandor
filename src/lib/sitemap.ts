@@ -1,5 +1,6 @@
 import { concreteDocVersions } from '#/features/vx/versioning/version-types'
 import { getAllNewsPages } from '#/features/news/news-source'
+import { getAllWritingPages } from '#/features/writing/writing-source'
 import { getVxDocsSource } from '#/features/vx/docs/docs-source'
 import { getAbsoluteUrl } from '#/lib/seo'
 
@@ -89,13 +90,42 @@ async function buildDocsEntries(): Promise<SitemapEntry[]> {
   return entries
 }
 
+async function buildWritingEntries(): Promise<SitemapEntry[]> {
+  const pages = (await getAllWritingPages()) as Array<{
+    slugs: string[]
+    path: string
+    data: {
+      frontmatter: {
+        published: boolean
+        publishedAt: string
+      }
+    }
+  }>
+
+  return pages
+    .filter((page) => page.data.frontmatter.published)
+    .map((page) => {
+      const slug = page.slugs.at(-1)
+
+      if (!slug) {
+        throw new Error(`Writing entry at path "${page.path}" is missing a slug`)
+      }
+
+      return {
+        loc: getAbsoluteUrl(`/writing/${slug}`),
+        lastmod: page.data.frontmatter.publishedAt,
+      }
+    })
+}
+
 export async function getSitemapEntries() {
-  const [newsEntries, docsEntries] = await Promise.all([
+  const [newsEntries, writingEntries, docsEntries] = await Promise.all([
     buildNewsEntries(),
+    buildWritingEntries(),
     buildDocsEntries(),
   ])
 
-  return [...buildStaticEntries(), ...newsEntries, ...docsEntries]
+  return [...buildStaticEntries(), ...newsEntries, ...writingEntries, ...docsEntries]
 }
 
 export async function getSitemapXml() {

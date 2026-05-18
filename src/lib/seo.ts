@@ -6,7 +6,7 @@ export const siteName = 'Vandor'
 export const defaultLocale = 'en_US'
 export const defaultTitle = 'Vandor'
 export const defaultDescription =
-  'Vandor is an open ecosystem for developer tools, documentation, writing, and technical work.'
+  'Vandor builds developer tools, documentation, and technical writing that stay useful over time.'
 export const defaultRobots =
   'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'
 

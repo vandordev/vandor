@@ -8,6 +8,10 @@ export default defineNitroConfig({
       dir: './content/news',
     },
     {
+      baseName: 'writing',
+      dir: './content/writing',
+    },
+    {
       baseName: 'vx-docs',
       dir: './content/docs',
     },

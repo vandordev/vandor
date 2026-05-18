@@ -38,6 +38,7 @@
     "fumadocs-core": "^16.8.11",
     "fumadocs-ui": "^16.8.11",
     "lucide-react": "^0.577.0",
+    "mermaid": "^11.15.0",
     "motion": "^12.38.0",
     "next-themes": "^0.4.6",
     "nitro": "npm:nitro-nightly@latest",
