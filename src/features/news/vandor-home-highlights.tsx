@@ -70,21 +70,21 @@ export function VandorHomeHighlights({ data }: VandorHomeHighlightsProps) {
 
       <div className="grid gap-5 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1fr)] lg:items-end">
         <div className="space-y-3">
-          <p className="text-sm text-muted-foreground">From Vandor</p>
+          <p className="text-sm text-muted-foreground">News from Vandor</p>
           <h2 className="max-w-3xl text-balance text-[clamp(2.2rem,5vw,3.85rem)] leading-[0.98] font-medium tracking-[-0.052em]">
-            Writing from across the work.
+            Product updates, releases, and signals from the ecosystem.
           </h2>
         </div>
         <div className="space-y-4 lg:justify-self-end">
           <p className="max-w-xl text-[1rem] leading-7 text-muted-foreground">
-            Announcements, release notes, and essays that stay close to the
-            tools, but are written to be read.
+            Announcements and release notes that explain what Vandor is
+            shipping, changing, and learning in public.
           </p>
           <a
             href="/news"
             className="inline-flex items-center gap-2 text-sm text-foreground transition-colors hover:text-muted-foreground"
           >
-            <span>See all writing</span>
+            <span>See all news</span>
           </a>
         </div>
       </div>
@@ -94,7 +94,7 @@ export function VandorHomeHighlights({ data }: VandorHomeHighlightsProps) {
 
         <div className="border-t border-border/70 pt-5 lg:border-t-0 lg:border-l lg:pl-8 xl:pl-10">
           <div className="mb-5">
-            <p className="text-sm text-muted-foreground">Latest notes</p>
+            <p className="text-sm text-muted-foreground">Latest updates</p>
           </div>
 
           <div className="divide-y divide-border/70">

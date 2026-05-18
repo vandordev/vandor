@@ -68,12 +68,13 @@ export function VandorNewsSection({ data }: VandorNewsSectionProps) {
               <div className="space-y-4">
                 <p className="text-sm text-muted-foreground">Vandor News</p>
                 <h1 className="max-w-4xl text-balance text-[clamp(3.15rem,7.4vw,6.2rem)] leading-[0.96] font-medium tracking-[-0.06em]">
-                  A publication for what Vandor is building, learning, and releasing.
+                  Updates on what Vandor is building, shipping, and changing.
                 </h1>
               </div>
               <p className="max-w-xl text-[1rem] leading-7 text-muted-foreground lg:justify-self-end">
-                Writing across the Vandor ecosystem, from product notes and
-                release lines to the longer arguments behind how we work.
+                This feed is for Vandor-specific announcements, release lines,
+                product notes, and progress that belongs close to the work
+                itself.
               </p>
             </div>
 
@@ -111,7 +112,7 @@ export function VandorNewsSection({ data }: VandorNewsSectionProps) {
                 {supportingStories.length > 0 ? (
                   <aside className="flex flex-col justify-end border-t border-border/70 pt-5 lg:border-t-0 lg:border-l lg:pl-8 xl:pl-10">
                     <div className="mb-5">
-                      <p className="text-sm text-muted-foreground">Recent writing</p>
+                      <p className="text-sm text-muted-foreground">Recent updates</p>
                     </div>
 
                     <div className="divide-y divide-border/70">
@@ -155,10 +156,11 @@ export function VandorNewsSection({ data }: VandorNewsSectionProps) {
             {allWriting.length > 0 ? (
               <section className="border-t border-border/70 px-4 py-8">
                 <div className="mb-6 grid gap-3 lg:grid-cols-[minmax(0,0.75fr)_minmax(0,1fr)] lg:items-end">
-                  <p className="text-sm text-muted-foreground">All writing</p>
+                  <p className="text-sm text-muted-foreground">All news</p>
                   <p className="max-w-2xl text-[0.98rem] leading-7 text-muted-foreground lg:justify-self-end">
-                    Every post stays in one archive, readable at a glance and
-                    still led by the image system rather than a generic blog list.
+                    Every update stays in one archive so the public record of
+                    Vandor remains easy to scan without turning into a generic
+                    company blog.
                   </p>
                 </div>
 

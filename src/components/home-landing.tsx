@@ -10,20 +10,16 @@ import { VandorHomePartners } from '#/features/partners/vandor-home-partners'
 
 type HomeLandingProps = {
   newsData?: NewsIndexData
-  requestedVersion?: string
 }
 
-export function HomeLanding({
-  newsData,
-  requestedVersion = 'latest',
-}: HomeLandingProps) {
+export function HomeLanding({ newsData }: HomeLandingProps) {
   const shellContent = getSiteShellContent({ variant: 'vandor' })
 
   return (
     <>
       <HeroHeader content={shellContent} />
       <main>
-        <VandorHomeHero requestedVersion={requestedVersion} />
+        <VandorHomeHero />
         <LandingSection className="pt-24 sm:pt-30 lg:pt-40">
           <VandorOpenWork />
         </LandingSection>

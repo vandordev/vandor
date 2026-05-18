@@ -32,15 +32,14 @@ export function VandorPartnersPage() {
               <div className="space-y-4">
                 <p className="text-sm text-muted-foreground">Partners</p>
                 <h1 className="max-w-4xl text-balance text-[clamp(3rem,7vw,5.8rem)] leading-[0.96] font-medium tracking-[-0.06em]">
-                  The work travels further when it can move with others.
+                  Vandor grows further when the work can move with others.
                 </h1>
               </div>
               <div className="space-y-4 lg:justify-self-end">
                 <p className="max-w-xl text-[1rem] leading-7 text-muted-foreground">
-                  Vandor can name partner organizations here when collaboration
-                  becomes public. The page begins with Ozone, then keeps the
-                  rest of the surface open as a map of the collaboration lanes
-                  the work is designed to support.
+                  This surface holds the organizations already working with
+                  Vandor, along with the collaboration lanes the ecosystem is
+                  designed to support as it broadens.
                 </p>
               </div>
             </div>
@@ -49,8 +48,8 @@ export function VandorPartnersPage() {
               <div className="grid gap-3 lg:grid-cols-[minmax(0,0.75fr)_minmax(0,1fr)] lg:items-end">
                 <p className="text-sm text-muted-foreground">Current partner</p>
                 <p className="max-w-2xl text-[0.98rem] leading-7 text-muted-foreground lg:justify-self-end">
-                  A quiet record of organizations already in view, followed by
-                  the broader lanes Vandor is prepared to move with.
+                  A record of who is already in motion with Vandor, followed by
+                  the broader lanes the ecosystem is prepared to open next.
                 </p>
               </div>
             </section>
@@ -115,7 +114,8 @@ export function VandorPartnersPage() {
                 <p className="text-sm text-muted-foreground">Collaboration lanes</p>
                 <p className="max-w-2xl text-[0.98rem] leading-7 text-muted-foreground lg:justify-self-end">
                   The directory stays open for the kinds of institutions,
-                  communities, and stewards Vandor is built to support next.
+                  communities, and stewards the Vandor ecosystem is built to
+                  support next.
                 </p>
               </div>
             </section>

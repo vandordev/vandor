@@ -10,12 +10,12 @@ describe('Home route', () => {
     expect(screen.getAllByText('Vandor').length).toBeGreaterThan(0)
     expect(
       screen.getByRole('heading', {
-        name: /open-source tools for structured go backends\./i,
+        name: /developer tools, documentation, and technical work kept in one open ecosystem\./i,
       }),
     ).toBeTruthy()
-    expect(screen.getAllByRole('link', { name: /install vx/i }).length).toBeGreaterThan(0)
-    expect(screen.getByText(/vandor builds vx, a cli/i)).toBeTruthy()
-    expect(screen.getByText(/generating domain core/i)).toBeTruthy()
-    expect(screen.getByRole('button', { name: /read the vx docs/i })).toBeTruthy()
+    expect(screen.getByRole('link', { name: /see the work/i })).toBeTruthy()
+    expect(screen.getByRole('link', { name: /read the writing/i })).toBeTruthy()
+    expect(screen.getByText(/news from vandor/i)).toBeTruthy()
+    expect(screen.getByText(/the ecosystem stays legible as it expands\./i)).toBeTruthy()
   })
 })

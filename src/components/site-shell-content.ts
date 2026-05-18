@@ -35,13 +35,14 @@ const vandorShellContent: SiteShellContent = {
     { label: 'Work', href: '/#about' },
     { label: 'Partners', href: '/partners' },
     { label: 'Products', href: '/#products' },
+    { label: 'Writing', href: '/writing' },
     { label: 'News', href: '/news' },
   ],
   productItems: [
     {
       label: 'vx',
       href: '/vx/latest',
-      description: 'CLI for structured Go backends.',
+      description: 'Composable CLI for shipping reusable developer workflows.',
       secondaryHref: '/vx/latest/docs',
       secondaryLabel: 'Docs',
       status: 'active',
@@ -58,14 +59,15 @@ const vandorShellContent: SiteShellContent = {
     },
   ],
   headerCtas: {
-    secondary: { label: 'Read News', href: '/news' },
-    primary: { label: 'Explore vx', href: '/vx/latest' },
+    secondary: { label: 'Read Writing', href: '/writing' },
+    primary: { label: 'See the Work', href: '/#about' },
   },
   footerLinks: [
     { label: 'Home', href: '/' },
     { label: 'Work', href: '/#about' },
     { label: 'Partners', href: '/partners' },
     { label: 'Products', href: '/#products' },
+    { label: 'Writing', href: '/writing' },
     { label: 'News', href: '/news' },
     { label: 'vx', href: '/vx/latest' },
     { label: 'vx Docs', href: '/vx/latest/docs' },

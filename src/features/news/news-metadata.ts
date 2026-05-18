@@ -3,7 +3,7 @@ export function getNewsIndexTitle() {
 }
 
 export function getNewsIndexDescription() {
-  return 'Announcements, essays, product updates, and release notes from Vandor.'
+  return 'Product updates, release notes, announcements, and other Vandor-specific news.'
 }
 
 export function getNewsEntryTitle(title: string, seoTitle?: string) {

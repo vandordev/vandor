@@ -3,6 +3,5 @@ export function getHomeTitle() {
 }
 
 export function getHomeDescription() {
-  return 'Vandor is a mission-driven public-interest organization that builds tools, publishes writing, and keeps technical work open.'
+  return 'Vandor is an open ecosystem for developer tools, documentation, writing, and technical work.'
 }
-

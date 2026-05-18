@@ -6,7 +6,7 @@ export const siteName = 'Vandor'
 export const defaultLocale = 'en_US'
 export const defaultTitle = 'Vandor'
 export const defaultDescription =
-  'Vandor is a mission-driven public-interest organization that builds tools, publishes writing, and keeps technical work open.'
+  'Vandor is an open ecosystem for developer tools, documentation, writing, and technical work.'
 export const defaultRobots =
   'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'
 
@@ -209,4 +209,3 @@ export function getSoftwareApplicationStructuredData(input: {
     url: getAbsoluteUrl(input.path),
   }
 }
-

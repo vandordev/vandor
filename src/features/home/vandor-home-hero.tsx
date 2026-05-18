@@ -2,13 +2,7 @@ import { ArrowRight } from 'lucide-react'
 
 import { VeilButton } from '#/components/ui/veil-button'
 
-type VandorHomeHeroProps = {
-  requestedVersion?: string
-}
-
-export function VandorHomeHero({
-  requestedVersion = 'latest',
-}: VandorHomeHeroProps) {
+export function VandorHomeHero() {
   return (
     <section className="bg-background">
       <div className="relative overflow-hidden px-6 pb-22 pt-28 sm:px-8 sm:pb-28 sm:pt-32 lg:px-10 lg:pb-34 lg:pt-36">
@@ -23,11 +17,13 @@ export function VandorHomeHero({
           <div className="mx-auto max-w-4xl space-y-6 text-center">
             <div className="space-y-5">
               <h1 className="mx-auto max-w-4xl text-balance text-[clamp(3.1rem,7.8vw,6.3rem)] leading-[0.94] font-medium tracking-[-0.068em]">
-                Tools, documentation, and technical work, kept open.
+                Developer tools, documentation, and technical work kept in one
+                open ecosystem.
               </h1>
               <p className="mx-auto max-w-2xl text-[1.04rem] leading-8 text-muted-foreground sm:text-[1.1rem]">
-                Vandor builds in public so systems can stay legible, reusable,
-                and alive across products, reference, and writing.
+                Vandor brings products, reference, writing, and collaboration
+                into one surface so the work can stay reusable, legible, and
+                able to grow in public.
               </p>
             </div>
 
@@ -39,10 +35,10 @@ export function VandorHomeHero({
                 </a>
               </VeilButton>
               <a
-                href={`/vx/${requestedVersion}`}
+                href="/writing"
                 className="text-sm text-muted-foreground transition-colors hover:text-foreground"
               >
-                Explore vx
+                Read the writing
               </a>
             </div>
           </div>
@@ -86,7 +82,7 @@ export function VandorHomeHero({
               <div className="size-1 rounded-full bg-muted-foreground" />
               <span>Writing</span>
               <div className="size-1 rounded-full bg-muted-foreground" />
-              <span>Public work</span>
+              <span>Collaboration</span>
             </div>
           </div>
         </div>

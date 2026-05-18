@@ -4,16 +4,16 @@ const workItems = [
   {
     title: 'vx',
     description:
-      'A CLI for structured Go backends, built as one expression of Vandor’s public work.',
+      'A composable CLI that shows how Vandor turns reusable workflows into concrete products.',
     href: '/vx/latest',
     image: '/images/news/why-vandor-builds-vx.jpg',
-    kind: 'Featured product',
+    kind: 'Product',
     imageClass: 'object-[28%_50%]',
   },
   {
     title: 'Documentation',
     description:
-      'Versioned reference that stays close to the work as it evolves.',
+      'Versioned reference that stays close to the tools and keeps the work readable as it evolves.',
     href: '/vx/latest/docs',
     image: '/images/home/vandor-signal.jpg',
     kind: 'Reference',
@@ -22,8 +22,8 @@ const workItems = [
   {
     title: 'Writing',
     description:
-      'Announcements, release notes, and essays around what changes and why it matters.',
-    href: '/news',
+      'Essays, practice notes, and technical commentary that do not need to be tied to a single product update.',
+    href: '/writing',
     image: '/images/news/introducing-vandor-news.jpg',
     kind: 'Publication',
     imageClass: 'object-center',
@@ -42,16 +42,19 @@ export function VandorOpenWork() {
         <div className="space-y-3">
           <p className="text-sm text-muted-foreground">Work in the open</p>
           <h2 className="max-w-3xl text-balance text-[clamp(2.2rem,4.8vw,4.15rem)] leading-[0.98] font-medium tracking-[-0.055em]">
-            The work stays open as it becomes useful.
+            The ecosystem stays legible as it expands.
           </h2>
         </div>
         <p className="max-w-xl text-[1rem] leading-7 text-muted-foreground lg:justify-self-end">
-          Products, reference, and writing move together here. Each one keeps
-          the others closer, clearer, and easier to reuse.
+          Products, documentation, and writing are treated as one connected
+          surface. Each part makes the rest easier to understand and reuse.
         </p>
       </div>
 
-      <div className="grid gap-6 lg:grid-cols-[minmax(0,1.08fr)_minmax(18rem,0.72fr)] lg:items-start xl:gap-8">
+      <div
+        id="products"
+        className="grid gap-6 lg:grid-cols-[minmax(0,1.08fr)_minmax(18rem,0.72fr)] lg:items-start xl:gap-8"
+      >
         <a
           href={featured.href}
           className="group block space-y-5 rounded-[1.8rem] border border-border/70 bg-card/18 p-3 sm:p-4"
@@ -75,7 +78,7 @@ export function VandorOpenWork() {
               </p>
             </div>
             <div className="inline-flex items-center gap-2 text-sm text-foreground transition-colors group-hover:text-muted-foreground">
-              <span>Explore vx</span>
+              <span>See the product</span>
               <ArrowRight className="size-4 opacity-55" />
             </div>
           </div>

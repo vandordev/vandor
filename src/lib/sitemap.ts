@@ -21,6 +21,7 @@ function buildStaticEntries(): SitemapEntry[] {
   const entries: SitemapEntry[] = [
     { loc: getAbsoluteUrl('/') },
     { loc: getAbsoluteUrl('/news/') },
+    { loc: getAbsoluteUrl('/writing/') },
     { loc: getAbsoluteUrl('/partners/') },
     { loc: getAbsoluteUrl('/vx/') },
   ]
