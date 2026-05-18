@@ -9,10 +9,11 @@ export type SiteShellLink = {
 
 export type SiteShellProduct = {
   label: string
-  href: string
   description: string
+  href?: string
   secondaryHref?: string
   secondaryLabel?: string
+  status?: 'active' | 'coming-soon'
 }
 
 export type SiteShellBrand = { kind: 'vandor' } | { kind: 'vx' }
@@ -43,6 +44,17 @@ const vandorShellContent: SiteShellContent = {
       description: 'CLI for structured Go backends.',
       secondaryHref: '/vx/latest/docs',
       secondaryLabel: 'Docs',
+      status: 'active',
+    },
+    {
+      label: 'vxt',
+      description: 'Templating engine for structured Vandor workflows.',
+      status: 'coming-soon',
+    },
+    {
+      label: 'vpkg',
+      description: 'Vandor packaging system for shipping reusable artifacts.',
+      status: 'coming-soon',
     },
   ],
   headerCtas: {

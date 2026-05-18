@@ -80,7 +80,11 @@ export const HeroHeader = ({ content }: HeroHeaderProps) => {
                     className="overflow-hidden border-t border-white/10"
                   >
                     <div className="space-y-5 px-3 pb-3 pt-2">
-                      <NavItems items={content.navItems} mobile />
+                      <NavItems
+                        items={content.navItems}
+                        productItems={content.productItems}
+                        mobile
+                      />
                       <div className="flex flex-col gap-2">
                         {content.headerCtas.secondary && (
                           <VeilButton asChild variant="ghost" size="sm" className="h-11 justify-between rounded-full px-4">
@@ -115,7 +119,10 @@ export const HeroHeader = ({ content }: HeroHeaderProps) => {
               )}
             >
               <div className="hidden size-fit lg:block">
-                <NavItems items={content.navItems} />
+                <NavItems
+                  items={content.navItems}
+                  productItems={content.productItems}
+                />
               </div>
             </div>
 
@@ -179,9 +186,11 @@ function HeaderBrand({
 
 const NavItems = ({
   items,
+  productItems = [],
   mobile = false,
 }: {
   items: SiteShellContent['navItems']
+  productItems?: SiteShellContent['productItems']
   mobile?: boolean
 }) => {
   return (
@@ -189,7 +198,7 @@ const NavItems = ({
       {items.map((item) => (
         <li key={item.label}>
           {item.label === 'Products' ? (
-            <ProductsNavItem mobile={mobile} />
+            <ProductsNavItem mobile={mobile} products={productItems} />
           ) : (
               <VeilButton
                 asChild
@@ -211,7 +220,13 @@ const NavItems = ({
   )
 }
 
-function ProductsNavItem({ mobile = false }: { mobile?: boolean }) {
+function ProductsNavItem({
+  mobile = false,
+  products,
+}: {
+  mobile?: boolean
+  products: SiteShellProduct[]
+}) {
   const [isOpen, setIsOpen] = React.useState(false)
 
   if (mobile) {
@@ -240,7 +255,7 @@ function ProductsNavItem({ mobile = false }: { mobile?: boolean }) {
               className="overflow-hidden"
             >
               <div className="px-2 pb-2">
-                <ProductsPanel mobile />
+                <ProductsPanel mobile products={products} />
               </div>
             </motion.div>
           )}
@@ -262,27 +277,21 @@ function ProductsNavItem({ mobile = false }: { mobile?: boolean }) {
       </VeilButton>
 
       <div className="lg:pointer-events-none lg:absolute lg:left-0 lg:top-full lg:z-30 lg:w-[19rem] lg:pt-2 lg:opacity-0 lg:transition-all lg:duration-200 lg:group-hover/products:pointer-events-auto lg:group-hover/products:opacity-100">
-        <ProductsPanel />
+        <ProductsPanel products={products} />
       </div>
     </div>
   )
 }
 
 function ProductsPanel({
+  products,
   compact = false,
   mobile = false,
 }: {
+  products: SiteShellProduct[]
   compact?: boolean
   mobile?: boolean
 }) {
-  const product: SiteShellProduct = {
-    label: 'vx',
-    href: '/vx/latest',
-    description: 'CLI for structured Go backends.',
-    secondaryHref: '/vx/latest/docs',
-    secondaryLabel: 'Docs',
-  }
-
   return (
     <div
       className={cn(
@@ -295,33 +304,58 @@ function ProductsPanel({
             : 'hidden lg:block',
       )}
     >
-      <a
-        href={product.href}
-        className="group block rounded-[1rem] p-3 transition-colors hover:bg-background/55"
-        aria-label={product.label}
-      >
-        <div className="space-y-2">
-          <div className="flex items-center justify-between gap-3">
-            <span className="text-[1.05rem] leading-none font-medium tracking-[-0.03em]">
-              {product.label}
-            </span>
-            <ChevronRight className="size-4 text-muted-foreground/70 transition-transform duration-200 group-hover:translate-x-0.5" />
-          </div>
-          <p className="max-w-[24ch] text-sm leading-6 text-muted-foreground">
-            {product.description}
-          </p>
-        </div>
-      </a>
-      {product.secondaryHref && product.secondaryLabel ? (
-        <div className="px-3 pb-1 pt-2">
-          <a
-            href={product.secondaryHref}
-            className="text-xs text-muted-foreground transition-colors hover:text-foreground"
-          >
-            {product.secondaryLabel}
-          </a>
-        </div>
-      ) : null}
+      <div className="space-y-1.5">
+        {products.map((product) => {
+          const isComingSoon = product.status === 'coming-soon'
+
+          return (
+            <div
+              key={product.label}
+              className={cn(
+                'rounded-[1rem] p-3',
+                isComingSoon
+                  ? 'bg-white/[0.02] opacity-72'
+                  : 'group relative transition-colors hover:bg-background/55',
+              )}
+            >
+              {product.href && !isComingSoon ? (
+                <>
+                  <a
+                    href={product.href}
+                    className="absolute inset-0 rounded-[1rem]"
+                    aria-label={product.label}
+                  />
+                  <div className="pointer-events-none relative z-10 space-y-2">
+                    <div className="flex items-center justify-between gap-3">
+                      <span className="text-[1.05rem] leading-none font-medium tracking-[-0.03em]">
+                        {product.label}
+                      </span>
+                      <ChevronRight className="size-4 text-muted-foreground/70 transition-transform duration-200 group-hover:translate-x-0.5" />
+                    </div>
+                    <p className="max-w-[24ch] text-sm leading-6 text-muted-foreground">
+                      {product.description}
+                    </p>
+                  </div>
+                </>
+              ) : (
+                <div className="space-y-2">
+                  <div className="flex items-center justify-between gap-3">
+                    <span className="text-[1.05rem] leading-none font-medium tracking-[-0.03em]">
+                      {product.label}
+                    </span>
+                    <span className="text-[0.72rem] font-medium tracking-[0.02em] text-muted-foreground">
+                      Coming soon
+                    </span>
+                  </div>
+                  <p className="max-w-[24ch] text-sm leading-6 text-muted-foreground">
+                    {product.description}
+                  </p>
+                </div>
+              )}
+            </div>
+          )
+        })}
+      </div>
     </div>
   )
 }
@@ -403,7 +437,10 @@ const FloatingNavPill = ({
             transition={{ duration: 0.5, type: 'spring', bounce: 0.1 }}
             className="relative z-10 flex origin-left items-center overflow-visible rounded-[1rem]"
           >
-            <NavItems items={content.navItems} />
+            <NavItems
+              items={content.navItems}
+              productItems={content.productItems}
+            />
             {content.headerCtas.primary && (
               <VeilButton asChild size="sm" className="mx-2 gap-1 pr-1">
                 <a href={content.headerCtas.primary.href}>
