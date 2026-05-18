@@ -181,22 +181,22 @@ const NavItems = ({
           {item.label === 'Products' ? (
             <ProductsNavItem mobile={mobile} />
           ) : (
-            <VeilButton
-              asChild
-              variant="ghost"
-              size="sm"
-              className={cn(
-                'w-full',
-                mobile && 'h-12 justify-start rounded-2xl px-4 text-lg',
-              )}
-            >
-              <a href={item.href} className="text-base">
-                <span>{item.label}</span>
-              </a>
-            </VeilButton>
-          )}
-        </li>
-      ))}
+              <VeilButton
+                asChild
+                variant="ghost"
+                size="sm"
+                className={cn(
+                  'w-full',
+                  mobile && 'h-12 justify-start rounded-2xl px-4 text-lg',
+                )}
+              >
+                <a href={item.href} className={mobile ? 'text-lg' : 'text-sm'}>
+                  <span>{item.label}</span>
+                </a>
+              </VeilButton>
+            )}
+          </li>
+        ))}
     </ul>
   )
 }
@@ -207,12 +207,12 @@ function ProductsNavItem({ mobile = false }: { mobile?: boolean }) {
   if (mobile) {
     return (
       <div className="rounded-[1.4rem] border border-white/8 bg-white/[0.03] p-1">
-        <button
-          type="button"
-          onClick={() => setIsOpen((value) => !value)}
-          className="flex h-12 w-full items-center justify-between rounded-[1rem] px-4 text-left"
-        >
-          <span className="text-base">Products</span>
+      <button
+        type="button"
+        onClick={() => setIsOpen((value) => !value)}
+        className="flex h-12 w-full items-center justify-between rounded-[1rem] px-4 text-left text-base"
+      >
+          <span>Products</span>
           <ChevronDown
             className={cn(
               'size-4 opacity-55 transition-transform duration-200',
@@ -244,10 +244,10 @@ function ProductsNavItem({ mobile = false }: { mobile?: boolean }) {
       <VeilButton
         variant="ghost"
         size="sm"
-        className="w-full gap-1.5"
+        className="w-full gap-1.5 text-sm"
         type="button"
       >
-        <span className="text-base">Products</span>
+        <span>Products</span>
         <ChevronDown className="size-3.5 opacity-55 transition-transform duration-200 lg:group-hover/products:rotate-180" />
       </VeilButton>
 
@@ -285,27 +285,33 @@ function ProductsPanel({
             : 'hidden lg:block',
       )}
     >
-      <div className="group rounded-[1rem] p-3 transition-colors hover:bg-background/55">
+      <a
+        href={product.href}
+        className="group block rounded-[1rem] p-3 transition-colors hover:bg-background/55"
+        aria-label={product.label}
+      >
         <div className="space-y-2">
           <div className="flex items-center justify-between gap-3">
-            <a
-              href={product.href}
-              className="text-[1.05rem] leading-none font-medium tracking-[-0.03em]"
-            >
+            <span className="text-[1.05rem] leading-none font-medium tracking-[-0.03em]">
               {product.label}
-            </a>
-            {product.secondaryHref && product.secondaryLabel && (
-              <a
-                href={product.secondaryHref}
-                className="text-xs text-muted-foreground transition-colors hover:text-foreground"
-              >
-                {product.secondaryLabel}
-              </a>
-            )}
+            </span>
+            <ChevronRight className="size-4 text-muted-foreground/70 transition-transform duration-200 group-hover:translate-x-0.5" />
           </div>
-          <p className="max-w-[24ch] text-sm leading-6 text-muted-foreground">{product.description}</p>
+          <p className="max-w-[24ch] text-sm leading-6 text-muted-foreground">
+            {product.description}
+          </p>
         </div>
-      </div>
+      </a>
+      {product.secondaryHref && product.secondaryLabel ? (
+        <div className="px-3 pb-1 pt-2">
+          <a
+            href={product.secondaryHref}
+            className="text-xs text-muted-foreground transition-colors hover:text-foreground"
+          >
+            {product.secondaryLabel}
+          </a>
+        </div>
+      ) : null}
     </div>
   )
 }
