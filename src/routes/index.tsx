@@ -5,13 +5,24 @@ import {
   getHomeTitle,
 } from '#/features/home/home-metadata'
 import { loadNewsIndex } from '#/features/news/load-news-index'
+import { loadWritingIndex } from '#/features/writing/load-writing-index'
 import {
   buildSeoHead,
   getWebsiteStructuredData,
 } from '#/lib/seo'
 
 export const Route = createFileRoute('/')({
-  loader: () => loadNewsIndex(),
+  loader: async () => {
+    const [newsData, writingData] = await Promise.all([
+      loadNewsIndex(),
+      loadWritingIndex(),
+    ])
+
+    return {
+      newsData,
+      writingData,
+    }
+  },
   head: () =>
     buildSeoHead({
       title: getHomeTitle(),
@@ -24,5 +35,7 @@ export const Route = createFileRoute('/')({
 })
 
 function Home() {
-  return <HomeLanding newsData={Route.useLoaderData()} />
+  const { newsData, writingData } = Route.useLoaderData()
+
+  return <HomeLanding newsData={newsData} writingData={writingData} />
 }

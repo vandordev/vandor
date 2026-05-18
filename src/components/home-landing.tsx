@@ -7,12 +7,15 @@ import { VandorOpenWork } from '#/features/home/vandor-open-work'
 import { VandorHomeHighlights } from '#/features/news/vandor-home-highlights'
 import type { NewsIndexData } from '#/features/news/news-types'
 import { VandorHomePartners } from '#/features/partners/vandor-home-partners'
+import { VandorHomeWriting } from '#/features/writing/vandor-home-writing'
+import type { WritingIndexData } from '#/features/writing/writing-types'
 
 type HomeLandingProps = {
   newsData?: NewsIndexData
+  writingData?: WritingIndexData
 }
 
-export function HomeLanding({ newsData }: HomeLandingProps) {
+export function HomeLanding({ newsData, writingData }: HomeLandingProps) {
   const shellContent = getSiteShellContent({ variant: 'vandor' })
 
   return (
@@ -23,6 +26,11 @@ export function HomeLanding({ newsData }: HomeLandingProps) {
         <LandingSection className="pt-24 sm:pt-30 lg:pt-40">
           <VandorOpenWork />
         </LandingSection>
+        {writingData ? (
+          <LandingSection className="pt-24 sm:pt-30 lg:pt-40">
+            <VandorHomeWriting data={writingData} />
+          </LandingSection>
+        ) : null}
         <LandingSection className="pt-24 sm:pt-30 lg:pt-40">
           <VandorHomePartners />
         </LandingSection>
