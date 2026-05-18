@@ -27,18 +27,18 @@ export function HomeLanding({ newsData, writingData }: HomeLandingProps) {
           <VandorOpenWork />
         </LandingSection>
         {writingData ? (
-          <LandingSection className="pt-24 sm:pt-30 lg:pt-40">
+          <LandingSection className="pt-28 sm:pt-34 lg:pt-44">
             <VandorHomeWriting data={writingData} />
           </LandingSection>
         ) : null}
-        <LandingSection className="pt-24 sm:pt-30 lg:pt-40">
-          <VandorHomePartners />
-        </LandingSection>
         {newsData ? (
-          <LandingSection className="pt-24 sm:pt-30 lg:pt-40">
+          <LandingSection className="pt-28 sm:pt-34 lg:pt-44">
             <VandorHomeHighlights data={newsData} />
           </LandingSection>
         ) : null}
+        <LandingSection className="pt-32 sm:pt-38 lg:pt-48">
+          <VandorHomePartners />
+        </LandingSection>
         <LandingSection className="pt-40 sm:pt-48 lg:pt-60" contentClassName="">
           <Footer5 content={shellContent} />
         </LandingSection>
