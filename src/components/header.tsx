@@ -40,7 +40,16 @@ export const HeroHeader = ({ content }: HeroHeaderProps) => {
       <nav data-state={menuState && 'active'} className="fixed z-20 w-full">
         <div className="mx-auto max-w-7xl px-4 pt-4 sm:px-6 lg:px-6">
           <div className="lg:hidden">
-            <div className="rounded-[1.85rem] border border-white/10 bg-black/72 shadow-2xl shadow-black/30 backdrop-blur-xl">
+            <div className="relative overflow-hidden rounded-[1.85rem] border border-white/12 bg-[linear-gradient(180deg,rgba(255,255,255,0.08),rgba(255,255,255,0.03))] shadow-[0_24px_60px_rgba(0,0,0,0.3)]">
+              <div
+                aria-hidden="true"
+                className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_10%_0%,rgba(96,128,255,0.18),transparent_34%),linear-gradient(180deg,rgba(255,255,255,0.08),rgba(255,255,255,0.02)_28%,rgba(0,0,0,0.16)_100%)]"
+              />
+              <div
+                aria-hidden="true"
+                className="pointer-events-none absolute inset-[1px] rounded-[calc(1.85rem-1px)] border border-white/7"
+              />
+              <div className="relative bg-black/58 backdrop-blur-2xl">
               <div className="flex items-center justify-between px-4 py-3">
                 <a
                   href={getBrandHref(content.brand)}
@@ -67,8 +76,8 @@ export const HeroHeader = ({ content }: HeroHeaderProps) => {
                     initial={{ opacity: 0, height: 0, y: -8 }}
                     animate={{ opacity: 1, height: 'auto', y: 0 }}
                     exit={{ opacity: 0, height: 0, y: -8 }}
-                    transition={{ duration: 0.24, ease: 'easeOut' }}
-                    className="overflow-hidden border-t border-white/8"
+                  transition={{ duration: 0.24, ease: 'easeOut' }}
+                    className="overflow-hidden border-t border-white/10"
                   >
                     <div className="space-y-5 px-3 pb-3 pt-2">
                       <NavItems items={content.navItems} mobile />
@@ -94,6 +103,7 @@ export const HeroHeader = ({ content }: HeroHeaderProps) => {
                   </motion.div>
                 )}
               </AnimatePresence>
+              </div>
             </div>
           </div>
 
@@ -327,19 +337,39 @@ const FloatingNavPill = ({
     <motion.div
       animate={{
         gap: isScrolled ? '1rem' : '0rem',
-        background: isScrolled ? 'var(--color-card)' : 'transparent',
+        background: isScrolled ? 'rgba(8, 10, 18, 0.72)' : 'transparent',
       }}
       transition={{ duration: 0.5, type: 'spring', bounce: 0.1 }}
       className={cn(
-        'absolute inset-0 z-50 m-auto flex size-fit h-11 items-center rounded-lg transition-colors duration-500',
+        'absolute inset-0 z-50 m-auto flex size-fit h-12 items-center rounded-[1.15rem] transition-colors duration-500',
         isScrolled &&
-          'ring-border shadow-foreground/6.5 shadow-lg ring-1 backdrop-blur',
+          'border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.34)] backdrop-blur-2xl',
       )}
+      style={
+        isScrolled
+          ? {
+              boxShadow:
+                '0 20px 50px rgba(0,0,0,0.34), inset 0 1px 0 rgba(255,255,255,0.12), inset 0 -1px 0 rgba(84,118,255,0.12)',
+            }
+          : undefined
+      }
     >
+      {isScrolled && (
+        <>
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0 rounded-[1.15rem] bg-[radial-gradient(circle_at_0%_0%,rgba(88,122,255,0.16),transparent_32%),linear-gradient(180deg,rgba(255,255,255,0.08),rgba(255,255,255,0.02)_28%,rgba(0,0,0,0.12)_100%)]"
+          />
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-[1px] rounded-[calc(1.15rem-1px)] ring-1 ring-inset ring-white/7"
+          />
+        </>
+      )}
       <a
         href={getBrandHref(content.brand)}
         aria-label="home"
-        className="px-3.5"
+        className="relative z-10 px-3.5"
       >
         <HeaderBrand
           brand={content.brand}
@@ -371,7 +401,7 @@ const FloatingNavPill = ({
               width: 0,
             }}
             transition={{ duration: 0.5, type: 'spring', bounce: 0.1 }}
-            className="flex origin-left items-center overflow-visible rounded-full"
+            className="relative z-10 flex origin-left items-center overflow-visible rounded-[1rem]"
           >
             <NavItems items={content.navItems} />
             {content.headerCtas.primary && (

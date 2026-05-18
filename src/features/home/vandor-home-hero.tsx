@@ -48,14 +48,36 @@ export function VandorHomeHero({
           </div>
 
           <div className="space-y-4">
-            <div className="overflow-hidden rounded-[1.9rem] border border-border/70 bg-card/18">
-              <img
-                src="/images/home/vandor-hero.jpg"
-                alt="People collaborating around a computer in a shared workspace."
-                width={2200}
-                height={1238}
-                className="aspect-[16/9] w-full object-cover object-center"
+            <div className="group relative overflow-hidden rounded-[2.05rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.08),rgba(255,255,255,0.02))] p-[1px] shadow-[0_30px_80px_rgba(0,0,0,0.32)]">
+              <div
+                aria-hidden="true"
+                className="pointer-events-none absolute inset-[1px] rounded-[calc(2.05rem-1px)] bg-[radial-gradient(circle_at_12%_0%,rgba(105,140,255,0.16),transparent_30%),linear-gradient(180deg,rgba(255,255,255,0.1),rgba(255,255,255,0.02)_16%,rgba(0,0,0,0.08)_100%)] opacity-95"
               />
+              <div
+                aria-hidden="true"
+                className="pointer-events-none absolute inset-x-6 top-0 h-12 rounded-full bg-[radial-gradient(circle,rgba(190,214,255,0.24)_0,rgba(190,214,255,0.08)_36%,transparent_72%)] blur-2xl"
+              />
+              <div className="relative overflow-hidden rounded-[calc(2.05rem-1px)] border border-white/6 bg-black/45 backdrop-blur-sm">
+                <div
+                  aria-hidden="true"
+                  className="pointer-events-none absolute inset-0 z-10 bg-[linear-gradient(180deg,rgba(255,255,255,0.12),transparent_12%,transparent_78%,rgba(72,110,255,0.12))]"
+                />
+                <div
+                  aria-hidden="true"
+                  className="pointer-events-none absolute inset-[1px] z-10 rounded-[calc(2.05rem-3px)] ring-1 ring-inset ring-white/8"
+                />
+                <div
+                  aria-hidden="true"
+                  className="pointer-events-none absolute inset-y-0 right-0 z-10 w-1/3 bg-[radial-gradient(circle_at_100%_50%,rgba(89,125,255,0.18),transparent_72%)]"
+                />
+                <img
+                  src="/images/home/vandor-hero.jpg"
+                  alt="People collaborating around a computer in a shared workspace."
+                  width={2200}
+                  height={1238}
+                  className="aspect-[16/9] w-full object-cover object-center"
+                />
+              </div>
             </div>
             <div className="flex flex-wrap items-center gap-2 text-[0.84rem] text-muted-foreground">
               <span>Products</span>
