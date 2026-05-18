@@ -8,7 +8,7 @@ type Footer5Props = {
 
 export default function Footer5({ content }: Footer5Props) {
   return (
-    <footer className="w-full border-t border-border/70 py-12 sm:py-14">
+    <footer className="mt-8 w-full border-t border-border/70 py-12 sm:mt-10 sm:py-14 lg:mt-12">
       <div className="flex flex-col gap-10">
         <a
           href="/"

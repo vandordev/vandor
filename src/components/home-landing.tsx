@@ -24,18 +24,18 @@ export function HomeLanding({
       <HeroHeader content={shellContent} />
       <main>
         <VandorHomeHero requestedVersion={requestedVersion} />
-        <LandingSection className="pt-18 sm:pt-24 lg:pt-32">
+        <LandingSection className="pt-24 sm:pt-30 lg:pt-40">
           <VandorOpenWork />
         </LandingSection>
-        <LandingSection className="pt-20 sm:pt-28 lg:pt-36">
+        <LandingSection className="pt-24 sm:pt-30 lg:pt-40">
           <VandorHomePartners />
         </LandingSection>
         {newsData ? (
-          <LandingSection className="pt-20 sm:pt-26 lg:pt-36">
+          <LandingSection className="pt-24 sm:pt-30 lg:pt-40">
             <VandorHomeHighlights data={newsData} />
           </LandingSection>
         ) : null}
-        <LandingSection className="pt-18 sm:pt-24 lg:pt-30" contentClassName="">
+        <LandingSection className="pt-40 sm:pt-48 lg:pt-60" contentClassName="">
           <Footer5 content={shellContent} />
         </LandingSection>
       </main>
