@@ -55,13 +55,13 @@ export function VandorNewsSection({ data }: VandorNewsSectionProps) {
       <HeroHeader content={shellContent} />
       <main className="bg-background text-foreground">
         <LandingSection className="pt-28 sm:pt-32 lg:pt-36">
-          <div className="relative mx-auto w-full max-w-[88rem]">
+          <div className="relative mx-auto w-full max-w-[88rem] overflow-x-clip">
             <div
               aria-hidden="true"
               className="pointer-events-none absolute inset-0 isolate -z-10 opacity-70"
             >
-              <div className="absolute left-0 top-0 h-80 w-36 -translate-y-24 -rotate-[28deg] rounded-full bg-[radial-gradient(68.54%_68.72%_at_55.02%_31.46%,color-mix(in_oklab,var(--color-foreground)_12%,transparent)_0,color-mix(in_oklab,var(--color-foreground)_2%,transparent)_52%,transparent_82%)]" />
-              <div className="absolute right-0 top-10 h-72 w-28 translate-x-8 -rotate-[22deg] rounded-full bg-[radial-gradient(50%_50%_at_50%_50%,color-mix(in_oklab,var(--color-foreground)_10%,transparent)_0,color-mix(in_oklab,var(--color-foreground)_1.5%,transparent)_78%,transparent_100%)]" />
+              <div className="absolute left-0 top-0 h-64 w-24 -translate-y-16 -rotate-[28deg] rounded-full bg-[radial-gradient(68.54%_68.72%_at_55.02%_31.46%,color-mix(in_oklab,var(--color-foreground)_12%,transparent)_0,color-mix(in_oklab,var(--color-foreground)_2%,transparent)_52%,transparent_82%)] sm:h-80 sm:w-36 sm:-translate-y-24" />
+              <div className="absolute right-0 top-10 h-56 w-20 translate-x-2 -rotate-[22deg] rounded-full bg-[radial-gradient(50%_50%_at_50%_50%,color-mix(in_oklab,var(--color-foreground)_10%,transparent)_0,color-mix(in_oklab,var(--color-foreground)_1.5%,transparent)_78%,transparent_100%)] sm:h-72 sm:w-28 sm:translate-x-8" />
             </div>
 
             <div className="grid gap-10 border-b border-border/70 px-4 pb-8 pt-8 lg:grid-cols-[minmax(0,1fr)_minmax(16rem,0.52fr)] lg:items-end">
