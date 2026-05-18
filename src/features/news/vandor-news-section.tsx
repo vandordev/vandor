@@ -68,12 +68,12 @@ export function VandorNewsSection({ data }: VandorNewsSectionProps) {
               <div className="space-y-4">
                 <p className="text-sm text-muted-foreground">Vandor News</p>
                 <h1 className="max-w-4xl text-balance text-[clamp(3.15rem,7.4vw,6.2rem)] leading-[0.96] font-medium tracking-[-0.06em]">
-                  Updates on what Vandor is building, shipping, and changing.
+                  Updates on what Vandor is building and shipping.
                 </h1>
               </div>
               <p className="max-w-xl text-[1rem] leading-7 text-muted-foreground lg:justify-self-end">
-                This feed is for Vandor-specific announcements, release lines,
-                product notes, and progress that belongs close to the work
+                News is where Vandor publishes announcements, release notes,
+                product direction, and progress updates tied to the work
                 itself.
               </p>
             </div>
@@ -158,9 +158,8 @@ export function VandorNewsSection({ data }: VandorNewsSectionProps) {
                 <div className="mb-6 grid gap-3 lg:grid-cols-[minmax(0,0.75fr)_minmax(0,1fr)] lg:items-end">
                   <p className="text-sm text-muted-foreground">All news</p>
                   <p className="max-w-2xl text-[0.98rem] leading-7 text-muted-foreground lg:justify-self-end">
-                    Every update stays in one archive so the public record of
-                    Vandor remains easy to scan without turning into a generic
-                    company blog.
+                    Every update stays in one archive so releases,
+                    announcements, and product notes remain easy to scan.
                   </p>
                 </div>
 

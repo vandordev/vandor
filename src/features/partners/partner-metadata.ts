@@ -3,5 +3,5 @@ export function getPartnersTitle() {
 }
 
 export function getPartnersDescription() {
-  return 'The partner organizations and collaboration lanes that help the Vandor ecosystem move with other teams, communities, and institutions.'
+  return 'The organizations Vandor works with and the collaboration paths that fit tools, docs, and technical delivery.'
 }

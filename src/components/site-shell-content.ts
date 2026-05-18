@@ -42,7 +42,8 @@ const vandorShellContent: SiteShellContent = {
     {
       label: 'vx',
       href: '/vx/latest',
-      description: 'Composable CLI for shipping reusable developer workflows.',
+      description:
+        'Composable CLI for starting structured backend work with clearer boundaries.',
       secondaryHref: '/vx/latest/docs',
       secondaryLabel: 'Docs',
       status: 'active',
@@ -59,7 +60,7 @@ const vandorShellContent: SiteShellContent = {
     },
   ],
   headerCtas: {
-    secondary: { label: 'Read Writing', href: '/writing' },
+    secondary: { label: 'Read the Writing', href: '/writing' },
     primary: { label: 'See the Work', href: '/#about' },
   },
   footerLinks: [

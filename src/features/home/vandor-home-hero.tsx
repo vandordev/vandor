@@ -17,13 +17,12 @@ export function VandorHomeHero() {
           <div className="mx-auto max-w-4xl space-y-6 text-center">
             <div className="space-y-5">
               <h1 className="mx-auto max-w-4xl text-balance text-[clamp(3.1rem,7.8vw,6.3rem)] leading-[0.94] font-medium tracking-[-0.068em]">
-                Developer tools, documentation, and technical work kept in one
-                open ecosystem.
+                Tools, docs, and technical writing built to stay useful.
               </h1>
               <p className="mx-auto max-w-2xl text-[1.04rem] leading-8 text-muted-foreground sm:text-[1.1rem]">
-                Vandor brings products, reference, writing, and collaboration
-                into one surface so the work can stay reusable, legible, and
-                able to grow in public.
+                Vandor is an open organization that builds developer tools,
+                publishes documentation, and shares technical work in public so
+                each part stays easier to understand, use, and improve.
               </p>
             </div>
 

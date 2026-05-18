@@ -15,20 +15,20 @@ export function VandorHomePartners() {
         <div className="space-y-3">
           <p className="text-sm text-muted-foreground">Partners</p>
           <h2 className="max-w-3xl text-balance text-[clamp(2.15rem,4.8vw,4rem)] leading-[0.98] font-medium tracking-[-0.055em]">
-            The work is designed to move in company with others.
+            Vandor works with teams that care about durable technical systems.
           </h2>
         </div>
         <div className="space-y-4 lg:justify-self-end">
           <p className="max-w-xl text-[1rem] leading-7 text-muted-foreground">
-            One partner is already in view, with the rest of the section still
-            showing the collaboration lanes Vandor is built to support as the
-            network opens outward.
+            The partnerships here are practical: software delivery,
+            documentation, and implementation work that benefits from clear,
+            reusable tools.
           </p>
           <a
             href="/partners"
             className="inline-flex items-center gap-2 text-sm text-foreground transition-colors hover:text-muted-foreground"
           >
-            <span>See partners</span>
+            <span>See partner work</span>
             <ArrowRight className="size-4 opacity-55" />
           </a>
         </div>

@@ -4,7 +4,7 @@ const workItems = [
   {
     title: 'vx',
     description:
-      'A composable CLI that shows how Vandor turns reusable workflows into concrete products.',
+      'A composable CLI for teams that want cleaner, more structured backend projects from the start.',
     href: '/vx/latest',
     image: '/images/news/why-vandor-builds-vx.jpg',
     kind: 'Product',
@@ -13,7 +13,7 @@ const workItems = [
   {
     title: 'Documentation',
     description:
-      'Versioned reference that stays close to the tools and keeps the work readable as it evolves.',
+      'Versioned reference that stays close to the product, so setup, changes, and usage stay easy to follow.',
     href: '/vx/latest/docs',
     image: '/images/home/vandor-signal.jpg',
     kind: 'Reference',
@@ -22,7 +22,7 @@ const workItems = [
   {
     title: 'Writing',
     description:
-      'Essays, practice notes, and technical commentary that do not need to be tied to a single product update.',
+      'Essays, field notes, and technical commentary about the work around the tools, not just the tools themselves.',
     href: '/writing',
     image: '/images/news/introducing-vandor-news.jpg',
     kind: 'Publication',
@@ -40,14 +40,14 @@ export function VandorOpenWork() {
     >
       <div className="grid gap-5 lg:grid-cols-[minmax(0,0.72fr)_minmax(0,1fr)] lg:items-end">
         <div className="space-y-3">
-          <p className="text-sm text-muted-foreground">Work in the open</p>
+          <p className="text-sm text-muted-foreground">What Vandor maintains</p>
           <h2 className="max-w-3xl text-balance text-[clamp(2.2rem,4.8vw,4.15rem)] leading-[0.98] font-medium tracking-[-0.055em]">
-            The ecosystem stays legible as it expands.
+            One body of work, three clear ways in.
           </h2>
         </div>
         <p className="max-w-xl text-[1rem] leading-7 text-muted-foreground lg:justify-self-end">
-          Products, documentation, and writing are treated as one connected
-          surface. Each part makes the rest easier to understand and reuse.
+          Products explain what Vandor makes. Docs explain how to use it.
+          Writing explains the decisions, tradeoffs, and lessons behind it.
         </p>
       </div>
 
@@ -78,7 +78,7 @@ export function VandorOpenWork() {
               </p>
             </div>
             <div className="inline-flex items-center gap-2 text-sm text-foreground transition-colors group-hover:text-muted-foreground">
-              <span>See the product</span>
+              <span>Explore vx</span>
               <ArrowRight className="size-4 opacity-55" />
             </div>
           </div>

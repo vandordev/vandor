@@ -9,17 +9,23 @@ const writingLanes = [
   {
     title: 'Field notes',
     description:
-      'Observations from building, maintaining, and revising technical systems in the open.',
+      'Observations from building and maintaining technical systems over time.',
+    examples:
+      'Examples include implementation notes, maintenance lessons, and patterns that only show up after real use.',
   },
   {
     title: 'Practices',
     description:
       'Working methods, engineering habits, and operational patterns worth documenting clearly.',
+    examples:
+      'Examples include git practices, review habits, release discipline, and the routines behind steady delivery.',
   },
   {
     title: 'Security and commentary',
     description:
-      'Responses to CVEs, ecosystem shifts, and technical events that deserve a sharper point of view.',
+      'Security responses, ecosystem changes, and technical events that deserve a clear point of view.',
+    examples:
+      'Examples include CVE analysis, ecosystem commentary, and notes on changes that affect real operators.',
   },
 ] as const
 
@@ -36,15 +42,14 @@ export function VandorWritingPage() {
               <div className="space-y-4">
                 <p className="text-sm text-muted-foreground">Writing</p>
                 <h1 className="max-w-4xl text-balance text-[clamp(3rem,7vw,5.8rem)] leading-[0.96] font-medium tracking-[-0.06em]">
-                  Technical writing that does not need to fit inside a product
-                  update.
+                  Technical writing with room for argument, practice, and
+                  context.
                 </h1>
               </div>
               <div className="space-y-4 lg:justify-self-end">
                 <p className="max-w-xl text-[1rem] leading-7 text-muted-foreground">
-                  This surface is where Vandor can publish essays, working
-                  practices, security notes, and broader commentary without
-                  forcing every post to be news about the company or a release.
+                  Writing is where Vandor publishes essays, working notes, and
+                  commentary that go beyond release updates.
                 </p>
               </div>
             </div>
@@ -53,9 +58,8 @@ export function VandorWritingPage() {
               <div className="grid gap-3 lg:grid-cols-[minmax(0,0.75fr)_minmax(0,1fr)] lg:items-end">
                 <p className="text-sm text-muted-foreground">What belongs here</p>
                 <p className="max-w-2xl text-[0.98rem] leading-7 text-muted-foreground lg:justify-self-end">
-                  If a post is about how Vandor thinks, learns, or interprets a
-                  technical subject rather than what Vandor just shipped, it
-                  belongs in Writing instead of News.
+                  If a piece explains how Vandor thinks, what it is learning,
+                  or how it sees a technical problem, it belongs in Writing.
                 </p>
               </div>
             </section>
@@ -78,7 +82,7 @@ export function VandorWritingPage() {
                   </div>
 
                   <div className="space-y-3 text-sm leading-6 text-muted-foreground lg:justify-self-end">
-                    <p>Examples include CVE analysis, git practices, architecture notes, and engineering essays.</p>
+                    <p>{lane.examples}</p>
                   </div>
                 </article>
               ))}
@@ -89,20 +93,20 @@ export function VandorWritingPage() {
                 <div className="space-y-3">
                   <p className="text-sm text-muted-foreground">Editorial split</p>
                   <h2 className="max-w-3xl text-balance text-[clamp(2.15rem,4.8vw,4rem)] leading-[0.98] font-medium tracking-[-0.055em]">
-                    News tracks Vandor. Writing tracks the wider technical conversation.
+                    News covers what shipped. Writing covers what it means.
                   </h2>
                 </div>
                 <div className="space-y-4 lg:justify-self-end">
                   <p className="max-w-xl text-[1rem] leading-7 text-muted-foreground">
-                    That separation keeps release notes and company updates
-                    focused, while leaving room for broader technical work to
-                    develop on its own terms.
+                    That split keeps release notes and announcements clear,
+                    while leaving room for analysis, practice, and longer-form
+                    technical thinking.
                   </p>
                   <a
                     href="/news"
                     className="inline-flex items-center gap-2 text-sm text-foreground transition-colors hover:text-muted-foreground"
                   >
-                    <span>See Vandor news</span>
+                    <span>Read Vandor news</span>
                     <ArrowRight className="size-4 opacity-55" />
                   </a>
                 </div>

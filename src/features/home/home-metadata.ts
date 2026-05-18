@@ -3,5 +3,5 @@ export function getHomeTitle() {
 }
 
 export function getHomeDescription() {
-  return 'Vandor is an open ecosystem for developer tools, documentation, writing, and technical work.'
+  return 'Vandor builds developer tools, documentation, and technical writing that stay useful over time.'
 }

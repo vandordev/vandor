@@ -7,7 +7,7 @@ export const namedPartners: PartnerEntry[] = [
     id: 'ozone',
     name: 'Ozone',
     summary:
-      'Ozone builds software, apps, internal tools, integrations, and automation around the real workflow of a team.',
+      'Ozone builds software, internal tools, integrations, and automation around the way a team actually works.',
     collaborationMode: 'Delivery partnership and systems implementation',
     focus: 'Custom software and integration',
     shape: 'Independent studio',
@@ -20,8 +20,8 @@ export const partnerLanes: PartnerEntry[] = [
     id: 'documentation-stewards',
     name: 'Documentation stewards',
     summary:
-      'Teams that keep public reference, onboarding, and translation readable as technical work grows.',
-    collaborationMode: 'Editorial maintenance and reference design',
+      'Teams that keep public docs, onboarding, and translation clear as a technical system grows.',
+    collaborationMode: 'Documentation systems and editorial maintenance',
     focus: 'Reference systems',
     shape: 'Distributed lane',
   },
@@ -29,7 +29,7 @@ export const partnerLanes: PartnerEntry[] = [
     id: 'regional-communities',
     name: 'Regional communities',
     summary:
-      'Local groups that adapt tools, run workshops, and make shared technical practice durable in context.',
+      'Local groups that adapt tools, run workshops, and make shared technical practice useful in context.',
     collaborationMode: 'Programs, adaptation, and field distribution',
     focus: 'Community infrastructure',
     shape: 'Regional lane',
@@ -38,7 +38,7 @@ export const partnerLanes: PartnerEntry[] = [
     id: 'public-infrastructure',
     name: 'Public infrastructure groups',
     summary:
-      'Organizations working on legible, reusable systems for civic, educational, or public-interest operations.',
+      'Organizations building reusable systems for civic, educational, or other public-interest operations.',
     collaborationMode: 'Implementation support and open systems work',
     focus: 'Operational infrastructure',
     shape: 'Institutional lane',

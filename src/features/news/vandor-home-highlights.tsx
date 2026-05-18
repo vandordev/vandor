@@ -72,13 +72,13 @@ export function VandorHomeHighlights({ data }: VandorHomeHighlightsProps) {
         <div className="space-y-3">
           <p className="text-sm text-muted-foreground">News from Vandor</p>
           <h2 className="max-w-3xl text-balance text-[clamp(2.2rem,5vw,3.85rem)] leading-[0.98] font-medium tracking-[-0.052em]">
-            Product updates, releases, and signals from the ecosystem.
+            News about what Vandor is shipping.
           </h2>
         </div>
         <div className="space-y-4 lg:justify-self-end">
           <p className="max-w-xl text-[1rem] leading-7 text-muted-foreground">
-            Announcements and release notes that explain what Vandor is
-            shipping, changing, and learning in public.
+            Release notes, product updates, and announcements that belong
+            close to the tools and documentation.
           </p>
           <a
             href="/news"
@@ -94,7 +94,7 @@ export function VandorHomeHighlights({ data }: VandorHomeHighlightsProps) {
 
         <div className="border-t border-border/70 pt-5 lg:border-t-0 lg:border-l lg:pl-8 xl:pl-10">
           <div className="mb-5">
-            <p className="text-sm text-muted-foreground">Latest updates</p>
+            <p className="text-sm text-muted-foreground">Recent posts</p>
           </div>
 
           <div className="divide-y divide-border/70">

@@ -3,5 +3,5 @@ export function getWritingTitle() {
 }
 
 export function getWritingDescription() {
-  return 'Essays, technical notes, field observations, and practices from across the Vandor ecosystem.'
+  return 'Essays, technical notes, and working practices from across Vandor.'
 }
