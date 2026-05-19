@@ -1,0 +1,141 @@
+---
+title: "Open Source Needs More Friction Than It Used To"
+summary: "In an era of AI-assisted contribution volume, some contribution friction is no longer a failure of openness. It is a maintainership tool."
+publishedAt: "2026-05-14"
+kind: "essay"
+published: true
+featured: false
+authors:
+  - "Vandor"
+tags:
+  - "essay"
+  - "open-source"
+  - "maintainers"
+  - "governance"
+  - "ai"
+coverImage: "/images/writing/open-source-friction-cover.jpg"
+seoTitle: "Open Source Needs More Friction Than It Used To"
+seoDescription: "An essay on why maintainers now need more contribution controls, not fewer, in the age of low-cost AI-assisted software contribution."
+---
+
+Open source built a lot of its social defaults during a period when contribution was relatively expensive.
+
+You had to care enough to clone the repository, understand the norms, read the issue, write the patch, and put your name on it. That did not guarantee quality, but it created useful friction. The effort required to show up filtered out some amount of noise before maintainers ever had to review it.
+
+That condition is changing.
+
+GitHub's `February 12, 2026` post on the `Eternal September` of open source is notable because it says out loud what many maintainers already feel: contribution volume is rising, low-quality automation is not new, and AI-assisted output lowers the cost of adding more noise to already strained projects. The `Maintainer Month` post from `May 5, 2026` continues that theme in a more human register, describing maintainers as weary but inventive, converging on trust systems and workflows that put them back in control.
+
+The lesson is not that open source should become closed. The lesson is that open source now needs **more intentional friction** than it used to.
+
+## Friction is not the same as hostility
+
+There is a recurring mistake in software communities: treating all barriers as anti-community behavior.
+
+That was always too simple, but it is especially wrong now.
+
+Some forms of friction are destructive:
+
+- arbitrary gatekeeping
+- status rituals with no technical value
+- vague contribution processes that waste volunteer time
+
+But some forms of friction are protective:
+
+- tighter pull request controls
+- clearer issue templates
+- limits on who can trigger expensive review paths
+- stronger norms for evidence, reproduction, and ownership
+- smaller trust surfaces for first-time contributions
+
+The GitHub `Eternal September` post points to this directly by highlighting controls such as repo-level pull request restrictions and pinned issue comments. Those are not grand ideological statements. They are practical tools for projects that need to preserve reviewer attention.
+
+## Why the old openness defaults break down
+
+The older model assumed that increased throughput was mostly a sign of project health. More users, more issues, more pull requests, more energy.
+
+That assumption weakens when the marginal cost of producing a plausible-looking contribution falls sharply.
+
+Maintainers are now asked to evaluate a larger volume of:
+
+- partially automated fixes
+- context-thin dependency bumps
+- speculative refactors
+- issue reports generated with very little repository-specific understanding
+- patches that look syntactically competent but carry weak operational judgment
+
+The harm is not only incorrect code. It is review drag.
+
+Every low-signal contribution consumes a budget:
+
+- time
+- attention
+- patience
+- trust
+
+That budget is already scarce in most open source projects.
+
+## Maintainers are really building trust systems
+
+The Maintainer Month post is interesting because it does not describe maintainers as simply overwhelmed. It describes them as actively designing control systems: standards, trust mechanisms, clearer workflows, and better ways to shape contribution paths.
+
+That is the right frame.
+
+What many projects need now is not more encouragement to be infinitely permeable. They need better ways to distinguish:
+
+- interested newcomers from drive-by noise
+- high-context contributors from low-context output generators
+- useful automation from attention-hijacking automation
+
+This is governance work, not customer service.
+
+## What better friction looks like
+
+The answer is not to close every gate. It is to place friction at the points where it preserves maintainer capacity.
+
+### 1. Make expensive paths harder to enter
+
+Not every user needs the same ability to open a pull request, trigger CI, or start design debates in core repositories.
+
+The projects most likely to remain healthy will increasingly control access to high-cost review paths instead of pretending every path must stay equally open forever.
+
+### 2. Ask for more context earlier
+
+A lot of contribution workflows wait too long to test whether someone understands the project well enough to change it. Better issue templates, contribution forms, reproduction requirements, and architecture notes are all forms of productive friction.
+
+They are especially useful when the ecosystem is flooded with fluent but context-poor text.
+
+### 3. Normalize review scarcity
+
+Maintainers do not owe immediate deep review to every incoming artifact. One of the most important cultural adjustments ahead is admitting that review attention is finite and should be allocated deliberately.
+
+### 4. Treat trust as something earned in layers
+
+Open source culture often prefers a binary story: either the project is open or it is not. Real maintainership is more layered than that.
+
+Projects can stay open while still gating:
+
+- write paths
+- release paths
+- triage paths
+- policy-changing paths
+
+That kind of layering is not a betrayal of openness. It is how openness remains sustainable.
+
+## The broader lesson
+
+Open source was never just a code-distribution model. It is also a model for how strangers coordinate trust.
+
+When the cost of participation changes, the trust model has to change with it.
+
+That is why the current moment calls for a more mature distinction between access and stewardship. Maximizing throughput is not the same thing as supporting collaboration. Sometimes the system most in need of defense is the reviewer's attention, not the repository's visibility.
+
+The projects that adapt well will not be the ones that brag about removing every barrier. They will be the ones that learn where friction protects judgment, where process protects energy, and where maintainers need control in order for real openness to survive.
+
+Open source does not need less humanity right now. It needs more deliberate structure around where human attention is spent.
+
+## Sources
+
+- [GitHub Blog: Welcome to the Eternal September of open source](https://github.blog/open-source/maintainers/welcome-to-the-eternal-september-of-open-source-heres-what-we-plan-to-do-for-maintainers/)
+- [GitHub Blog: Welcome to Maintainer Month](https://github.blog/open-source/maintainers/welcome-to-maintainer-month-celebrating-the-people-behind-the-code/)
+
