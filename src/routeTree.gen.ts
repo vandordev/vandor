@@ -11,9 +11,13 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as WritingIndexRouteImport } from './routes/writing/index'
+import { Route as WorkIndexRouteImport } from './routes/work/index'
 import { Route as VxIndexRouteImport } from './routes/vx/index'
+import { Route as SupportIndexRouteImport } from './routes/support/index'
 import { Route as PartnersIndexRouteImport } from './routes/partners/index'
 import { Route as NewsIndexRouteImport } from './routes/news/index'
+import { Route as CollaborateIndexRouteImport } from './routes/collaborate/index'
+import { Route as AboutIndexRouteImport } from './routes/about/index'
 import { Route as WritingSlugRouteImport } from './routes/writing/$slug'
 import { Route as SitemapXmlRouteImport } from './routes/sitemap.xml'
 import { Route as RobotsTxtRouteImport } from './routes/robots.txt'
@@ -32,9 +36,19 @@ const WritingIndexRoute = WritingIndexRouteImport.update({
   path: '/writing/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const WorkIndexRoute = WorkIndexRouteImport.update({
+  id: '/work/',
+  path: '/work/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const VxIndexRoute = VxIndexRouteImport.update({
   id: '/vx/',
   path: '/vx/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SupportIndexRoute = SupportIndexRouteImport.update({
+  id: '/support/',
+  path: '/support/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PartnersIndexRoute = PartnersIndexRouteImport.update({
@@ -45,6 +59,16 @@ const PartnersIndexRoute = PartnersIndexRouteImport.update({
 const NewsIndexRoute = NewsIndexRouteImport.update({
   id: '/news/',
   path: '/news/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CollaborateIndexRoute = CollaborateIndexRouteImport.update({
+  id: '/collaborate/',
+  path: '/collaborate/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AboutIndexRoute = AboutIndexRouteImport.update({
+  id: '/about/',
+  path: '/about/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const WritingSlugRoute = WritingSlugRouteImport.update({
@@ -89,9 +113,13 @@ export interface FileRoutesByFullPath {
   '/robots/txt': typeof RobotsTxtRoute
   '/sitemap/xml': typeof SitemapXmlRoute
   '/writing/$slug': typeof WritingSlugRoute
+  '/about/': typeof AboutIndexRoute
+  '/collaborate/': typeof CollaborateIndexRoute
   '/news/': typeof NewsIndexRoute
   '/partners/': typeof PartnersIndexRoute
+  '/support/': typeof SupportIndexRoute
   '/vx/': typeof VxIndexRoute
+  '/work/': typeof WorkIndexRoute
   '/writing/': typeof WritingIndexRoute
   '/vx/$version/': typeof VxVersionIndexRoute
   '/vx/$version/docs/$': typeof VxVersionDocsSplatRoute
@@ -103,9 +131,13 @@ export interface FileRoutesByTo {
   '/robots/txt': typeof RobotsTxtRoute
   '/sitemap/xml': typeof SitemapXmlRoute
   '/writing/$slug': typeof WritingSlugRoute
+  '/about': typeof AboutIndexRoute
+  '/collaborate': typeof CollaborateIndexRoute
   '/news': typeof NewsIndexRoute
   '/partners': typeof PartnersIndexRoute
+  '/support': typeof SupportIndexRoute
   '/vx': typeof VxIndexRoute
+  '/work': typeof WorkIndexRoute
   '/writing': typeof WritingIndexRoute
   '/vx/$version': typeof VxVersionIndexRoute
   '/vx/$version/docs/$': typeof VxVersionDocsSplatRoute
@@ -118,9 +150,13 @@ export interface FileRoutesById {
   '/robots/txt': typeof RobotsTxtRoute
   '/sitemap/xml': typeof SitemapXmlRoute
   '/writing/$slug': typeof WritingSlugRoute
+  '/about/': typeof AboutIndexRoute
+  '/collaborate/': typeof CollaborateIndexRoute
   '/news/': typeof NewsIndexRoute
   '/partners/': typeof PartnersIndexRoute
+  '/support/': typeof SupportIndexRoute
   '/vx/': typeof VxIndexRoute
+  '/work/': typeof WorkIndexRoute
   '/writing/': typeof WritingIndexRoute
   '/vx/$version/': typeof VxVersionIndexRoute
   '/vx/$version/docs/$': typeof VxVersionDocsSplatRoute
@@ -134,9 +170,13 @@ export interface FileRouteTypes {
     | '/robots/txt'
     | '/sitemap/xml'
     | '/writing/$slug'
+    | '/about/'
+    | '/collaborate/'
     | '/news/'
     | '/partners/'
+    | '/support/'
     | '/vx/'
+    | '/work/'
     | '/writing/'
     | '/vx/$version/'
     | '/vx/$version/docs/$'
@@ -148,9 +188,13 @@ export interface FileRouteTypes {
     | '/robots/txt'
     | '/sitemap/xml'
     | '/writing/$slug'
+    | '/about'
+    | '/collaborate'
     | '/news'
     | '/partners'
+    | '/support'
     | '/vx'
+    | '/work'
     | '/writing'
     | '/vx/$version'
     | '/vx/$version/docs/$'
@@ -162,9 +206,13 @@ export interface FileRouteTypes {
     | '/robots/txt'
     | '/sitemap/xml'
     | '/writing/$slug'
+    | '/about/'
+    | '/collaborate/'
     | '/news/'
     | '/partners/'
+    | '/support/'
     | '/vx/'
+    | '/work/'
     | '/writing/'
     | '/vx/$version/'
     | '/vx/$version/docs/$'
@@ -177,9 +225,13 @@ export interface RootRouteChildren {
   RobotsTxtRoute: typeof RobotsTxtRoute
   SitemapXmlRoute: typeof SitemapXmlRoute
   WritingSlugRoute: typeof WritingSlugRoute
+  AboutIndexRoute: typeof AboutIndexRoute
+  CollaborateIndexRoute: typeof CollaborateIndexRoute
   NewsIndexRoute: typeof NewsIndexRoute
   PartnersIndexRoute: typeof PartnersIndexRoute
+  SupportIndexRoute: typeof SupportIndexRoute
   VxIndexRoute: typeof VxIndexRoute
+  WorkIndexRoute: typeof WorkIndexRoute
   WritingIndexRoute: typeof WritingIndexRoute
   VxVersionIndexRoute: typeof VxVersionIndexRoute
   VxVersionDocsSplatRoute: typeof VxVersionDocsSplatRoute
@@ -202,11 +254,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof WritingIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/work/': {
+      id: '/work/'
+      path: '/work'
+      fullPath: '/work/'
+      preLoaderRoute: typeof WorkIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/vx/': {
       id: '/vx/'
       path: '/vx'
       fullPath: '/vx/'
       preLoaderRoute: typeof VxIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/support/': {
+      id: '/support/'
+      path: '/support'
+      fullPath: '/support/'
+      preLoaderRoute: typeof SupportIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/partners/': {
@@ -221,6 +287,20 @@ declare module '@tanstack/react-router' {
       path: '/news'
       fullPath: '/news/'
       preLoaderRoute: typeof NewsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/collaborate/': {
+      id: '/collaborate/'
+      path: '/collaborate'
+      fullPath: '/collaborate/'
+      preLoaderRoute: typeof CollaborateIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/about/': {
+      id: '/about/'
+      path: '/about'
+      fullPath: '/about/'
+      preLoaderRoute: typeof AboutIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/writing/$slug': {
@@ -281,9 +361,13 @@ const rootRouteChildren: RootRouteChildren = {
   RobotsTxtRoute: RobotsTxtRoute,
   SitemapXmlRoute: SitemapXmlRoute,
   WritingSlugRoute: WritingSlugRoute,
+  AboutIndexRoute: AboutIndexRoute,
+  CollaborateIndexRoute: CollaborateIndexRoute,
   NewsIndexRoute: NewsIndexRoute,
   PartnersIndexRoute: PartnersIndexRoute,
+  SupportIndexRoute: SupportIndexRoute,
   VxIndexRoute: VxIndexRoute,
+  WorkIndexRoute: WorkIndexRoute,
   WritingIndexRoute: WritingIndexRoute,
   VxVersionIndexRoute: VxVersionIndexRoute,
   VxVersionDocsSplatRoute: VxVersionDocsSplatRoute,

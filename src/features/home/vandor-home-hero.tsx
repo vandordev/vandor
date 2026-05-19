@@ -28,7 +28,7 @@ export function VandorHomeHero() {
 
             <div className="flex flex-wrap items-center justify-center gap-4">
               <VeilButton asChild size="lg" className="pr-2">
-                <a href="#about">
+                <a href="/work">
                   <span>See the work</span>
                   <ArrowRight className="opacity-55" />
                 </a>

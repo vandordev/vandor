@@ -21,13 +21,13 @@ export default function Footer5({ content }: Footer5Props) {
         <div className="grid gap-8 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1fr)] lg:items-start">
           <div className="space-y-3">
             <p className="max-w-[26ch] text-balance text-[1.3rem] leading-[1.1] font-medium tracking-[-0.04em]">
-              Vandor builds tools, documentation, and technical writing that
-              are meant to stay useful.
+              Vandor is a public-interest technical organization building
+              tools, reference, and writing that are meant to stay useful.
             </p>
             <p className="max-w-[40ch] text-sm leading-6 text-muted-foreground">
-              The site brings together products, reference, news, and partner
-              work so the reasoning around the tools stays close to the tools
-              themselves.
+              The site brings together products, documentation, writing, news,
+              and collaboration paths so the work can be understood as one
+              living ecosystem.
             </p>
           </div>
 

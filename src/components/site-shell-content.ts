@@ -32,11 +32,11 @@ export type SiteShellContent = {
 const vandorShellContent: SiteShellContent = {
   brand: { kind: 'vandor' },
   navItems: [
-    { label: 'Work', href: '/#about' },
-    { label: 'Partners', href: '/partners' },
-    { label: 'Products', href: '/#products' },
+    { label: 'Work', href: '/work' },
     { label: 'Writing', href: '/writing' },
     { label: 'News', href: '/news' },
+    { label: 'About', href: '/about' },
+    { label: 'Products', href: '/work' },
   ],
   productItems: [
     {
@@ -61,15 +61,17 @@ const vandorShellContent: SiteShellContent = {
   ],
   headerCtas: {
     secondary: { label: 'Read the Writing', href: '/writing' },
-    primary: { label: 'See the Work', href: '/#about' },
+    primary: { label: 'See the Work', href: '/work' },
   },
   footerLinks: [
     { label: 'Home', href: '/' },
-    { label: 'Work', href: '/#about' },
-    { label: 'Partners', href: '/partners' },
-    { label: 'Products', href: '/#products' },
+    { label: 'About', href: '/about' },
+    { label: 'Work', href: '/work' },
     { label: 'Writing', href: '/writing' },
     { label: 'News', href: '/news' },
+    { label: 'Collaborate', href: '/collaborate' },
+    { label: 'Support', href: '/support' },
+    { label: 'Partners', href: '/partners' },
     { label: 'vx', href: '/vx/latest' },
     { label: 'vx Docs', href: '/vx/latest/docs' },
     { label: 'Getting Started', href: '/vx/latest/docs/getting-started' },

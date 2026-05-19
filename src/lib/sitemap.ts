@@ -21,6 +21,10 @@ function escapeXml(value: string) {
 function buildStaticEntries(): SitemapEntry[] {
   const entries: SitemapEntry[] = [
     { loc: getAbsoluteUrl('/') },
+    { loc: getAbsoluteUrl('/about/') },
+    { loc: getAbsoluteUrl('/work/') },
+    { loc: getAbsoluteUrl('/collaborate/') },
+    { loc: getAbsoluteUrl('/support/') },
     { loc: getAbsoluteUrl('/news/') },
     { loc: getAbsoluteUrl('/writing/') },
     { loc: getAbsoluteUrl('/partners/') },
