@@ -1,7 +1,10 @@
-import { concreteDocVersions } from '#/features/vx/versioning/version-types'
 import { getAllNewsPages } from '#/features/news/news-source'
+import { getProductDocsSource } from '#/features/product-docs/source/docs-source'
+import { buildProductDocsPath } from '#/features/product-docs/ui/docs-metadata'
+import { productSlugs } from '#/features/product-docs/versioning/product-types'
+import type { ProductSlug } from '#/features/product-docs/versioning/product-types'
+import { getSupportedDocVersions } from '#/features/product-docs/versioning/versions'
 import { getAllWritingPages } from '#/features/writing/writing-source'
-import { getVxDocsSource } from '#/features/vx/docs/docs-source'
 import { getAbsoluteUrl } from '#/lib/seo'
 
 type SitemapEntry = {
@@ -29,11 +32,21 @@ function buildStaticEntries(): SitemapEntry[] {
     { loc: getAbsoluteUrl('/writing/') },
     { loc: getAbsoluteUrl('/partners/') },
     { loc: getAbsoluteUrl('/vx/') },
+    { loc: getAbsoluteUrl('/vxt/') },
   ]
 
-  for (const version of ['latest', ...concreteDocVersions] as const) {
-    entries.push({ loc: getAbsoluteUrl(`/vx/${version}/`) })
-    entries.push({ loc: getAbsoluteUrl(`/vx/${version}/docs/`) })
+  for (const product of productSlugs) {
+    for (const version of getSupportedDocVersions(product)) {
+      entries.push({ loc: getAbsoluteUrl(`/${product}/${version}/`) })
+      entries.push({
+        loc: getAbsoluteUrl(
+          buildProductDocsPath({
+            product,
+            requestedVersion: version,
+          }),
+        ),
+      })
+    }
   }
 
   return entries
@@ -68,26 +81,31 @@ async function buildNewsEntries(): Promise<SitemapEntry[]> {
 }
 
 async function buildDocsEntries(): Promise<SitemapEntry[]> {
-  const versions = ['latest', ...concreteDocVersions] as const
   const entries: SitemapEntry[] = []
 
-  for (const version of versions) {
-    const source = await getVxDocsSource(version)
-    const pages = source.getPages() as Array<{
-      slugs?: string[]
-      path?: string
-    }>
+  for (const product of productSlugs) {
+    for (const version of getSupportedDocVersions(product)) {
+      const source = await getProductDocsSource(product, version)
+      const pages = source.getPages() as Array<{
+        slugs?: string[]
+        path?: string
+      }>
 
-    for (const page of pages) {
-      const slugs = page.slugs ?? []
-      const pagePath =
-        slugs.at(-1) === 'index' || slugs.length === 0
-          ? `/vx/${version}/docs/`
-          : `/vx/${version}/docs/${slugs.join('/')}`
+      for (const page of pages) {
+        const slugs = page.slugs ?? []
+        const normalizedSlugs =
+          slugs.at(-1) === 'index' ? slugs.slice(0, -1) : slugs
 
-      entries.push({
-        loc: getAbsoluteUrl(pagePath),
-      })
+        entries.push({
+          loc: getAbsoluteUrl(
+            buildProductDocsPath({
+              product: product as ProductSlug,
+              requestedVersion: version,
+              slugs: normalizedSlugs,
+            }),
+          ),
+        })
+      }
     }
   }
 

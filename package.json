@@ -6,6 +6,9 @@
     "#/*": "./src/*"
   },
   "scripts": {
+    "docs:sync": "node scripts/sync-product-docs.mjs",
+    "predev": "pnpm docs:sync",
+    "prebuild": "pnpm docs:sync",
     "dev": "vite dev --port 3000",
     "build": "vite build",
     "preview": "vite preview",

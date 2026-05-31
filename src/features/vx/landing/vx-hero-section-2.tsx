@@ -1,8 +1,8 @@
 import { ChevronRight } from 'lucide-react'
 
 import { Button } from '#/components/ui/button'
+import type { RequestedVxVersion } from '#/features/product-docs/versioning/product-types'
 import { vxLandingContent } from '#/features/vx/landing/vx-landing-content'
-import type { RequestedVxVersion } from '#/features/vx/versioning/version-types'
 
 type VxHeroSection2Props = {
   requestedVersion: RequestedVxVersion

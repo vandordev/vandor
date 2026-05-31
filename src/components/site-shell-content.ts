@@ -1,4 +1,4 @@
-import type { RequestedVxVersion } from '#/features/vx/versioning/version-types'
+import type { RequestedVxVersion } from '#/features/product-docs/versioning/product-types'
 
 export type SiteShellVariant = 'vandor' | 'vx'
 
@@ -50,8 +50,11 @@ const vandorShellContent: SiteShellContent = {
     },
     {
       label: 'vxt',
-      description: 'Templating engine for structured Vandor workflows.',
-      status: 'coming-soon',
+      href: '/vxt/latest/docs',
+      description: 'Spec-first Go templating library for structured Vandor workflows.',
+      secondaryHref: '/vxt/latest/docs/getting-started',
+      secondaryLabel: 'Docs',
+      status: 'active',
     },
     {
       label: 'vpkg',
@@ -74,7 +77,8 @@ const vandorShellContent: SiteShellContent = {
     { label: 'Partners', href: '/partners' },
     { label: 'vx', href: '/vx/latest' },
     { label: 'vx Docs', href: '/vx/latest/docs' },
-    { label: 'Getting Started', href: '/vx/latest/docs/getting-started' },
+    { label: 'Install vx', href: '/vx/latest/docs/install' },
+    { label: 'vxt Docs', href: '/vxt/latest/docs' },
   ],
 }
 
@@ -92,15 +96,15 @@ function buildVxShellContent(
       secondary: { label: 'Read Docs', href: `/vx/${requestedVersion}/docs` },
       primary: {
         label: 'Install vx',
-        href: `/vx/${requestedVersion}/docs/getting-started`,
+        href: `/vx/${requestedVersion}/docs/install`,
       },
     },
     footerLinks: [
       { label: 'vx Landing', href: `/vx/${requestedVersion}` },
       { label: 'Documentation', href: `/vx/${requestedVersion}/docs` },
       {
-        label: 'Getting Started',
-        href: `/vx/${requestedVersion}/docs/getting-started`,
+        label: 'Install vx',
+        href: `/vx/${requestedVersion}/docs/install`,
       },
       { label: 'CLI Reference', href: `/vx/${requestedVersion}/docs` },
       { label: 'GitHub', href: '#' },

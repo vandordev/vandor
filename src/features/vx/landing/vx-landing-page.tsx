@@ -2,8 +2,8 @@ import Footer5 from '#/components/footer-5'
 import { HeroHeader } from '#/components/header'
 import { LandingSection } from '#/components/landing-section'
 import { getSiteShellContent } from '#/components/site-shell-content'
+import type { RequestedVxVersion } from '#/features/product-docs/versioning/product-types'
 import { VxHeroSection2 } from '#/features/vx/landing/vx-hero-section-2'
-import type { RequestedVxVersion } from '#/features/vx/versioning/version-types'
 
 type VxLandingPageProps = {
   requestedVersion: RequestedVxVersion

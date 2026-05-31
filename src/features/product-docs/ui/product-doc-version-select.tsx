@@ -9,40 +9,46 @@ import {
   SelectTrigger,
   SelectValue,
 } from '#/components/ui/select'
+import type {
+  ProductSlug,
+  RequestedDocVersion,
+} from '#/features/product-docs/versioning/product-types'
 import {
-  latestDocVersion,
-  supportedDocVersions,
-} from '#/features/vx/versioning/versions'
-import type { RequestedVxVersion } from '#/features/vx/versioning/version-types'
+  getLatestDocVersion,
+  getSupportedDocVersions,
+} from '#/features/product-docs/versioning/versions'
 
-type VxDocVersionSelectProps = {
-  requestedVersion: RequestedVxVersion
+type ProductDocVersionSelectProps = {
+  product: ProductSlug
+  requestedVersion: RequestedDocVersion
 }
 
-const versionOptions = [
-  'latest',
-  ...[...supportedDocVersions].filter((value) => value !== 'latest').reverse(),
-] as const
-
-function getVersionLabel(version: RequestedVxVersion) {
+function getVersionLabel(product: ProductSlug, version: RequestedDocVersion) {
   if (version === 'latest') {
-    return `latest (${latestDocVersion})`
+    return `latest (${getLatestDocVersion(product)})`
   }
 
   return version
 }
 
-export function VxDocVersionSelect({
+export function ProductDocVersionSelect({
+  product,
   requestedVersion,
-}: VxDocVersionSelectProps) {
+}: ProductDocVersionSelectProps) {
   const navigate = useNavigate()
+  const versionOptions = [
+    'latest',
+    ...getSupportedDocVersions(product).filter((value) => value !== 'latest'),
+  ] as RequestedDocVersion[]
 
   return (
     <div className="mb-4">
       <Select
         value={requestedVersion}
         onValueChange={(nextVersion) => {
-          void navigate({ to: `/vx/${nextVersion as RequestedVxVersion}/docs` })
+          void navigate({
+            to: `/${product}/${nextVersion as RequestedDocVersion}/docs`,
+          })
         }}
       >
         <SelectTrigger
@@ -54,7 +60,7 @@ export function VxDocVersionSelect({
         <SelectContent className="border-fd-border bg-fd-popover text-fd-popover-foreground">
           {versionOptions.map((version) => (
             <SelectItem key={version} value={version}>
-              {getVersionLabel(version)}
+              {getVersionLabel(product, version)}
             </SelectItem>
           ))}
         </SelectContent>

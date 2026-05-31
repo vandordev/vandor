@@ -1,5 +1,5 @@
 export const vxLandingContent = {
-  installHref: (version: string) => `/vx/${version}/docs/getting-started`,
+  installHref: (version: string) => `/vx/${version}/docs/install`,
   getDocsHref: (version: string) => `/vx/${version}/docs`,
   showcaseItems: [
     'Bounded Contexts',

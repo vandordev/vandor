@@ -23,26 +23,31 @@ import {
 
 import { useMDXComponents } from '#/components/mdx'
 import { WaterRippleEffect } from '#/components/ui/water-ripple-effect'
-import { VxDocsLayout } from '#/features/vx/docs/docs-layout'
-import type { RequestedVxVersion } from '#/features/vx/versioning/version-types'
+import { ProductDocsLayout } from '#/features/product-docs/ui/product-docs-layout'
+import type {
+  ConcreteDocVersion,
+  ProductSlug,
+  RequestedDocVersion,
+} from '#/features/product-docs/versioning/product-types'
 import { cn } from '#/lib/utils'
 
-type VxDocPageData = {
+type ProductDocPageData = {
   banner?: string
   description?: string
   pageTree: Root
+  product: ProductSlug
   render: MarkdownRendererSerializedOptions
-  requestedVersion: RequestedVxVersion
-  resolvedVersion: string
+  requestedVersion: RequestedDocVersion
+  resolvedVersion: ConcreteDocVersion
   title: string
 }
 
-type VxDocPageProps = {
-  data: VxDocPageData
+type ProductDocPageProps = {
+  data: ProductDocPageData
 }
 
-export function VxDocPage({ data }: VxDocPageProps) {
-  const hydrated = useFumadocsLoader(data) as VxDocPageData
+export function ProductDocPage({ data }: ProductDocPageProps) {
+  const hydrated = useFumadocsLoader(data) as ProductDocPageData
   const renderer = useMemo(
     () => rendererFromSerialized(hydrated.render),
     [hydrated.render],
@@ -51,7 +56,8 @@ export function VxDocPage({ data }: VxDocPageProps) {
   const hasInlineToc = toc.length > 0
 
   return (
-    <VxDocsLayout
+    <ProductDocsLayout
+      product={hydrated.product}
       requestedVersion={hydrated.requestedVersion}
       tree={hydrated.pageTree}
     >
@@ -95,14 +101,14 @@ export function VxDocPage({ data }: VxDocPageProps) {
               <DocsBody className="max-w-none">{body}</DocsBody>
             </div>
             {!hasInlineToc ? null : (
-              <div className="hidden lg:block self-stretch">
+              <div className="hidden self-stretch lg:block">
                 <InlineToc className="sticky top-24" />
               </div>
             )}
           </div>
         </TOCProvider>
       </DocsPage>
-    </VxDocsLayout>
+    </ProductDocsLayout>
   )
 }
 

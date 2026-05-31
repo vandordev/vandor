@@ -1,11 +1,11 @@
 import { createFileRoute, notFound } from '@tanstack/react-router'
 
+import { isRequestedDocVersion } from '#/features/product-docs/versioning/resolve-version'
 import { VxLandingPage } from '#/features/vx/landing/vx-landing-page'
 import {
   getVxLandingDescription,
   getVxLandingTitle,
 } from '#/features/vx/landing/vx-metadata'
-import { isRequestedVxVersion } from '#/features/vx/versioning/resolve-version'
 import {
   buildSeoHead,
   getSoftwareApplicationStructuredData,
@@ -13,7 +13,7 @@ import {
 
 export const Route = createFileRoute('/vx/$version/')({
   loader: ({ params }) => {
-    if (!isRequestedVxVersion(params.version)) {
+    if (!isRequestedDocVersion('vx', params.version)) {
       throw notFound()
     }
 

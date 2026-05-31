@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as WritingIndexRouteImport } from './routes/writing/index'
 import { Route as WorkIndexRouteImport } from './routes/work/index'
+import { Route as VxtIndexRouteImport } from './routes/vxt/index'
 import { Route as VxIndexRouteImport } from './routes/vx/index'
 import { Route as SupportIndexRouteImport } from './routes/support/index'
 import { Route as PartnersIndexRouteImport } from './routes/partners/index'
@@ -22,8 +23,11 @@ import { Route as WritingSlugRouteImport } from './routes/writing/$slug'
 import { Route as SitemapXmlRouteImport } from './routes/sitemap.xml'
 import { Route as RobotsTxtRouteImport } from './routes/robots.txt'
 import { Route as NewsSlugRouteImport } from './routes/news/$slug'
+import { Route as VxtVersionIndexRouteImport } from './routes/vxt/$version/index'
 import { Route as VxVersionIndexRouteImport } from './routes/vx/$version/index'
+import { Route as VxtVersionDocsIndexRouteImport } from './routes/vxt/$version/docs/index'
 import { Route as VxVersionDocsIndexRouteImport } from './routes/vx/$version/docs/index'
+import { Route as VxtVersionDocsSplatRouteImport } from './routes/vxt/$version/docs/$'
 import { Route as VxVersionDocsSplatRouteImport } from './routes/vx/$version/docs/$'
 
 const IndexRoute = IndexRouteImport.update({
@@ -39,6 +43,11 @@ const WritingIndexRoute = WritingIndexRouteImport.update({
 const WorkIndexRoute = WorkIndexRouteImport.update({
   id: '/work/',
   path: '/work/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const VxtIndexRoute = VxtIndexRouteImport.update({
+  id: '/vxt/',
+  path: '/vxt/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const VxIndexRoute = VxIndexRouteImport.update({
@@ -91,14 +100,29 @@ const NewsSlugRoute = NewsSlugRouteImport.update({
   path: '/news/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const VxtVersionIndexRoute = VxtVersionIndexRouteImport.update({
+  id: '/vxt/$version/',
+  path: '/vxt/$version/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const VxVersionIndexRoute = VxVersionIndexRouteImport.update({
   id: '/vx/$version/',
   path: '/vx/$version/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const VxtVersionDocsIndexRoute = VxtVersionDocsIndexRouteImport.update({
+  id: '/vxt/$version/docs/',
+  path: '/vxt/$version/docs/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const VxVersionDocsIndexRoute = VxVersionDocsIndexRouteImport.update({
   id: '/vx/$version/docs/',
   path: '/vx/$version/docs/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const VxtVersionDocsSplatRoute = VxtVersionDocsSplatRouteImport.update({
+  id: '/vxt/$version/docs/$',
+  path: '/vxt/$version/docs/$',
   getParentRoute: () => rootRouteImport,
 } as any)
 const VxVersionDocsSplatRoute = VxVersionDocsSplatRouteImport.update({
@@ -119,11 +143,15 @@ export interface FileRoutesByFullPath {
   '/partners/': typeof PartnersIndexRoute
   '/support/': typeof SupportIndexRoute
   '/vx/': typeof VxIndexRoute
+  '/vxt/': typeof VxtIndexRoute
   '/work/': typeof WorkIndexRoute
   '/writing/': typeof WritingIndexRoute
   '/vx/$version/': typeof VxVersionIndexRoute
+  '/vxt/$version/': typeof VxtVersionIndexRoute
   '/vx/$version/docs/$': typeof VxVersionDocsSplatRoute
+  '/vxt/$version/docs/$': typeof VxtVersionDocsSplatRoute
   '/vx/$version/docs/': typeof VxVersionDocsIndexRoute
+  '/vxt/$version/docs/': typeof VxtVersionDocsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -137,11 +165,15 @@ export interface FileRoutesByTo {
   '/partners': typeof PartnersIndexRoute
   '/support': typeof SupportIndexRoute
   '/vx': typeof VxIndexRoute
+  '/vxt': typeof VxtIndexRoute
   '/work': typeof WorkIndexRoute
   '/writing': typeof WritingIndexRoute
   '/vx/$version': typeof VxVersionIndexRoute
+  '/vxt/$version': typeof VxtVersionIndexRoute
   '/vx/$version/docs/$': typeof VxVersionDocsSplatRoute
+  '/vxt/$version/docs/$': typeof VxtVersionDocsSplatRoute
   '/vx/$version/docs': typeof VxVersionDocsIndexRoute
+  '/vxt/$version/docs': typeof VxtVersionDocsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -156,11 +188,15 @@ export interface FileRoutesById {
   '/partners/': typeof PartnersIndexRoute
   '/support/': typeof SupportIndexRoute
   '/vx/': typeof VxIndexRoute
+  '/vxt/': typeof VxtIndexRoute
   '/work/': typeof WorkIndexRoute
   '/writing/': typeof WritingIndexRoute
   '/vx/$version/': typeof VxVersionIndexRoute
+  '/vxt/$version/': typeof VxtVersionIndexRoute
   '/vx/$version/docs/$': typeof VxVersionDocsSplatRoute
+  '/vxt/$version/docs/$': typeof VxtVersionDocsSplatRoute
   '/vx/$version/docs/': typeof VxVersionDocsIndexRoute
+  '/vxt/$version/docs/': typeof VxtVersionDocsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -176,11 +212,15 @@ export interface FileRouteTypes {
     | '/partners/'
     | '/support/'
     | '/vx/'
+    | '/vxt/'
     | '/work/'
     | '/writing/'
     | '/vx/$version/'
+    | '/vxt/$version/'
     | '/vx/$version/docs/$'
+    | '/vxt/$version/docs/$'
     | '/vx/$version/docs/'
+    | '/vxt/$version/docs/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -194,11 +234,15 @@ export interface FileRouteTypes {
     | '/partners'
     | '/support'
     | '/vx'
+    | '/vxt'
     | '/work'
     | '/writing'
     | '/vx/$version'
+    | '/vxt/$version'
     | '/vx/$version/docs/$'
+    | '/vxt/$version/docs/$'
     | '/vx/$version/docs'
+    | '/vxt/$version/docs'
   id:
     | '__root__'
     | '/'
@@ -212,11 +256,15 @@ export interface FileRouteTypes {
     | '/partners/'
     | '/support/'
     | '/vx/'
+    | '/vxt/'
     | '/work/'
     | '/writing/'
     | '/vx/$version/'
+    | '/vxt/$version/'
     | '/vx/$version/docs/$'
+    | '/vxt/$version/docs/$'
     | '/vx/$version/docs/'
+    | '/vxt/$version/docs/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -231,11 +279,15 @@ export interface RootRouteChildren {
   PartnersIndexRoute: typeof PartnersIndexRoute
   SupportIndexRoute: typeof SupportIndexRoute
   VxIndexRoute: typeof VxIndexRoute
+  VxtIndexRoute: typeof VxtIndexRoute
   WorkIndexRoute: typeof WorkIndexRoute
   WritingIndexRoute: typeof WritingIndexRoute
   VxVersionIndexRoute: typeof VxVersionIndexRoute
+  VxtVersionIndexRoute: typeof VxtVersionIndexRoute
   VxVersionDocsSplatRoute: typeof VxVersionDocsSplatRoute
+  VxtVersionDocsSplatRoute: typeof VxtVersionDocsSplatRoute
   VxVersionDocsIndexRoute: typeof VxVersionDocsIndexRoute
+  VxtVersionDocsIndexRoute: typeof VxtVersionDocsIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -259,6 +311,13 @@ declare module '@tanstack/react-router' {
       path: '/work'
       fullPath: '/work/'
       preLoaderRoute: typeof WorkIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/vxt/': {
+      id: '/vxt/'
+      path: '/vxt'
+      fullPath: '/vxt/'
+      preLoaderRoute: typeof VxtIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/vx/': {
@@ -331,6 +390,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof NewsSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/vxt/$version/': {
+      id: '/vxt/$version/'
+      path: '/vxt/$version'
+      fullPath: '/vxt/$version/'
+      preLoaderRoute: typeof VxtVersionIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/vx/$version/': {
       id: '/vx/$version/'
       path: '/vx/$version'
@@ -338,11 +404,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof VxVersionIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/vxt/$version/docs/': {
+      id: '/vxt/$version/docs/'
+      path: '/vxt/$version/docs'
+      fullPath: '/vxt/$version/docs/'
+      preLoaderRoute: typeof VxtVersionDocsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/vx/$version/docs/': {
       id: '/vx/$version/docs/'
       path: '/vx/$version/docs'
       fullPath: '/vx/$version/docs/'
       preLoaderRoute: typeof VxVersionDocsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/vxt/$version/docs/$': {
+      id: '/vxt/$version/docs/$'
+      path: '/vxt/$version/docs/$'
+      fullPath: '/vxt/$version/docs/$'
+      preLoaderRoute: typeof VxtVersionDocsSplatRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/vx/$version/docs/$': {
@@ -367,11 +447,15 @@ const rootRouteChildren: RootRouteChildren = {
   PartnersIndexRoute: PartnersIndexRoute,
   SupportIndexRoute: SupportIndexRoute,
   VxIndexRoute: VxIndexRoute,
+  VxtIndexRoute: VxtIndexRoute,
   WorkIndexRoute: WorkIndexRoute,
   WritingIndexRoute: WritingIndexRoute,
   VxVersionIndexRoute: VxVersionIndexRoute,
+  VxtVersionIndexRoute: VxtVersionIndexRoute,
   VxVersionDocsSplatRoute: VxVersionDocsSplatRoute,
+  VxtVersionDocsSplatRoute: VxtVersionDocsSplatRoute,
   VxVersionDocsIndexRoute: VxVersionDocsIndexRoute,
+  VxtVersionDocsIndexRoute: VxtVersionDocsIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

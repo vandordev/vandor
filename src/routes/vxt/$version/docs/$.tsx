@@ -1,34 +1,34 @@
 import { createFileRoute, notFound } from '@tanstack/react-router'
 
+import { loadProductDocPage } from '#/features/product-docs/source/load-product-doc-page'
+import { getProductDocsConfig } from '#/features/product-docs/source/product-docs-registry'
 import {
+  buildProductDocsPath,
   getProductDocsDescription,
   getProductDocsTitle,
-  buildProductDocsPath,
 } from '#/features/product-docs/ui/docs-metadata'
 import { ProductDocPage } from '#/features/product-docs/ui/product-doc-page'
-import { loadProductDocPage } from '#/features/product-docs/source/load-product-doc-page'
 import { isRequestedDocVersion } from '#/features/product-docs/versioning/resolve-version'
-import { getProductDocsConfig } from '#/features/product-docs/source/product-docs-registry'
 import {
   buildSeoHead,
   getCollectionPageStructuredData,
 } from '#/lib/seo'
 
-export const Route = createFileRoute('/vx/$version/docs/')({
+export const Route = createFileRoute('/vxt/$version/docs/$')({
   loader: async ({ params }) => {
-    if (!isRequestedDocVersion('vx', params.version)) {
+    if (!isRequestedDocVersion('vxt', params.version)) {
       throw notFound()
     }
 
     return loadProductDocPage({
       data: {
-        product: 'vx',
+        product: 'vxt',
         requestedVersion: params.version,
-        slugs: [],
+        slugs: params._splat ? params._splat.split('/') : [],
       },
     })
   },
-  head: ({ loaderData }) =>
+  head: ({ loaderData, params }) =>
     loaderData
       ? buildSeoHead({
           title: getProductDocsTitle(
@@ -44,6 +44,7 @@ export const Route = createFileRoute('/vx/$version/docs/')({
           path: buildProductDocsPath({
             product: loaderData.product,
             requestedVersion: loaderData.requestedVersion,
+            slugs: params._splat ? params._splat.split('/') : [],
           }),
           imagePath: getProductDocsConfig(loaderData.product).ogImagePath,
           structuredData: getCollectionPageStructuredData({
@@ -60,13 +61,14 @@ export const Route = createFileRoute('/vx/$version/docs/')({
             path: buildProductDocsPath({
               product: loaderData.product,
               requestedVersion: loaderData.requestedVersion,
+              slugs: params._splat ? params._splat.split('/') : [],
             }),
           }),
         })
       : { meta: [], links: [], scripts: [] },
-  component: VxDocsIndexRoute,
+  component: VxtDocsCatchAllRoute,
 })
 
-function VxDocsIndexRoute() {
+function VxtDocsCatchAllRoute() {
   return <ProductDocPage data={Route.useLoaderData()} />
 }

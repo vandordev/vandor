@@ -1,28 +1,28 @@
 import { createFileRoute, notFound } from '@tanstack/react-router'
 
+import { loadProductDocPage } from '#/features/product-docs/source/load-product-doc-page'
+import { getProductDocsConfig } from '#/features/product-docs/source/product-docs-registry'
 import {
+  buildProductDocsPath,
   getProductDocsDescription,
   getProductDocsTitle,
-  buildProductDocsPath,
 } from '#/features/product-docs/ui/docs-metadata'
 import { ProductDocPage } from '#/features/product-docs/ui/product-doc-page'
-import { loadProductDocPage } from '#/features/product-docs/source/load-product-doc-page'
 import { isRequestedDocVersion } from '#/features/product-docs/versioning/resolve-version'
-import { getProductDocsConfig } from '#/features/product-docs/source/product-docs-registry'
 import {
   buildSeoHead,
   getCollectionPageStructuredData,
 } from '#/lib/seo'
 
-export const Route = createFileRoute('/vx/$version/docs/')({
+export const Route = createFileRoute('/vxt/$version/docs/')({
   loader: async ({ params }) => {
-    if (!isRequestedDocVersion('vx', params.version)) {
+    if (!isRequestedDocVersion('vxt', params.version)) {
       throw notFound()
     }
 
     return loadProductDocPage({
       data: {
-        product: 'vx',
+        product: 'vxt',
         requestedVersion: params.version,
         slugs: [],
       },
@@ -64,9 +64,9 @@ export const Route = createFileRoute('/vx/$version/docs/')({
           }),
         })
       : { meta: [], links: [], scripts: [] },
-  component: VxDocsIndexRoute,
+  component: VxtDocsIndexRoute,
 })
 
-function VxDocsIndexRoute() {
+function VxtDocsIndexRoute() {
   return <ProductDocPage data={Route.useLoaderData()} />
 }

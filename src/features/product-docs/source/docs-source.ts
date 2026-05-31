@@ -3,41 +3,34 @@ import os from 'node:os'
 import path from 'node:path'
 
 import { localMd } from '@fumadocs/local-md'
-import { pageSchema } from 'fumadocs-core/source/schema'
 import { dynamicLoader } from 'fumadocs-core/source/dynamic'
 import { useStorage } from 'nitro/storage'
-import { z } from 'zod'
 
-import { resolveDocVersion } from '#/features/vx/versioning/resolve-version'
+import { productDocPageSchema } from '#/features/product-docs/source/docs-schema'
+import { resolveDocVersion } from '#/features/product-docs/versioning/resolve-version'
 import type {
   ConcreteDocVersion,
-  RequestedVxVersion,
-} from '#/features/vx/versioning/version-types'
+  ProductSlug,
+  RequestedDocVersion,
+} from '#/features/product-docs/versioning/product-types'
 
-const docsSubdirectories: Record<ConcreteDocVersion, string> = {
-  v0: 'v0',
-  v1: 'v1',
-  v2: 'v2',
-}
-
-const vxPageSchema = pageSchema.extend({
-  banner: z.string().optional(),
-})
-
-const docsSourcesCache = new Map<ConcreteDocVersion, ReturnType<typeof localMd>>()
+const docsSourcesCache = new Map<string, ReturnType<typeof localMd>>()
 
 const loaderCache = new Map<string, ReturnType<typeof dynamicLoader>>()
 
 let runtimeDocsRootPromise: Promise<string> | undefined
 
 function resolveBundledDocKeyToFilePath(key: string) {
-  const withoutBaseName = key.startsWith('vx-docs:') ? key.slice('vx-docs:'.length) : key
+  const withoutBaseName = key.startsWith('product-docs:')
+    ? key.slice('product-docs:'.length)
+    : key
+
   return withoutBaseName.replaceAll(':', path.sep)
 }
 
 async function getDocsRootDir() {
   if (process.env.NODE_ENV === 'development') {
-    return path.resolve('content/docs')
+    return path.resolve('.generated/product-docs')
   }
 
   runtimeDocsRootPromise ??= materializeBundledDocs()
@@ -45,9 +38,8 @@ async function getDocsRootDir() {
 }
 
 async function materializeBundledDocs() {
-  const storage = useStorage('assets/vx-docs')
-  const targetRoot = path.join(os.tmpdir(), 'vandor-vx-docs')
-
+  const storage = useStorage('assets/product-docs')
+  const targetRoot = path.join(os.tmpdir(), 'vandor-product-docs')
   const keys = await storage.getKeys()
 
   await Promise.all(
@@ -67,35 +59,35 @@ async function materializeBundledDocs() {
   return targetRoot
 }
 
-async function getDocsSource(version: ConcreteDocVersion) {
-  let source = docsSourcesCache.get(version)
+async function getDocsSource(product: ProductSlug, version: ConcreteDocVersion) {
+  const cacheKey = `${product}:${version}`
+  let source = docsSourcesCache.get(cacheKey)
 
   if (!source) {
     const docsRoot = await getDocsRootDir()
     source = localMd({
-      dir: path.join(docsRoot, docsSubdirectories[version]),
-      frontmatterSchema: vxPageSchema,
+      dir: path.join(docsRoot, product, version),
+      frontmatterSchema: productDocPageSchema,
     })
-    docsSourcesCache.set(version, source)
-
-    if (process.env.NODE_ENV === 'development') {
-      void source.devServer()
-    }
+    docsSourcesCache.set(cacheKey, source)
   }
 
   return source
 }
 
-export async function getVxDocsSource(requestedVersion: RequestedVxVersion) {
-  const resolvedVersion = resolveDocVersion(requestedVersion)
-  const cacheKey = `${requestedVersion}:${resolvedVersion}`
-  const docsSource = await getDocsSource(resolvedVersion)
+export async function getProductDocsSource(
+  product: ProductSlug,
+  requestedVersion: RequestedDocVersion,
+) {
+  const resolvedVersion = resolveDocVersion(product, requestedVersion)
+  const cacheKey = `${product}:${requestedVersion}:${resolvedVersion}`
+  const docsSource = await getDocsSource(product, resolvedVersion)
 
   let loader = loaderCache.get(cacheKey)
 
   if (!loader) {
     loader = dynamicLoader(docsSource.dynamicSource(), {
-      baseUrl: `/vx/${requestedVersion}/docs`,
+      baseUrl: `/${product}/${requestedVersion}/docs`,
     })
     loaderCache.set(cacheKey, loader)
   }

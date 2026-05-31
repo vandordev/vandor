@@ -12,8 +12,8 @@ export default defineNitroConfig({
       dir: './content/writing',
     },
     {
-      baseName: 'vx-docs',
-      dir: './content/docs',
+      baseName: 'product-docs',
+      dir: './.generated/product-docs',
     },
   ],
 })

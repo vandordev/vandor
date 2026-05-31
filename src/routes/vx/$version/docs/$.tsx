@@ -1,12 +1,14 @@
 import { createFileRoute, notFound } from '@tanstack/react-router'
 
 import {
-  getVxDocsDescription,
-  getVxDocsTitle,
-} from '#/features/vx/docs/docs-metadata'
-import { loadVxDocPage } from '#/features/vx/docs/load-doc-page'
-import { VxDocPage } from '#/features/vx/docs/vx-doc-page'
-import { isRequestedVxVersion } from '#/features/vx/versioning/resolve-version'
+  buildProductDocsPath,
+  getProductDocsDescription,
+  getProductDocsTitle,
+} from '#/features/product-docs/ui/docs-metadata'
+import { ProductDocPage } from '#/features/product-docs/ui/product-doc-page'
+import { loadProductDocPage } from '#/features/product-docs/source/load-product-doc-page'
+import { isRequestedDocVersion } from '#/features/product-docs/versioning/resolve-version'
+import { getProductDocsConfig } from '#/features/product-docs/source/product-docs-registry'
 import {
   buildSeoHead,
   getCollectionPageStructuredData,
@@ -14,12 +16,13 @@ import {
 
 export const Route = createFileRoute('/vx/$version/docs/$')({
   loader: async ({ params }) => {
-    if (!isRequestedVxVersion(params.version)) {
+    if (!isRequestedDocVersion('vx', params.version)) {
       throw notFound()
     }
 
-    return loadVxDocPage({
+    return loadProductDocPage({
       data: {
+        product: 'vx',
         requestedVersion: params.version,
         slugs: params._splat ? params._splat.split('/') : [],
       },
@@ -28,20 +31,38 @@ export const Route = createFileRoute('/vx/$version/docs/$')({
   head: ({ loaderData, params }) =>
     loaderData
       ? buildSeoHead({
-          title: getVxDocsTitle(loaderData.requestedVersion, loaderData.title),
-          description: getVxDocsDescription(
+          title: getProductDocsTitle(
+            loaderData.product,
+            loaderData.requestedVersion,
+            loaderData.title,
+          ),
+          description: getProductDocsDescription(
+            loaderData.product,
             loaderData.requestedVersion,
             loaderData.description,
           ),
-          path: `/vx/${loaderData.requestedVersion}/docs/${params._splat ?? ''}`,
-          imagePath: '/images/og/vandor-vx.svg',
+          path: buildProductDocsPath({
+            product: loaderData.product,
+            requestedVersion: loaderData.requestedVersion,
+            slugs: params._splat ? params._splat.split('/') : [],
+          }),
+          imagePath: getProductDocsConfig(loaderData.product).ogImagePath,
           structuredData: getCollectionPageStructuredData({
-            title: getVxDocsTitle(loaderData.requestedVersion, loaderData.title),
-            description: getVxDocsDescription(
+            title: getProductDocsTitle(
+              loaderData.product,
+              loaderData.requestedVersion,
+              loaderData.title,
+            ),
+            description: getProductDocsDescription(
+              loaderData.product,
               loaderData.requestedVersion,
               loaderData.description,
             ),
-            path: `/vx/${loaderData.requestedVersion}/docs/${params._splat ?? ''}`,
+            path: buildProductDocsPath({
+              product: loaderData.product,
+              requestedVersion: loaderData.requestedVersion,
+              slugs: params._splat ? params._splat.split('/') : [],
+            }),
           }),
         })
       : { meta: [], links: [], scripts: [] },
@@ -49,5 +70,5 @@ export const Route = createFileRoute('/vx/$version/docs/$')({
 })
 
 function VxDocsCatchAllRoute() {
-  return <VxDocPage data={Route.useLoaderData()} />
+  return <ProductDocPage data={Route.useLoaderData()} />
 }
