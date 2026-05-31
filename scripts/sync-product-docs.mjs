@@ -7,6 +7,8 @@ import { productDocsManifest } from './product-docs-manifest.mjs'
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const repoRoot = path.resolve(__dirname, '..')
 const outputRoot = path.join(repoRoot, '.generated', 'product-docs')
+const cacheRoot = path.join(repoRoot, 'content', 'product-docs-cache')
+const shouldForceCache = process.env.PRODUCT_DOCS_USE_CACHE === '1'
 
 function hasFrontmatter(content) {
   return content.startsWith('---\n')
@@ -78,21 +80,28 @@ async function writeMetaJson(outputDir, versionConfig) {
   )
 }
 
-async function syncProductVersion(productKey, productConfig, versionKey, versionConfig) {
-  const sourceRoot = path.resolve(repoRoot, productConfig.sourceRoot)
+async function pathExists(targetPath) {
+  try {
+    await fs.access(targetPath)
+    return true
+  } catch {
+    return false
+  }
+}
 
-  await ensureExists(
-    sourceRoot,
-    `Missing product docs source root: ${sourceRoot}`,
-  )
-
+async function writeNormalizedVersion({
+  sourceRoot,
+  outputDir,
+  versionConfig,
+  productKey,
+  versionKey,
+}) {
   if (!Array.isArray(versionConfig.pages) || versionConfig.pages.length === 0) {
     throw new Error(
       `Product ${productKey} version ${versionKey} has no declared docs pages`,
     )
   }
 
-  const outputDir = path.join(outputRoot, productKey, versionKey)
   await fs.mkdir(outputDir, { recursive: true })
 
   for (const page of versionConfig.pages) {
@@ -112,13 +121,50 @@ async function syncProductVersion(productKey, productConfig, versionKey, version
   await writeMetaJson(outputDir, versionConfig)
 }
 
+async function copyDirectory(sourceDir, targetDir) {
+  await ensureExists(sourceDir, `Missing product docs cache root: ${sourceDir}`)
+  await fs.mkdir(path.dirname(targetDir), { recursive: true })
+  await fs.cp(sourceDir, targetDir, { recursive: true })
+}
+
+async function syncProductVersion(productKey, productConfig, versionKey, versionConfig) {
+  const siblingSourceRoot = path.resolve(repoRoot, productConfig.sourceRoot)
+  const generatedDir = path.join(outputRoot, productKey, versionKey)
+  const cachedDir = path.join(cacheRoot, productKey, versionKey)
+  const canUseSiblingSource =
+    !shouldForceCache && (await pathExists(siblingSourceRoot))
+
+  if (canUseSiblingSource) {
+    await writeNormalizedVersion({
+      sourceRoot: siblingSourceRoot,
+      outputDir: generatedDir,
+      versionConfig,
+      productKey,
+      versionKey,
+    })
+
+    await fs.rm(cachedDir, { recursive: true, force: true })
+    await fs.mkdir(path.dirname(cachedDir), { recursive: true })
+    await fs.cp(generatedDir, cachedDir, { recursive: true })
+    return 'sibling'
+  }
+
+  await copyDirectory(cachedDir, generatedDir)
+  return shouldForceCache ? 'cache (forced)' : 'cache'
+}
+
 async function main() {
   await fs.rm(outputRoot, { recursive: true, force: true })
 
   for (const [productKey, productConfig] of Object.entries(productDocsManifest)) {
     for (const [versionKey, versionConfig] of Object.entries(productConfig.versions)) {
-      await syncProductVersion(productKey, productConfig, versionKey, versionConfig)
-      console.log(`synced ${productKey}/${versionKey}`)
+      const mode = await syncProductVersion(
+        productKey,
+        productConfig,
+        versionKey,
+        versionConfig,
+      )
+      console.log(`synced ${productKey}/${versionKey} from ${mode}`)
     }
   }
 }

@@ -72,6 +72,15 @@ The generated output lives under:
 
 This generated tree is build input, not source of truth.
 
+A committed fallback snapshot also lives under:
+
+```text
+content/product-docs-cache/
+```
+
+That snapshot exists so CI and Vercel can build even when the sibling `vx` and
+`vxt` repos are not present in the filesystem.
+
 ## Commands
 
 Install dependencies:
@@ -112,6 +121,14 @@ pnpm docs:sync
 ```
 
 before refreshing the site.
+
+When sibling product repos are available, `pnpm docs:sync` refreshes both:
+
+- `.generated/product-docs/`
+- `content/product-docs-cache/`
+
+When sibling product repos are not available, `pnpm docs:sync` falls back to
+the committed snapshot in `content/product-docs-cache/`.
 
 ## Verification
 

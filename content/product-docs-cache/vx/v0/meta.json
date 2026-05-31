@@ -1,0 +1,14 @@
+{
+  "title": "vx v0",
+  "pages": [
+    "index",
+    "install",
+    "guides/quickstart",
+    "commands/vx",
+    "commands/view",
+    "commands/gen",
+    "commands/config",
+    "commands/config-init",
+    "commands/completion"
+  ]
+}

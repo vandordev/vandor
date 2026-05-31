@@ -1,0 +1,11 @@
+{
+  "title": "vxt v0",
+  "pages": [
+    "index",
+    "getting-started",
+    "document-mode",
+    "runtime-api",
+    "go-bindings",
+    "concepts"
+  ]
+}
