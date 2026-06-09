@@ -3,16 +3,16 @@ import type { PartnerEntry } from '#/features/partners/partner-types'
 type PartnerPlacement = 'home' | 'directory'
 
 export const namedPartners: PartnerEntry[] = [
-  {
-    id: 'ozone',
-    name: 'Ozone',
-    summary:
-      'Ozone builds software, internal tools, integrations, and automation around the way a team actually works.',
-    collaborationMode: 'Delivery partnership and systems implementation',
-    focus: 'Custom software and integration',
-    shape: 'Independent studio',
-    href: 'https://www.ozonedigitech.com/',
-  },
+  // {
+  //   id: 'ozone',
+  //   name: 'Ozone',
+  //   summary:
+  //     'Ozone builds software, internal tools, integrations, and automation around the way a team actually works.',
+  //   collaborationMode: 'Delivery partnership and systems implementation',
+  //   focus: 'Custom software and integration',
+  //   shape: 'Independent studio',
+  //   href: 'https://www.ozonedigitech.com/',
+  // },
 ]
 
 export const partnerLanes: PartnerEntry[] = [

@@ -25,33 +25,33 @@ This example generates a small Go service package.
 @input entity Entity
 @input options Options
 
-@dir "internal/{{ entity.package_name }}"
+@dir "internal/{{ entity.name | snake }}"
 
 @partial imports
 import "context"
 @endpartial
 
-@file "internal/{{ entity.package_name }}/service.go" mode=overwrite
-package {{ entity.package_name }}
+@file "internal/{{ entity.name | snake }}/service.go" mode=overwrite
+package {{ entity.name | snake }}
 
 {{ include imports }}
 
-type {{ entity.name }}Service struct{}
+type {{ entity.name | pascal }}Service struct{}
 
-func (s {{ entity.name }}Service) Get(ctx context.Context) error {
+func (s {{ entity.name | pascal }}Service) Get(ctx context.Context) error {
 	return nil
 }
 @endfile
 
 @if options.repository
-@file "internal/{{ entity.package_name }}/repository.go"
-package {{ entity.package_name }}
+@file "internal/{{ entity.name | snake }}/repository.go"
+package {{ entity.name | snake }}
 
-type {{ entity.name }}Repository struct{}
+type {{ entity.name | pascal }}Repository struct{}
 @endfile
 @endif
 
-@hook after:write "gofmt -w internal/{{ entity.package_name }}"
+@hook after:write "gofmt -w internal/{{ entity.name | snake }}"
 ```
 
 The referenced definition document can provide shared types:
@@ -59,7 +59,6 @@ The referenced definition document can provide shared types:
 ```vxt
 @type Entity {
   name: string
-  package_name: string
 }
 ```
 
@@ -91,8 +90,10 @@ implemented by the schema validator.
 values. `runtime.ValidateDocument` checks the input map against these
 declarations before planning.
 
-`@dir "internal/{{ entity.package_name }}"` declares a directory output.
-Template expressions in paths are rendered during planning.
+`@dir "internal/{{ entity.name | snake }}"` declares a directory output.
+Template expressions in paths are rendered during planning. Expressions can use
+case filters such as `snake`, `upper_snake`, `kebab`, `pascal`, `camel`,
+`lower`, and `upper`.
 
 `@partial imports ... @endpartial` declares reusable text. Inside a file body,
 `{{ include imports }}` inserts the partial content.
@@ -116,8 +117,7 @@ With input:
 ```go
 map[string]any{
 	"entity": map[string]any{
-		"name":         "User",
-		"package_name": "user",
+		"name": "user profile",
 	},
 	"options": map[string]any{
 		"repository": true,
@@ -127,13 +127,50 @@ map[string]any{
 
 Planning produces:
 
-- directory `internal/user`
-- file `internal/user/service.go`
-- file `internal/user/repository.go`
+- directory `internal/user_profile`
+- file `internal/user_profile/service.go`
+- file `internal/user_profile/repository.go`
 - planned hook metadata for `after:write`
 
 The hook remains metadata unless the caller explicitly uses `ApplyPlan` with a
 `runtime.HookExecutor`.
+
+## Template Expressions
+
+Template expressions use `{{ path.to.value }}` syntax. The path can reference a
+top-level input, a nested object field, or an item introduced by `{{ each ... }}`.
+Expressions can be used in file bodies, `@file` paths, and `@dir` paths.
+
+Add `| filter` to convert text while rendering:
+
+```vxt
+package {{ entity.name | snake }}
+
+type {{ entity.name | pascal }}Service struct{}
+
+func New{{ entity.name | pascal }}Service() *{{ entity.name | pascal }}Service {
+	return &{{ entity.name | pascal }}Service{}
+}
+```
+
+With `entity.name` set to `order item`, this renders `order_item` for the Go
+package name and `OrderItemService` for the exported Go type and function names.
+
+Supported case filters:
+
+| Filter | Example Output | Typical Use |
+| --- | --- | --- |
+| `snake` | `order_item` | Go package names, file or directory names |
+| `upper_snake` | `ORDER_ITEM` | Constants or environment-style names |
+| `kebab` | `order-item` | File names, URL-style names |
+| `pascal` | `OrderItem` | Exported Go structs, interfaces, and functions |
+| `camel` | `orderItem` | Unexported Go variables, fields, and functions |
+| `lower` | `order item` | Plain lowercase text |
+| `upper` | `ORDER ITEM` | Plain uppercase text |
+
+Filters can also normalize existing camel or Pascal input. For example,
+`{{ entity.name | snake }}` renders both `OrderItem` and `order item` as
+`order_item`.
 
 ## Directive Reference
 
